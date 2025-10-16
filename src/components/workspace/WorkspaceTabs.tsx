@@ -21,7 +21,7 @@ export function WorkspaceTabs() {
 		<Link
 			key={tab}
 			href={buildHref(pathname, tab)}
-			className={`cursor-pointer rounded-[12px] px-3 py-1 text-sm ${
+			className={`min-w-0 rounded-full px-2.5 py-1 text-xs whitespace-nowrap transition-colors sm:px-3 sm:py-1.5 sm:text-sm ${
 				current === tab
 					? 'bg-white text-[color:var(--ie-nav)] shadow'
 					: 'text-white/90 hover:bg-white/10'
@@ -32,7 +32,7 @@ export function WorkspaceTabs() {
 	);
 
 	return (
-		<div className='flex items-center gap-2 rounded-[14px] border border-white/30 bg-white/15 px-2 py-2 backdrop-blur'>
+		<div className='flex w-full items-center gap-2 overflow-x-auto rounded-[14px] border border-white/30 bg-white/15 px-2 py-2 whitespace-nowrap backdrop-blur md:flex-wrap md:overflow-visible md:whitespace-normal'>
 			{chip('all', 'All')}
 			{chip('performance', 'Performance')}
 			{chip('field-force', 'Field Force')}

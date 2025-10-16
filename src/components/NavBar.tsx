@@ -1,4 +1,4 @@
-import { Bell, HelpCircle, MessageCircle, User } from 'lucide-react';
+import { Bell, HelpCircle, Menu, MessageCircle, User } from 'lucide-react';
 import Link from 'next/link';
 
 import { ChatPanel } from '@/components/chat/ChatPanel';
@@ -14,16 +14,30 @@ export function NavBar() {
 					'linear-gradient(90deg, var(--ie-nav), var(--ie-nav-end))',
 			}}
 		>
-			<div className='mx-auto flex h-14 max-w-6xl items-center gap-6 px-6'>
+			<div className='mx-auto flex h-14 max-w-6xl items-center gap-6 px-3 sm:px-6'>
 				<Link href='/' className='text-white'>
 					Insights Engine
 				</Link>
-				<NavLinks />
+				{/* desktop nav links */}
+				<div className='hidden md:block'>
+					<NavLinks />
+				</div>
 				<input
-					className='hidden w-[350px] rounded-[9999px] bg-white/95 px-5 py-2 text-sm text-[color:var(--ie-text)] outline-none placeholder:text-[color:var(--ie-text-muted)] md:block'
+					className='w-[140px] rounded-[9999px] bg-white/95 px-4 py-2 text-sm text-[color:var(--ie-text)] outline-none placeholder:text-[color:var(--ie-text-muted)] sm:w-[220px] md:w-[350px]'
 					placeholder='Search for insights...'
 				/>
 				<div className='ml-auto flex items-center gap-3'>
+					{/* mobile hamburger to open quick panel */}
+					<NotificationPanel
+						trigger={
+							<button
+								aria-label='Menu'
+								className='grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-white/70 text-white hover:bg-white/10 md:hidden'
+							>
+								<Menu size={16} />
+							</button>
+						}
+					/>
 					<ChatPanel
 						trigger={
 							<button
@@ -40,7 +54,7 @@ export function NavBar() {
 					>
 						<User size={16} />
 					</button>
-					<div className='hidden md:block'>
+					<div>
 						<NotificationPanel
 							trigger={
 								<button

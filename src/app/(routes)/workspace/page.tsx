@@ -423,23 +423,23 @@ export default function WorkspacePage() {
 				}}
 			>
 				<div className='mx-auto max-w-6xl px-6'>
-					<div className='flex flex-row items-center gap-6'>
+					<div className='flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-6'>
 						<div className='flex items-center justify-between py-3'>
 							<h1 className='text-3xl font-semibold text-white'>
 								Workspace
 							</h1>
 						</div>
-						<div className='flex items-center justify-between gap-6'>
+						<div className='flex w-full items-center gap-3 md:w-auto'>
 							<Suspense fallback={null}>
 								<WorkspaceTabs />
 							</Suspense>
-							<button className='flex flex-row items-center justify-center gap-2 text-sm text-white/95 hover:text-white'>
+							<button className='ml-auto flex flex-row items-center justify-center gap-2 text-sm text-white/95 hover:text-white md:ml-0'>
 								<ListFilter size={14} /> Filters
 							</button>
 						</div>
 					</div>
 					<div>
-						<div className='mt-6 grid grid-cols-4 gap-5'>
+						<div className='mt-6 grid grid-cols-2 gap-5 lg:grid-cols-4'>
 							<div className='col-span-1'>
 								<KpiCard
 									title='Net Sales'
@@ -476,12 +476,12 @@ export default function WorkspacePage() {
 					</div>
 				</div>
 			</div>
-			<div className='mx-auto max-w-6xl space-y-4 py-8'>
+			<div className='mx-auto max-w-6xl space-y-4 px-3 py-8'>
 				<AccordionRow
 					title='How is the brand performing?'
 					insightsCount={6}
 				>
-					<div className='grid grid-cols-3 gap-4'>
+					<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
 						<ChartCard
 							title='Market share across regions'
 							option={msRegionsOption}
@@ -515,7 +515,7 @@ export default function WorkspacePage() {
 					title='How has the revenue forecast evolved?'
 					insightsCount={4}
 				>
-					<div className='grid grid-cols-3 gap-4'>
+					<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
 						<ChartCard
 							title='LE revenue change v/s baseline'
 							option={leRevenueChangeOption}
@@ -541,7 +541,7 @@ export default function WorkspacePage() {
 					title='How are HCP and Caregiver attitudes impacting the business?'
 					insightsCount={3}
 				>
-					<div className='grid grid-cols-3 gap-4'>
+					<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
 						<ChartCard
 							title='Postcard Recall Rate'
 							option={postcardRecallOption}
@@ -562,7 +562,7 @@ export default function WorkspacePage() {
 					title='How have shifts in political sentiments and policy impacted health of the business?'
 					insightsCount={2}
 				>
-					<div className='grid grid-cols-2 gap-4'>
+					<div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>
 						<ChartCard
 							title='Birth rate'
 							option={birthRateOption}
@@ -767,7 +767,7 @@ export default function WorkspacePage() {
 						};
 
 						return (
-							<div className='grid grid-cols-3 gap-4'>
+							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
 								<ChartCard
 									title='Series Completion'
 									option={seriesCompletionOption}

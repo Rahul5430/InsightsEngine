@@ -46,7 +46,7 @@ export function AccordionRow({
 	return (
 		<div className='rounded-[14px] border border-[color:var(--ie-border)] bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(245,247,255,1)_100%)] shadow-[var(--ie-shadow-soft)]'>
 			<div
-				className='group flex h-[64px] w-full cursor-pointer items-center gap-3 px-5 text-left'
+				className='group flex h-[64px] w-full cursor-pointer items-center gap-2 px-5 text-left'
 				onClick={() => setOpen((v) => !v)}
 				role='button'
 				aria-expanded={open}
@@ -59,18 +59,19 @@ export function AccordionRow({
 				}}
 			>
 				<span
-					className={`text-[color:var(--ie-primary)] transition-transform duration-300 ${open ? 'rotate-90' : ''}`}
+					className={`flex-shrink-0 text-[color:var(--ie-primary)] transition-transform duration-300 ${open ? 'rotate-90' : ''}`}
 				>
 					<ChevronRight />
 				</span>
-				<span className='font-medium text-[color:var(--ie-text)]'>
+				<span className='min-w-0 flex-1 truncate font-medium text-[color:var(--ie-text)]'>
 					{title}
 				</span>
 				{insightsCount > 0 && (
-					<NewInsightsBadge count={insightsCount} />
+					<span className='hidden md:inline-flex'>
+						<NewInsightsBadge count={insightsCount} />
+					</span>
 				)}
-				<div className='flex-1' />
-				<div className='flex flex-row gap-2'>
+				<div className='ml-2 flex flex-shrink-0 flex-row gap-1'>
 					<button
 						type='button'
 						aria-label='Expand'

@@ -16,10 +16,10 @@ export default function Home() {
 				}}
 			>
 				<div className='mx-auto max-w-6xl px-6'>
-					<div className='text-center text-[28px] font-semibold tracking-tight text-white'>
+					<div className='px-2 text-center text-2xl font-semibold tracking-tight text-white sm:text-[28px]'>
 						Hi Rob, here’s what’s new in your insights world today.
 					</div>
-					<div className='mt-6 grid grid-cols-4 gap-5'>
+					<div className='mt-6 grid grid-cols-2 gap-5 lg:grid-cols-4'>
 						<div className='col-span-1'>
 							<KpiCard
 								title='Net Sales'
@@ -57,19 +57,19 @@ export default function Home() {
 			</div>
 
 			<div className='mx-auto max-w-6xl px-6 pt-6'>
-				<div className='py-4 text-xl font-semibold text-[color:var(--ie-text)]'>
+				<div className='flex flex-wrap items-center gap-2 py-4 text-lg font-semibold text-[color:var(--ie-text)] sm:text-xl'>
 					<span>Alerts</span>
-					<span className='mx-2 text-[color:var(--ie-text-muted)]'>
+					<span className='mx-2 hidden text-[color:var(--ie-text-muted)] sm:inline'>
 						|
 					</span>
 					<span>Workspace</span>
 					<NewInsightsBadge
 						count={'+ 8'}
-						className='align-middle text-sm'
+						className='align-middle text-xs sm:text-sm'
 					/>
 					<Link
 						href='/workspace'
-						className='float-right text-sm text-[color:var(--ie-primary)]'
+						className='ml-auto text-sm text-[color:var(--ie-primary)]'
 					>
 						View →
 					</Link>
@@ -92,19 +92,19 @@ export default function Home() {
 					/>
 				</div>
 
-				<div className='mt-10 py-4 text-xl font-semibold text-[color:var(--ie-text)]'>
+				<div className='mt-10 flex flex-wrap items-center gap-2 py-4 text-lg font-semibold text-[color:var(--ie-text)] sm:text-xl'>
 					<span>Alerts</span>
-					<span className='mx-2 text-[color:var(--ie-text-muted)]'>
+					<span className='mx-2 hidden text-[color:var(--ie-text-muted)] sm:inline'>
 						|
 					</span>
 					<span>Collections</span>
 					<NewInsightsBadge
 						count={'+ 7'}
-						className='align-middle text-sm'
+						className='align-middle text-xs sm:text-sm'
 					/>
 					<Link
 						href='/collections'
-						className='float-right text-sm text-[color:var(--ie-primary)]'
+						className='ml-auto text-sm text-[color:var(--ie-primary)]'
 					>
 						View →
 					</Link>

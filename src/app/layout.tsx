@@ -31,7 +31,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden antialiased`}
 			>
 				<style suppressHydrationWarning>{injectThemeVariables()}</style>
 				<div
@@ -39,7 +39,7 @@ export default function RootLayout({
 					className='transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]'
 				>
 					<NavBar />
-					{children}
+					<div className='px-0'>{children}</div>
 					<Fab />
 				</div>
 			</body>
