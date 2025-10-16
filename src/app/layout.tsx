@@ -34,9 +34,14 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<style suppressHydrationWarning>{injectThemeVariables()}</style>
-				<NavBar />
-				{children}
-				<Fab />
+				<div
+					id='ie-app-container'
+					className='transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]'
+				>
+					<NavBar />
+					{children}
+					<Fab />
+				</div>
 			</body>
 		</html>
 	);

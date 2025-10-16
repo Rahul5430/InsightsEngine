@@ -78,3 +78,8 @@ body {
 .ie-sheet[data-state="closed"] {
 	animation: ie-slide-out-right 250ms ease-in forwards;
 }
+
+/* When chat is open, push main content left to reveal the sheet */
+html.ie-chat-open #ie-app-container {
+	transform: translateX(-440px);
+}

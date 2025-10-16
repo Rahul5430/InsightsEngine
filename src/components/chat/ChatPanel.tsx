@@ -2,7 +2,7 @@
 
 import * as Dialog from '@radix-ui/react-dialog';
 import { MessageCircle, Send, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Message = { id: string; role: 'user' | 'assistant'; content: string };
 
@@ -22,9 +22,20 @@ export function ChatPanel({ trigger }: { trigger: React.ReactNode }) {
 		},
 	]);
 	const [text, setText] = useState('');
+	const [open, setOpen] = useState(false);
+
+	useEffect(() => {
+		const root = document.documentElement;
+		if (open) {
+			root.classList.add('ie-chat-open');
+		} else {
+			root.classList.remove('ie-chat-open');
+		}
+		return () => root.classList.remove('ie-chat-open');
+	}, [open]);
 
 	return (
-		<Dialog.Root>
+		<Dialog.Root open={open} onOpenChange={setOpen} modal={false}>
 			<Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
 			<Dialog.Portal>
 				<Dialog.Overlay className='ie-overlay fixed inset-0 z-40 bg-black/40' />
