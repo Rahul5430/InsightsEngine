@@ -1,4 +1,6 @@
+import type { EChartsOption } from 'echarts';
 import { ListFilter } from 'lucide-react';
+import { Suspense } from 'react';
 
 import { AIIcon } from '@/components/common/AIIcon';
 import { KpiCard } from '@/components/home/KpiCard';
@@ -6,13 +8,13 @@ import { AccordionRow } from '@/components/workspace/AccordionRow';
 import { ChartCard } from '@/components/workspace/ChartCard';
 import { WorkspaceTabs } from '@/components/workspace/WorkspaceTabs';
 
-const barOption = {
+const barOption: EChartsOption = {
 	grid: { left: 30, right: 10, top: 20, bottom: 30 },
-	xAxis: { type: 'category', data: ['N', 'NE', 'SE', 'W', 'SC'] },
-	yAxis: { type: 'value' },
+	xAxis: { type: 'category' as const, data: ['N', 'NE', 'SE', 'W', 'SC'] },
+	yAxis: { type: 'value' as const },
 	series: [
 		{
-			type: 'bar',
+			type: 'bar' as const,
 			data: [94, 96, 91, 90, 81],
 			itemStyle: { color: 'var(--ie-primary)' },
 		},
@@ -37,7 +39,9 @@ export default function WorkspacePage() {
 							</h1>
 						</div>
 						<div className='flex items-center justify-between gap-6'>
-							<WorkspaceTabs />
+							<Suspense fallback={null}>
+								<WorkspaceTabs />
+							</Suspense>
 							<button className='flex flex-row items-center justify-center gap-2 text-sm text-white/95 hover:text-white'>
 								<ListFilter size={14} /> Filters
 							</button>

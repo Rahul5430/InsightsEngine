@@ -1,10 +1,11 @@
 'use client';
 
+import type { EChartsOption } from 'echarts';
 import ReactECharts from 'echarts-for-react';
 
 type Props = {
 	title: string;
-	option: any; // using echarts option object; can type later
+	option: EChartsOption; // echarts option object
 };
 
 export function ChartCard({ title, option }: Props) {
