@@ -40,7 +40,7 @@ const msRegionsOption: EChartsOption = {
 			label: { show: true, position: 'top', formatter: '{c}%' },
 			markLine: {
 				symbol: 'none',
-				lineStyle: { type: 'dashed', color: '#22c55e' },
+				lineStyle: { type: 'dashed', color: 'var(--ie-chart-green)' },
 				data: [{ yAxis: 85 }],
 			},
 		},
@@ -69,7 +69,7 @@ const msChangeMovableOption: EChartsOption = {
 			barMaxWidth: 30,
 			markLine: {
 				symbol: 'none',
-				lineStyle: { type: 'dashed', color: '#22c55e' },
+				lineStyle: { type: 'dashed', color: 'var(--ie-chart-green)' },
 				data: [{ yAxis: 12 }],
 			},
 		},
@@ -96,19 +96,19 @@ const vaxShareOption: EChartsOption = {
 			name: 'Rocky Mountains',
 			type: 'line' as const,
 			data: [10, 12, 16, 14],
-			itemStyle: { color: '#60a5fa' },
+			itemStyle: { color: 'var(--ie-chart-blue)' },
 		},
 		{
 			name: 'Northeast',
 			type: 'line' as const,
 			data: [6, 7, 8, 11],
-			itemStyle: { color: '#93c5fd' },
+			itemStyle: { color: 'var(--ie-chart-light-blue)' },
 		},
 		{
 			name: 'South Central',
 			type: 'line' as const,
 			data: [8, 9, 10, 12],
-			itemStyle: { color: '#a5b4fc' },
+			itemStyle: { color: 'var(--ie-chart-purple)' },
 		},
 	],
 };
@@ -135,7 +135,7 @@ const qoqMixedOption: EChartsOption = {
 	],
 	markLine: {
 		symbol: 'none',
-		lineStyle: { type: 'dashed', color: '#22c55e' },
+		lineStyle: { type: 'dashed', color: 'var(--ie-chart-green)' },
 		data: [{ yAxis: 10 }],
 	},
 };
@@ -160,7 +160,7 @@ const q4NeedOption: EChartsOption = {
 			name: 'Forecast',
 			type: 'bar' as const,
 			data: [26, 18, 12, 9, 8],
-			itemStyle: { color: '#60a5fa' },
+			itemStyle: { color: 'var(--ie-chart-blue)' },
 			barMaxWidth: 28,
 		},
 	],
@@ -203,7 +203,7 @@ const needToMeetOption: EChartsOption = {
 			name: 'Budget Target',
 			type: 'line',
 			data: [120, 220, 300, 340],
-			itemStyle: { color: '#22c55e' },
+			itemStyle: { color: 'var(--ie-chart-green)' },
 		},
 		{
 			name: 'Forecast',
@@ -230,7 +230,7 @@ const revenueVsForecastOption: EChartsOption = {
 			name: 'Forecast',
 			type: 'line',
 			data: [9.2, 11.0, 12.4, 14.0],
-			itemStyle: { color: '#3b82f6' },
+			itemStyle: { color: 'var(--ie-chart-dark-blue)' },
 		},
 	],
 };
@@ -248,7 +248,7 @@ const q4GoalSettingOption: EChartsOption = {
 			type: 'bar',
 			data: [28, 11, 10, 10, 9],
 			barMaxWidth: 30,
-			itemStyle: { color: '#f97316' },
+			itemStyle: { color: 'var(--ie-chart-orange)' },
 		},
 	],
 };
@@ -274,21 +274,21 @@ const postcardRecallOption: EChartsOption = {
 			name: 'Ped 3m-2y WV',
 			type: 'bar',
 			data: [24, 22, 26, 25, 27],
-			itemStyle: { color: '#f97316' },
+			itemStyle: { color: 'var(--ie-chart-orange)' },
 			barMaxWidth: 24,
 		},
 		{
 			name: 'Ped 24-55 MD',
 			type: 'bar',
 			data: [6, 6, 8, 7, 5],
-			itemStyle: { color: '#22c55e' },
+			itemStyle: { color: 'var(--ie-chart-green)' },
 			barMaxWidth: 24,
 		},
 		{
 			name: 'Ped 5-18MD',
 			type: 'bar',
 			data: [0.5, 0.8, 1.0, 0.9, 0.7],
-			itemStyle: { color: '#94a3b8' },
+			itemStyle: { color: 'var(--ie-chart-gray)' },
 			barMaxWidth: 24,
 		},
 	],
@@ -310,13 +310,13 @@ const wellnessVisitGrowthOption: EChartsOption = {
 			name: 'Ped 3m-2y WV',
 			type: 'line',
 			data: [20, 24, 28, 26],
-			itemStyle: { color: '#f97316' },
+			itemStyle: { color: 'var(--ie-chart-orange)' },
 		},
 		{
 			name: 'Ped ≤18 MD',
 			type: 'line',
 			data: [8, 9, 11, 7],
-			itemStyle: { color: '#10b981' },
+			itemStyle: { color: 'var(--ie-chart-teal)' },
 		},
 	],
 };
@@ -374,7 +374,7 @@ const vaccinationSouthCentralOption: EChartsOption = {
 			name: 'Vaccination Rate',
 			type: 'line',
 			data: [12, 12, 11, 10],
-			itemStyle: { color: '#10b981' },
+			itemStyle: { color: 'var(--ie-chart-teal)' },
 			smooth: true,
 		},
 		{
@@ -394,7 +394,7 @@ const usaMapOption: EChartsOption = {
 		left: 0,
 		min: 0,
 		max: 100,
-		inRange: { color: ['#cfe0ff', 'var(--ie-primary)'] },
+		inRange: { color: ['var(--ie-chart-light-gray)', 'var(--ie-primary)'] },
 	},
 	geo: { map: 'USA', roam: false },
 	series: [
@@ -609,35 +609,45 @@ export default function WorkspacePage() {
 									name: 'Missed Dose 4',
 									type: 'bar',
 									data: [6, 7, 8, 7],
-									itemStyle: { color: '#f97316' },
+									itemStyle: {
+										color: 'var(--ie-chart-orange)',
+									},
 									barMaxWidth: 12,
 								},
 								{
 									name: 'Missed Dose 3',
 									type: 'bar',
 									data: [4, 4, 5, 4],
-									itemStyle: { color: '#a78bfa' },
+									itemStyle: {
+										color: 'var(--ie-chart-purple)',
+									},
 									barMaxWidth: 12,
 								},
 								{
 									name: 'Missed Dose 2',
 									type: 'bar',
 									data: [3, 3, 3, 2],
-									itemStyle: { color: '#60a5fa' },
+									itemStyle: {
+										color: 'var(--ie-chart-blue)',
+									},
 									barMaxWidth: 12,
 								},
 								{
 									name: 'Missed All Doses',
 									type: 'bar',
 									data: [2, 2, 3, 2],
-									itemStyle: { color: '#94a3b8' },
+									itemStyle: {
+										color: 'var(--ie-chart-gray)',
+									},
 									barMaxWidth: 12,
 								},
 								{
 									name: 'Total Births',
 									type: 'line',
 									data: [130, 150, 170, 170],
-									itemStyle: { color: '#22c55e' },
+									itemStyle: {
+										color: 'var(--ie-chart-green)',
+									},
 									smooth: true,
 								},
 							],
@@ -671,28 +681,36 @@ export default function WorkspacePage() {
 									name: 'Total Starts',
 									type: 'bar',
 									data: [200, 0, 0, 0, 0],
-									itemStyle: { color: '#16a34a' },
+									itemStyle: {
+										color: 'var(--ie-chart-dark-green)',
+									},
 									barMaxWidth: 28,
 								},
 								{
 									name: 'Missed Dose 2',
 									type: 'bar',
 									data: [0, 95, 0, 0, 0],
-									itemStyle: { color: '#60a5fa' },
+									itemStyle: {
+										color: 'var(--ie-chart-blue)',
+									},
 									barMaxWidth: 28,
 								},
 								{
 									name: 'Missed Dose 3',
 									type: 'bar',
 									data: [0, 0, 870, 0, 0],
-									itemStyle: { color: '#a78bfa' },
+									itemStyle: {
+										color: 'var(--ie-chart-purple)',
+									},
 									barMaxWidth: 28,
 								},
 								{
 									name: 'Missed Dose 4',
 									type: 'bar',
 									data: [0, 0, 0, 1011, 0],
-									itemStyle: { color: '#f97316' },
+									itemStyle: {
+										color: 'var(--ie-chart-orange)',
+									},
 									barMaxWidth: 28,
 								},
 								{
@@ -744,7 +762,9 @@ export default function WorkspacePage() {
 									type: 'bar',
 									stack: 'total',
 									data: [0, 0, 11, 25],
-									itemStyle: { color: '#f97316' },
+									itemStyle: {
+										color: 'var(--ie-chart-orange)',
+									},
 									label: {
 										show: true,
 										position: 'insideTop',
@@ -756,7 +776,9 @@ export default function WorkspacePage() {
 									type: 'bar',
 									stack: 'total',
 									data: [0, 5, 6, 22],
-									itemStyle: { color: '#a78bfa' },
+									itemStyle: {
+										color: 'var(--ie-chart-purple)',
+									},
 									label: {
 										show: true,
 										position: 'insideTop',

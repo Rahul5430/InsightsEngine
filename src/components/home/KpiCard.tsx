@@ -11,9 +11,9 @@ type Props = {
 };
 
 const trendColorToClass: Record<NonNullable<Props['trendColor']>, string> = {
-	success: 'text-[#16A34A]',
-	danger: 'text-[#DC2626]',
-	warning: 'text-[#F59E0B]',
+	success: 'text-[color:var(--ie-success)]',
+	danger: 'text-[color:var(--ie-danger)]',
+	warning: 'text-[color:var(--ie-warning)]',
 	muted: 'text-[color:var(--ie-text-muted)]',
 };
 

@@ -27,17 +27,13 @@ export function NavBar() {
 					placeholder='Search for insights...'
 				/>
 				<div className='ml-auto flex items-center gap-3'>
-					{/* mobile hamburger to open quick panel */}
-					<NotificationPanel
-						trigger={
-							<button
-								aria-label='Menu'
-								className='grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-white/70 text-white hover:bg-white/10 md:hidden'
-							>
-								<Menu size={16} />
-							</button>
-						}
-					/>
+					{/* mobile hamburger menu */}
+					<button
+						aria-label='Menu'
+						className='grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-white/70 text-white hover:bg-white/10 md:hidden'
+					>
+						<Menu size={16} />
+					</button>
 					<ChatPanel
 						trigger={
 							<button
