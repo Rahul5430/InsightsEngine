@@ -9,55 +9,48 @@ export default function Home() {
 	return (
 		<main className='min-h-screen'>
 			<div
-				className='w-full py-8'
+				className='w-full py-6 sm:py-8'
 				style={{
 					background:
 						'linear-gradient(90deg, var(--ie-nav), var(--ie-nav-end))',
 				}}
 			>
-				<div className='mx-auto max-w-6xl px-6'>
-					<div className='px-2 text-center text-2xl font-semibold tracking-tight text-white sm:text-[28px]'>
-						Hi Rob, here’s what’s new in your insights world today.
+				<div className='mx-auto max-w-6xl px-4 sm:px-6'>
+					<div className='px-2 text-center text-lg font-semibold tracking-tight text-white sm:text-2xl lg:text-[28px]'>
+						Hi Rob, here&apos;s what&apos;s new in your insights
+						world today.
 					</div>
-					<div className='mt-6 grid grid-cols-2 gap-5 lg:grid-cols-4'>
-						<div className='col-span-1'>
-							<KpiCard
-								title='Net Sales'
-								value='$485M'
-								trend='↑ 32% YoY | 32% QoQ'
-								trailing={<AIIcon />}
-							/>
-						</div>
-						<div className='col-span-1'>
-							<KpiCard
-								title='Growth Net Sales'
-								value='$103M'
-								trend='↑ 20.5%'
-								trailing={<AIIcon />}
-							/>
-						</div>
-						<div className='col-span-1'>
-							<KpiCard
-								title='Daily Sales'
-								value='3,004 std.'
-								trend='↑ 5% in total volume'
-								trailing={<AIIcon />}
-							/>
-						</div>
-						<div className='col-span-1'>
-							<KpiCard
-								title='Call Activity Volume'
-								value='3,004 std.'
-								trend='↑ 5% in total volume'
-								trailing={<AIIcon />}
-							/>
-						</div>
+					<div className='mt-4 grid grid-cols-2 gap-3 sm:mt-6 sm:gap-5 lg:grid-cols-4'>
+						<KpiCard
+							title='Net Sales'
+							value='$485M'
+							trend='↑ 32% YoY | 32% QoQ'
+							trailing={<AIIcon />}
+						/>
+						<KpiCard
+							title='Growth Net Sales'
+							value='$103M'
+							trend='↑ 20.5%'
+							trailing={<AIIcon />}
+						/>
+						<KpiCard
+							title='Daily Sales'
+							value='3,004 std.'
+							trend='↑ 5% in total volume'
+							trailing={<AIIcon />}
+						/>
+						<KpiCard
+							title='Call Activity Volume'
+							value='3,004 std.'
+							trend='↑ 5% in total volume'
+							trailing={<AIIcon />}
+						/>
 					</div>
 				</div>
 			</div>
 
-			<div className='mx-auto max-w-6xl px-6 pt-6'>
-				<div className='flex flex-wrap items-center gap-2 py-4 text-lg font-semibold text-[color:var(--ie-text)] sm:text-xl'>
+			<div className='mx-auto max-w-6xl px-4 pt-4 sm:px-6 sm:pt-6'>
+				<div className='flex flex-wrap items-center gap-2 py-3 text-base font-semibold text-[color:var(--ie-text)] sm:py-4 sm:text-lg lg:text-xl'>
 					<span>Alerts</span>
 					<span className='mx-2 hidden text-[color:var(--ie-text-muted)] sm:inline'>
 						|
@@ -69,7 +62,7 @@ export default function Home() {
 					/>
 					<Link
 						href='/workspace'
-						className='ml-auto text-sm text-[color:var(--ie-primary)]'
+						className='ml-auto text-xs text-[color:var(--ie-primary)] sm:text-sm'
 					>
 						View →
 					</Link>
@@ -92,7 +85,7 @@ export default function Home() {
 					/>
 				</div>
 
-				<div className='mt-10 flex flex-wrap items-center gap-2 py-4 text-lg font-semibold text-[color:var(--ie-text)] sm:text-xl'>
+				<div className='mt-8 flex flex-wrap items-center gap-2 py-3 text-base font-semibold text-[color:var(--ie-text)] sm:mt-10 sm:py-4 sm:text-lg lg:text-xl'>
 					<span>Alerts</span>
 					<span className='mx-2 hidden text-[color:var(--ie-text-muted)] sm:inline'>
 						|
@@ -104,12 +97,12 @@ export default function Home() {
 					/>
 					<Link
 						href='/collections'
-						className='ml-auto text-sm text-[color:var(--ie-primary)]'
+						className='ml-auto text-xs text-[color:var(--ie-primary)] sm:text-sm'
 					>
 						View →
 					</Link>
 				</div>
-				<div className='mb-24 space-y-4'>
+				<div className='mb-16 space-y-3 sm:mb-24 sm:space-y-4'>
 					<AlertRow
 						title='Weekly Tactics Meeting'
 						newCount={2}

@@ -79,7 +79,50 @@ body {
 	animation: ie-slide-out-right 250ms ease-in forwards;
 }
 
-/* When chat is open, push main content left to reveal the sheet */
+/* When chat is open, constrain main content width to make room for the sheet */
+/* On mobile: hide main content completely, chat takes full screen */
 html.ie-chat-open #ie-app-container {
-	transform: translateX(-440px);
+	width: 0;
+	max-width: 0;
+	overflow: hidden;
+}
+
+/* On small screens and up: show content alongside chat panel */
+@media (min-width: 640px) {
+	html.ie-chat-open #ie-app-container {
+		width: calc(100vw - 440px);
+		max-width: calc(100vw - 440px);
+		overflow-x: hidden;
+	}
+}
+
+/* Ensure all content within the app container respects the width constraint */
+html.ie-chat-open #ie-app-container * {
+	box-sizing: border-box;
+}
+
+/* Mobile menu slide down animation */
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Mobile menu slide up animation */
+@keyframes slideUp {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	to {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
 }

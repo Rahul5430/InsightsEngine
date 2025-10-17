@@ -25,20 +25,20 @@ export function KpiCard({
 	trailing,
 }: Props) {
 	return (
-		<div className='flex h-[124px] flex-col justify-between rounded-[14px] border border-[color:var(--ie-border)] bg-white p-5 shadow-[var(--ie-shadow-card)]'>
+		<div className='flex h-[110px] flex-col justify-between rounded-[14px] border border-[color:var(--ie-border)] bg-white p-3 shadow-[var(--ie-shadow-card)] sm:h-[124px] sm:p-5'>
 			<div className='flex items-start justify-between'>
-				<div className='text-sm font-semibold text-[color:var(--ie-text-muted)]'>
+				<div className='text-[10px] font-semibold text-[color:var(--ie-text-muted)] sm:text-sm'>
 					{title}
 				</div>
 				{trailing}
 			</div>
-			<div className='mt-2 flex items-end justify-between gap-3'>
-				<div className='text-[24px] leading-none font-semibold tracking-tight text-[color:var(--ie-text)]'>
+			<div className='mt-1 flex items-end justify-between gap-1 sm:mt-2 sm:gap-3'>
+				<div className='text-sm leading-none font-semibold tracking-tight text-[color:var(--ie-text)] sm:text-[24px]'>
 					{value}
 				</div>
 				{trend ? (
 					<div
-						className={`text-right text-[11px] leading-tight font-medium ${trendColorToClass[trendColor]}`}
+						className={`text-right text-[9px] leading-tight font-medium sm:text-[11px] ${trendColorToClass[trendColor]}`}
 					>
 						{trend}
 					</div>

@@ -213,7 +213,7 @@ export default function CollectionsPage({
 							</h1>
 						</div>
 						<div className='flex w-full flex-1 items-center justify-between gap-6 sm:w-auto'>
-							<div className='w-full md:w-auto'>
+							<div className='w-auto'>
 								<CollectionsTabs />
 							</div>
 							<FilterPanel
@@ -225,9 +225,13 @@ export default function CollectionsPage({
 							/>
 							<Link
 								href='/collections/create'
-								className='ml-auto hidden items-center gap-2 rounded-[10px] bg-[color:var(--ie-primary)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--ie-primary-hover)] md:inline-flex'
+								className='ml-auto flex items-center gap-1.5 rounded-[10px] bg-[color:var(--ie-primary)] px-3 py-2 text-xs font-medium text-white hover:bg-[color:var(--ie-primary-hover)] sm:gap-2 sm:px-4 sm:text-sm'
 							>
-								<Plus size={16} /> Create Collection
+								<Plus size={14} className='sm:h-4 sm:w-4' />
+								<span className='hidden sm:inline'>
+									Create Collection
+								</span>
+								<span className='sm:hidden'>Create</span>
 							</Link>
 						</div>
 					</div>

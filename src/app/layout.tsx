@@ -36,7 +36,7 @@ export default function RootLayout({
 				<style suppressHydrationWarning>{injectThemeVariables()}</style>
 				<div
 					id='ie-app-container'
-					className='transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]'
+					className='transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]'
 				>
 					<NavBar />
 					<div className='px-0'>{children}</div>
