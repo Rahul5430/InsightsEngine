@@ -15,6 +15,7 @@ type Props = {
 	option: EChartsOption; // echarts option object
 	source?: string;
 	recommended?: boolean;
+	interactive?: boolean; // when false, disable inner interactions (for selectable grids)
 };
 
 export function ChartCard({
@@ -22,6 +23,7 @@ export function ChartCard({
 	option,
 	source = 'Source: Vaccelerator (FCT_CUST_FINANCE) Sep 2025',
 	recommended = false,
+	interactive = true,
 }: Props) {
 	const [favourite, setFavourite] = useState(false);
 
@@ -184,7 +186,10 @@ export function ChartCard({
 						option={resolvedOption}
 						notMerge
 						lazyUpdate
-						style={{ height: 240 }}
+						style={{
+							height: 240,
+							pointerEvents: interactive ? 'auto' : 'none',
+						}}
 					/>
 				) : (
 					<div className='h-[240px] w-full rounded-md bg-[color:var(--ie-surface-muted)]' />
@@ -194,7 +199,10 @@ export function ChartCard({
 					option={resolvedOption}
 					notMerge
 					lazyUpdate
-					style={{ height: 240 }}
+					style={{
+						height: 240,
+						pointerEvents: interactive ? 'auto' : 'none',
+					}}
 				/>
 			)}
 

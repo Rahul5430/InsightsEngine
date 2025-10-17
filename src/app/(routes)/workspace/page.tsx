@@ -7,6 +7,7 @@ import { ListFilter } from 'lucide-react';
 import { Suspense } from 'react';
 
 import { AIIcon } from '@/components/common/AIIcon';
+import { FilterPanel } from '@/components/filters/FilterPanel';
 import { KpiCard } from '@/components/home/KpiCard';
 import { AccordionRow } from '@/components/workspace/AccordionRow';
 import { ChartCard } from '@/components/workspace/ChartCard';
@@ -433,9 +434,13 @@ export default function WorkspacePage() {
 							<Suspense fallback={null}>
 								<WorkspaceTabs />
 							</Suspense>
-							<button className='ml-auto flex flex-row items-center justify-center gap-2 text-sm text-white/95 hover:text-white md:ml-0'>
-								<ListFilter size={14} /> Filters
-							</button>
+							<FilterPanel
+								trigger={
+									<button className='ml-auto flex cursor-pointer flex-row items-center justify-center gap-2 text-sm text-white/95 hover:text-white md:ml-0'>
+										<ListFilter size={14} /> Filters
+									</button>
+								}
+							/>
 						</div>
 					</div>
 					<div>

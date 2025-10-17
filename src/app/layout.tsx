@@ -40,7 +40,10 @@ export default function RootLayout({
 				>
 					<NavBar />
 					<div className='px-0'>{children}</div>
-					<Fab />
+					{/* Hide FAB on certain routes via CSS: pages can add body class 'ie-hide-fab' */}
+					<div className='[&_.ie-hide-fab_&]:hidden'>
+						<Fab />
+					</div>
 				</div>
 			</body>
 		</html>

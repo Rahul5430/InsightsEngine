@@ -5,10 +5,19 @@ import { usePathname } from 'next/navigation';
 
 export function NavLinks() {
 	const pathname = usePathname();
-	const linkClass = (href: string) =>
-		pathname === href
+
+	const linkClass = (href: string) => {
+		// Special case for home route - only match exact path
+		if (href === '/') {
+			return pathname === '/'
+				? 'rounded-[9999px] bg-white/90 px-3 py-1 text-sm text-[color:var(--ie-nav)]'
+				: 'px-3 py-1 text-sm text-white hover:text-white/90';
+		}
+		// For other routes, use startsWith
+		return pathname.startsWith(href)
 			? 'rounded-[9999px] bg-white/90 px-3 py-1 text-sm text-[color:var(--ie-nav)]'
 			: 'px-3 py-1 text-sm text-white hover:text-white/90';
+	};
 
 	return (
 		<nav className='hidden gap-2 md:flex'>

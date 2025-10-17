@@ -1,0 +1,194 @@
+'use client';
+
+import type { EChartsOption } from 'echarts';
+import { ChevronLeft, Search } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useMemo, useState } from 'react';
+
+import { ChartCard } from '@/components/workspace/ChartCard';
+
+export default function AddToCollectionStep() {
+	const router = useRouter();
+
+	const [selected, setSelected] = useState<Set<number>>(new Set());
+
+	const lineOption: EChartsOption = useMemo(
+		() => ({
+			grid: { left: 48, right: 10, top: 30, bottom: 40 },
+			legend: { top: 0, data: ['Budget Target', 'Forecast'] },
+			xAxis: {
+				type: 'category',
+				data: ["Sep '25", "Oct '25", "Nov '25", "Dec '25"],
+			},
+			yAxis: { type: 'value' },
+			series: [
+				{
+					name: 'Budget Target',
+					type: 'line',
+					data: [260, 300, 340, 360],
+					itemStyle: { color: 'var(--ie-chart-green)' },
+				},
+				{
+					name: 'Forecast',
+					type: 'line',
+					data: [230, 280, 320, 350],
+					itemStyle: { color: 'var(--ie-primary)' },
+				},
+			],
+		}),
+		[]
+	);
+
+	const barOption: EChartsOption = useMemo(
+		() => ({
+			grid: { left: 55, right: 10, top: 30, bottom: 40 },
+			xAxis: {
+				type: 'category',
+				data: ['ACT 25', 'Community', 'Top 40', 'Academic'],
+			},
+			yAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
+			series: [
+				{
+					type: 'bar',
+					data: [18, 12, 7, 6],
+					itemStyle: { color: 'var(--ie-primary)' },
+					barMaxWidth: 28,
+				},
+			],
+		}),
+		[]
+	);
+
+	const waterfallOption: EChartsOption = useMemo(
+		() => ({
+			grid: { left: 55, right: 10, top: 30, bottom: 40 },
+			xAxis: {
+				type: 'category',
+				data: ['Baseline', 'EPI', 'Share', 'Mayo Clinic', 'Current'],
+			},
+			yAxis: { type: 'value' },
+			series: [
+				{
+					type: 'bar',
+					data: [9, -4, -6, 3, 9],
+					itemStyle: { color: 'var(--ie-primary)' },
+					barMaxWidth: 26,
+				},
+			],
+		}),
+		[]
+	);
+
+	return (
+		<main className='ie-hide-fab min-h-screen'>
+			{/* Header persists with navbar since this is a full route */}
+			<div className='w-full px-6 py-4'>
+				<div className='flex items-center justify-between'>
+					<div className='flex items-center gap-3'>
+						<Link
+							href='/collections/create'
+							className='grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-[color:var(--ie-border)] bg-white hover:bg-[color:var(--ie-surface-muted)]'
+							aria-label='Back'
+						>
+							<ChevronLeft size={16} />
+						</Link>
+						<h2 className='text-xl font-semibold text-[color:var(--ie-text)]'>
+							Add to Collection
+						</h2>
+					</div>
+					<div className='relative hidden w-[420px] items-center md:flex'>
+						<span className='pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-[color:var(--ie-text-muted)]'>
+							<Search size={16} />
+						</span>
+						<input
+							placeholder='Search for insights...'
+							className='w-full rounded-[9999px] border border-[color:var(--ie-border)] bg-[color:var(--ie-surface)] py-2 pr-3 pl-9 text-sm outline-none focus:border-[color:var(--ie-primary)]'
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div className='w-full px-6 pb-24'>
+				<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
+					{[
+						{ title: 'Need to meet', opt: lineOption },
+						{ title: 'Revenue vs forecast', opt: lineOption },
+						{
+							title: 'LE revenue change v/s baseline',
+							opt: waterfallOption,
+						},
+						{
+							title: 'Regional variation in ADC+IO adoption volume',
+							opt: barOption,
+						},
+						{
+							title: 'ADC+IO utilization across key account segments',
+							opt: barOption,
+						},
+						{
+							title: 'ADC+IO utilization across key account segments',
+							opt: barOption,
+						},
+						{
+							title: 'ADC+IO utilization across key account segments',
+							opt: barOption,
+						},
+						{
+							title: 'ADC+IO utilization across key account segments',
+							opt: barOption,
+						},
+					].map((c, idx) => (
+						<button
+							key={idx}
+							onClick={() => {
+								setSelected((prev) => {
+									const newSet = new Set(prev);
+									if (newSet.has(idx)) {
+										newSet.delete(idx);
+									} else {
+										newSet.add(idx);
+									}
+									return newSet;
+								});
+							}}
+							className={`cursor-pointer rounded-[16px] text-left transition-shadow duration-200 ease-out ${
+								selected.has(idx)
+									? 'shadow-[0_0_0_2px_var(--ie-primary),0_16px_40px_rgba(2,6,23,0.18)]'
+									: 'shadow-[0_0_0_0_rgba(0,0,0,0)] hover:shadow-[0_0_0_2px_rgba(2,6,23,0.08)]'
+							}`}
+						>
+							<ChartCard
+								title={c.title}
+								option={c.opt}
+								interactive={false}
+							/>
+						</button>
+					))}
+				</div>
+			</div>
+
+			{/* Sticky footer */}
+			<div className='sticky bottom-0 z-10 flex w-full items-center justify-end gap-3 border-t border-[color:var(--ie-border)] bg-white px-6 py-3 pr-28'>
+				<Link
+					href='/collections/create'
+					className='rounded-[10px] border border-[color:var(--ie-border)] bg-white px-4 py-2 text-sm text-[color:var(--ie-text)] hover:border-[color:var(--ie-primary)] hover:text-[color:var(--ie-primary)]'
+				>
+					Cancel
+				</Link>
+				<button
+					disabled={selected.size === 0}
+					onClick={() =>
+						selected.size > 0 &&
+						router.push('/collections/my-custom-collection')
+					}
+					className={`rounded-[10px] px-4 py-2 text-sm font-medium ${selected.size === 0 ? 'cursor-not-allowed bg-[color:var(--ie-border)] text-white' : 'cursor-pointer bg-[color:var(--ie-primary)] text-white hover:bg-[color:var(--ie-primary-hover)]'}`}
+				>
+					{selected.size === 0
+						? 'Add Insight'
+						: `Add Insight${selected.size > 1 ? 's' : ''} ${selected.size}`}
+				</button>
+			</div>
+		</main>
+	);
+}
