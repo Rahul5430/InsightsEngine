@@ -96,71 +96,91 @@ export function CollectionCard({
 	}, [isMapUSA]);
 
 	return (
-		<div className='rounded-[14px] border border-[color:var(--ie-border)] bg-white shadow-[var(--ie-shadow-soft)]'>
-			{/* header strip with badge */}
-			<div className='flex items-center justify-between rounded-t-[14px] bg-[color:var(--ie-badge-bg)] px-4 py-2 text-sm font-semibold text-[color:var(--ie-nav)]'>
-				<div className='flex items-center gap-2'>
-					<Sparkles size={16} />
-					{newCount > 0 ? (
-						<span>{`+ ${newCount} New`}</span>
-					) : (
-						<span>Recommended</span>
-					)}
-				</div>
-				<div className='ml-auto flex items-center gap-1 text-[color:var(--ie-text-muted)]'>
-					<button className='rounded-full p-1 hover:bg-[color:var(--ie-badge-bg)]'>
-						<Expand size={16} />
-					</button>
-					<button
-						className='rounded-full p-1 hover:bg-[color:var(--ie-badge-bg)]'
-						onClick={() => setFavourite((v) => !v)}
-					>
-						<Star
-							size={16}
-							className={
-								favourite
-									? 'text-[color:var(--ie-primary)]'
-									: ''
-							}
-							fill={favourite ? 'currentColor' : 'none'}
-						/>
-					</button>
-					<button className='rounded-full p-1 hover:bg-[color:var(--ie-badge-bg)]'>
-						<Ellipsis size={16} />
-					</button>
+		<div className='ie-card-hover group relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg hover:border-slate-300'>
+			{/* Header with modern badge */}
+			<div className='relative bg-gradient-to-r from-slate-50 to-slate-100 px-6 py-4'>
+				<div className='flex items-center justify-between'>
+					<div className='flex items-center gap-3'>
+						<div className='flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10'>
+							<Sparkles size={16} className='text-blue-500' />
+						</div>
+						<div className='flex items-center gap-2'>
+							{newCount > 0 ? (
+								<>
+									<span className='text-sm font-semibold text-blue-500'>
+										+{newCount} New
+									</span>
+									<span className='rounded-full bg-red-500 px-2 py-0.5 text-xs font-medium text-white'>
+										{newCount}
+									</span>
+								</>
+							) : (
+								<span className='text-sm font-semibold text-blue-500'>
+									Recommended
+								</span>
+							)}
+						</div>
+					</div>
+
+					<div className='flex items-center gap-1'>
+						<button className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'>
+							<Expand size={16} />
+						</button>
+						<button
+							className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+							onClick={() => setFavourite((v) => !v)}
+						>
+							<Star
+								size={16}
+								className={favourite ? 'text-amber-500' : ''}
+								fill={favourite ? 'currentColor' : 'none'}
+							/>
+						</button>
+						<button className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'>
+							<Ellipsis size={16} />
+						</button>
+					</div>
 				</div>
 			</div>
-			{/* title */}
-			<div className='px-4 pt-3 pb-2 text-[15px] font-semibold text-[color:var(--ie-text)]'>
-				{title}
+
+			{/* Title */}
+			<div className='px-6 pt-4'>
+				<h3 className='text-lg leading-tight font-semibold text-slate-900'>
+					{title}
+				</h3>
 			</div>
-			{/* preview area */}
-			<div className='px-4 pb-4'>
-				<div className='rounded-[12px] border border-[color:var(--ie-border)] bg-[color:var(--ie-surface)] p-2'>
+
+			{/* Preview area */}
+			<div className='p-6 pt-4'>
+				<div className='rounded-lg border border-slate-200 bg-white p-3 shadow-sm'>
 					{resolvedOption ? (
 						isMapUSA && !mapReady ? (
-							<div className='h-[180px] w-full rounded-md bg-[color:var(--ie-surface-muted)]' />
+							<div className='h-[200px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
 						) : (
 							<ReactECharts
 								option={resolvedOption}
 								notMerge
 								lazyUpdate
-								style={{ height: 180 }}
+								style={{ height: 200 }}
 							/>
 						)
 					) : (
 						(preview ?? (
-							<div className='h-[180px] w-full rounded-md bg-[color:var(--ie-surface-muted)]' />
+							<div className='h-[200px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
 						))
 					)}
 				</div>
-				{/* pagination dots */}
-				<div className='mt-3 flex items-center justify-center gap-1'>
-					<span className='h-1.5 w-1.5 rounded-full bg-[color:var(--ie-chart-light-gray)]' />
-					<span className='h-1.5 w-4 rounded-full bg-[color:var(--ie-primary)]' />
-					<span className='h-1.5 w-1.5 rounded-full bg-[color:var(--ie-chart-light-gray)]' />
+
+				{/* Modern pagination dots */}
+				<div className='mt-4 flex items-center justify-center gap-2'>
+					<span className='h-2 w-2 rounded-full bg-slate-300' />
+					<span className='h-2 w-6 rounded-full bg-blue-500' />
+					<span className='h-2 w-2 rounded-full bg-slate-300' />
 				</div>
 			</div>
+
+			{/* Subtle accent line */}
+			<div className='absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-500 to-violet-500 transition-all duration-300 group-hover:w-full' />
 		</div>
 	);
 }

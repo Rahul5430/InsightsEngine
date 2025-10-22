@@ -88,22 +88,22 @@ export default function AddToCollectionStep() {
 					<div className='flex items-center gap-3'>
 						<Link
 							href='/collections/create'
-							className='grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-[color:var(--ie-border)] bg-white hover:bg-[color:var(--ie-surface-muted)]'
+							className='grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-slate-200 bg-white hover:bg-slate-100'
 							aria-label='Back'
 						>
 							<ChevronLeft size={16} />
 						</Link>
-						<h2 className='text-xl font-semibold text-[color:var(--ie-text)]'>
+						<h2 className='text-xl font-semibold text-slate-900'>
 							Add to Collection
 						</h2>
 					</div>
 					<div className='relative hidden w-[420px] items-center md:flex'>
-						<span className='pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-[color:var(--ie-text-muted)]'>
+						<span className='pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-slate-500'>
 							<Search size={16} />
 						</span>
 						<input
 							placeholder='Search for insights...'
-							className='w-full rounded-[9999px] border border-[color:var(--ie-border)] bg-[color:var(--ie-surface)] py-2 pr-3 pl-9 text-sm outline-none focus:border-[color:var(--ie-primary)]'
+							className='w-full rounded-[9999px] border border-slate-200 bg-white py-2 pr-3 pl-9 text-sm outline-none focus:border-slate-800'
 						/>
 					</div>
 				</div>
@@ -169,10 +169,10 @@ export default function AddToCollectionStep() {
 			</div>
 
 			{/* Sticky footer */}
-			<div className='sticky bottom-0 z-10 flex w-full items-center justify-end gap-3 border-t border-[color:var(--ie-border)] bg-white px-6 py-3 pr-28'>
+			<div className='sticky bottom-0 z-10 flex w-full items-center justify-end gap-3 border-t border-slate-200 bg-white px-6 py-3 pr-28'>
 				<Link
 					href='/collections/create'
-					className='rounded-[10px] border border-[color:var(--ie-border)] bg-white px-4 py-2 text-sm text-[color:var(--ie-text)] hover:border-[color:var(--ie-primary)] hover:text-[color:var(--ie-primary)]'
+					className='rounded-[10px] border border-slate-200 bg-white px-4 py-2 text-sm text-slate-900 hover:border-slate-800 hover:text-slate-800'
 				>
 					Cancel
 				</Link>
@@ -182,7 +182,7 @@ export default function AddToCollectionStep() {
 						selected.size > 0 &&
 						router.push('/collections/my-custom-collection')
 					}
-					className={`rounded-[10px] px-4 py-2 text-sm font-medium ${selected.size === 0 ? 'cursor-not-allowed bg-[color:var(--ie-border)] text-white' : 'cursor-pointer bg-[color:var(--ie-primary)] text-white hover:bg-[color:var(--ie-primary-hover)]'}`}
+					className={`rounded-[10px] px-4 py-2 text-sm font-medium ${selected.size === 0 ? 'bg-border cursor-not-allowed text-white' : 'bg-primary hover:bg-primary-light cursor-pointer text-white'}`}
 				>
 					{selected.size === 0
 						? 'Add Insight'

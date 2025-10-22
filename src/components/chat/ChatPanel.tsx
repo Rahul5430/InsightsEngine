@@ -25,13 +25,13 @@ export function ChatPanel({ trigger }: { trigger: React.ReactNode }) {
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
-		const root = document.documentElement;
+		const body = document.body;
 		if (open) {
-			root.classList.add('ie-chat-open');
+			body.classList.add('ie-chat-open');
 		} else {
-			root.classList.remove('ie-chat-open');
+			body.classList.remove('ie-chat-open');
 		}
-		return () => root.classList.remove('ie-chat-open');
+		return () => body.classList.remove('ie-chat-open');
 	}, [open]);
 
 	return (
@@ -39,15 +39,15 @@ export function ChatPanel({ trigger }: { trigger: React.ReactNode }) {
 			<Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
 			<Dialog.Portal>
 				<Dialog.Overlay className='ie-overlay fixed inset-0 z-40 bg-black/40' />
-				<Dialog.Content className='ie-sheet fixed top-0 right-0 z-50 flex h-full w-full max-w-[95vw] flex-col overflow-hidden rounded-l-[16px] border-l border-[color:var(--ie-border)] bg-white shadow-xl sm:w-[440px] sm:max-w-[440px]'>
-					<div className='sticky top-0 z-10 flex items-center justify-between border-b border-[color:var(--ie-border)] bg-white px-6 py-4'>
-						<Dialog.Title className='flex items-center gap-2 text-[color:var(--ie-text)]'>
+				<Dialog.Content className='ie-sheet fixed top-0 right-0 z-50 flex h-full w-full max-w-[95vw] flex-col overflow-hidden rounded-l-[16px] border-l border-slate-200 bg-white shadow-xl sm:w-[440px] sm:max-w-[440px]'>
+					<div className='sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4'>
+						<Dialog.Title className='flex items-center gap-2 text-slate-900'>
 							<MessageCircle size={18} /> Smart Assistant
 						</Dialog.Title>
 						<Dialog.Close asChild>
 							<button
 								aria-label='Close'
-								className='grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-[color:var(--ie-border)] hover:bg-[color:var(--ie-surface-muted)]'
+								className='grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-slate-200 hover:bg-slate-100'
 							>
 								<X size={18} />
 							</button>
@@ -60,21 +60,21 @@ export function ChatPanel({ trigger }: { trigger: React.ReactNode }) {
 						{messages.map((m) => (
 							<div
 								key={m.id}
-								className={`max-w-[90%] rounded-[12px] px-4 py-3 text-[14px] ${m.role === 'user' ? 'ml-auto bg-[color:var(--ie-badge-bg)]' : 'border border-[color:var(--ie-border)] bg-white'}`}
+								className={`max-w-[90%] rounded-[12px] px-4 py-3 text-[14px] ${m.role === 'user' ? 'ml-auto bg-slate-50' : 'border border-slate-200 bg-white'}`}
 							>
 								{m.content}
 							</div>
 						))}
 						{/* simple placeholder chart image block */}
-						<div className='rounded-[12px] border border-[color:var(--ie-border)] p-3'>
-							<div className='mb-2 text-sm font-medium text-[color:var(--ie-text)]'>
+						<div className='rounded-[12px] border border-slate-200 p-3'>
+							<div className='mb-2 text-sm font-medium text-slate-900'>
 								Here is the historical Postcard Recent Rate in
 								2022 and 2023:
 							</div>
-							<div className='h-36 rounded-md bg-[color:var(--ie-surface-muted)]' />
+							<div className='h-36 rounded-md bg-slate-100' />
 						</div>
 					</div>
-					<div className='border-t border-[color:var(--ie-border)] bg-white px-4 py-3'>
+					<div className='border-t border-slate-200 bg-white px-4 py-3'>
 						<form
 							onSubmit={(e) => {
 								e.preventDefault();
@@ -93,7 +93,7 @@ export function ChatPanel({ trigger }: { trigger: React.ReactNode }) {
 						>
 							<button
 								type='button'
-								className='grid h-9 w-9 cursor-pointer place-items-center rounded-full border border-[color:var(--ie-border)] text-[color:var(--ie-primary)]'
+								className='grid h-9 w-9 cursor-pointer place-items-center rounded-full border border-slate-200 text-slate-800'
 							>
 								+
 							</button>
@@ -101,11 +101,11 @@ export function ChatPanel({ trigger }: { trigger: React.ReactNode }) {
 								value={text}
 								onChange={(e) => setText(e.target.value)}
 								placeholder='What do you need help with?'
-								className='flex-1 rounded-[12px] border border-[color:var(--ie-border)] bg-white px-3 py-2 text-sm outline-none'
+								className='flex-1 rounded-[12px] border border-slate-200 bg-white px-3 py-2 text-sm outline-none'
 							/>
 							<button
 								type='submit'
-								className='grid h-9 w-9 cursor-pointer place-items-center rounded-full bg-[color:var(--ie-primary)] text-white'
+								className='bg-primary grid h-9 w-9 cursor-pointer place-items-center rounded-full text-white'
 							>
 								<Send size={16} />
 							</button>

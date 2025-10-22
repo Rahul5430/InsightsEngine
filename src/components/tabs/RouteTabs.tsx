@@ -32,9 +32,9 @@ export function RouteTabs({ param, items, defaultKey = 'all' }: Props) {
 		<Link
 			key={item.key}
 			href={buildHref(pathname, item.key, param, defaultKey)}
-			className={`flex-shrink-0 rounded-full px-2 py-1 text-[10px] transition-colors sm:px-3 sm:py-1.5 sm:text-xs md:text-sm ${
+			className={`flex-shrink-0 rounded-[8px] px-2 py-1 text-[10px] transition-colors sm:px-3 sm:py-1.5 sm:text-xs md:text-sm ${
 				current === item.key
-					? 'bg-white text-[color:var(--ie-nav)] shadow'
+					? 'text-nav bg-white shadow'
 					: 'text-white/90 hover:bg-white/10'
 			}`}
 		>

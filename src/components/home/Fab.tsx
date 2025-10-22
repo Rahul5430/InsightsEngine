@@ -7,7 +7,7 @@ export function Fab() {
 		<ChatPanel
 			trigger={
 				<button
-					className='fixed right-6 bottom-6 z-50 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-[color:var(--ie-primary)] text-white shadow-[0_0_0_3px_var(--ie-surface),0_0_0_8px_rgba(235,113,0,0.5)] shadow-[0_12px_30px_rgba(235,113,0,0.35)]'
+					className='ie-button-hover ie-touch-target fixed right-6 bottom-6 z-50 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-violet-500 text-white shadow-lg hover:shadow-xl'
 					aria-label='Open assistant'
 				>
 					<MessageCircle />

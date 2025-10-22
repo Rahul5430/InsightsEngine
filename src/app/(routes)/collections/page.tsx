@@ -14,6 +14,7 @@ import { CollectionCard } from '@/components/collections/CollectionCard';
 import { CollectionsTabs } from '@/components/collections/CollectionsTabs';
 import { FilterPanel } from '@/components/filters/FilterPanel';
 import { ChartCard } from '@/components/workspace/ChartCard';
+import { chartColors } from '@/theme';
 
 // Register map/geo renderer parts required for USA map
 echarts.use([
@@ -38,13 +39,13 @@ const needToMeetOption: EChartsOption = {
 			name: 'Budget Target',
 			type: 'line',
 			data: [120, 220, 300, 340],
-			itemStyle: { color: 'var(--ie-chart-green)' },
+			itemStyle: { color: chartColors.green },
 		},
 		{
 			name: 'Forecast',
 			type: 'line',
 			data: [260, 380, 400, 560],
-			itemStyle: { color: 'var(--ie-primary)' },
+			itemStyle: { color: chartColors.primary },
 		},
 	],
 };
@@ -62,28 +63,28 @@ const postcardRecallOption: EChartsOption = {
 			name: 'Ped 3m-2y MD',
 			type: 'bar',
 			data: [88, 90, 85, 80, 76],
-			itemStyle: { color: 'var(--ie-primary)' },
+			itemStyle: { color: chartColors.primary },
 			barMaxWidth: 24,
 		},
 		{
 			name: 'Ped 3m-2y WV',
 			type: 'bar',
 			data: [24, 22, 26, 25, 27],
-			itemStyle: { color: 'var(--ie-chart-orange)' },
+			itemStyle: { color: '#f97316' },
 			barMaxWidth: 24,
 		},
 		{
 			name: 'Ped 24-55 MD',
 			type: 'bar',
 			data: [6, 6, 8, 7, 5],
-			itemStyle: { color: 'var(--ie-chart-green)' },
+			itemStyle: { color: chartColors.green },
 			barMaxWidth: 24,
 		},
 		{
 			name: 'Ped 5-18MD',
 			type: 'bar',
 			data: [0.5, 0.8, 1.0, 0.9, 0.7],
-			itemStyle: { color: 'var(--ie-chart-gray)' },
+			itemStyle: { color: '#64748b' },
 			barMaxWidth: 24,
 		},
 	],
@@ -99,19 +100,19 @@ const wellnessVisitGrowthOption: EChartsOption = {
 			name: 'Ped 3m-2y MD',
 			type: 'line',
 			data: [64, 66, 67, 72],
-			itemStyle: { color: 'var(--ie-primary)' },
+			itemStyle: { color: chartColors.primary },
 		},
 		{
 			name: 'Ped 3m-2y WV',
 			type: 'line',
 			data: [20, 24, 28, 26],
-			itemStyle: { color: 'var(--ie-chart-orange)' },
+			itemStyle: { color: '#f97316' },
 		},
 		{
 			name: 'Ped ≤18 MD',
 			type: 'line',
 			data: [8, 9, 11, 7],
-			itemStyle: { color: 'var(--ie-chart-teal)' },
+			itemStyle: { color: '#06b6d4' },
 		},
 	],
 };
@@ -122,7 +123,9 @@ const usaMapOption: EChartsOption = {
 		left: 0,
 		min: 0,
 		max: 100,
-		inRange: { color: ['var(--ie-chart-light-gray)', 'var(--ie-primary)'] },
+		inRange: {
+			color: ['var(--color-chart-light-gray)', '#1e40af'],
+		},
 	},
 	geo: { map: 'USA', roam: false },
 	series: [
@@ -158,7 +161,7 @@ const msRegionsOption: EChartsOption = {
 		{
 			type: 'bar',
 			data: [94, 96, 91, 90, 68, 81],
-			itemStyle: { color: 'var(--ie-primary)' },
+			itemStyle: { color: chartColors.primary },
 			barMaxWidth: 30,
 			label: { show: true, position: 'top', formatter: '{c}%' },
 		},
@@ -183,7 +186,7 @@ const msChangeMovableOption: EChartsOption = {
 		{
 			type: 'bar',
 			data: [5, 11, 9, 6, 3, 2],
-			itemStyle: { color: 'var(--ie-chart-purple)' },
+			itemStyle: { color: 'var(--color-chart-purple)' },
 			barMaxWidth: 30,
 		},
 	],
@@ -197,37 +200,40 @@ export default function CollectionsPage({
 	const current = (searchParams?.c as string) || 'favorites';
 
 	return (
-		<main className='min-h-screen'>
-			<div
-				className='w-full py-6'
-				style={{
-					background:
-						'linear-gradient(90deg, var(--ie-nav), var(--ie-nav-end))',
-				}}
-			>
-				<div className='mx-auto max-w-6xl px-6'>
-					<div className='flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-6'>
-						<div className='flex items-center justify-between py-3'>
-							<h1 className='text-3xl font-semibold text-white'>
+		<main className='min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100'>
+			{/* Hero Section */}
+			<div className='relative overflow-hidden'>
+				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
+				<div className='bg-[url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] absolute inset-0 opacity-20' />
+
+				<div className='relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20'>
+					<div className='flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between'>
+						<div>
+							<h1 className='text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl'>
 								Collections
 							</h1>
+							<p className='mt-2 text-lg text-white/90 sm:text-xl'>
+								Organize and manage your insights
+							</p>
 						</div>
-						<div className='flex w-full flex-1 items-center justify-between gap-6 sm:w-auto'>
-							<div className='w-auto'>
+
+						<div className='flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-center'>
+							<div className='flex items-center gap-3'>
 								<CollectionsTabs />
+								<FilterPanel
+									trigger={
+										<button className='ie-button-hover ie-touch-target flex items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20'>
+											<ListFilter size={28} />
+											Filter
+										</button>
+									}
+								/>
 							</div>
-							<FilterPanel
-								trigger={
-									<button className='flex cursor-pointer flex-row items-center justify-center gap-2 text-sm text-white/95 hover:text-white'>
-										<ListFilter size={14} /> Filter
-									</button>
-								}
-							/>
 							<Link
 								href='/collections/create'
-								className='ml-auto flex items-center gap-1.5 rounded-[10px] bg-[color:var(--ie-primary)] px-3 py-2 text-xs font-medium text-white hover:bg-[color:var(--ie-primary-hover)] sm:gap-2 sm:px-4 sm:text-sm'
+								className='ie-button-hover ie-touch-target flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-lg hover:bg-white/95'
 							>
-								<Plus size={14} className='sm:h-4 sm:w-4' />
+								<Plus size={18} />
 								<span className='hidden sm:inline'>
 									Create Collection
 								</span>
@@ -238,9 +244,9 @@ export default function CollectionsPage({
 				</div>
 			</div>
 
-			<div className='mx-auto max-w-6xl space-y-4 px-6 py-8'>
+			<div className='mx-auto max-w-7xl px-4 py-16 sm:px-6'>
 				{current === 'collections' ? (
-					<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+					<div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
 						<CollectionCard
 							title='How is the brand growing?'
 							option={usaMapOption}
@@ -273,7 +279,7 @@ export default function CollectionsPage({
 										type: 'bar',
 										data: [67, 36, 31, 29],
 										itemStyle: {
-											color: 'var(--ie-primary)',
+											color: '#1e40af',
 										},
 										barMaxWidth: 30,
 									},
@@ -324,7 +330,7 @@ export default function CollectionsPage({
 										stack: 's',
 										data: [5, 11, 9, 6, 3],
 										itemStyle: {
-											color: 'var(--ie-chart-orange)',
+											color: '#f97316',
 										},
 									},
 									{
@@ -333,7 +339,7 @@ export default function CollectionsPage({
 										stack: 's',
 										data: [0, 0, 2, 1, 0],
 										itemStyle: {
-											color: 'var(--ie-chart-purple)',
+											color: 'var(--color-chart-purple)',
 										},
 									},
 									{
@@ -342,7 +348,7 @@ export default function CollectionsPage({
 										stack: 's',
 										data: [0, 0, 0, 0, 0],
 										itemStyle: {
-											color: 'var(--ie-chart-blue)',
+											color: 'var(--color-chart-blue)',
 										},
 									},
 								],
@@ -377,7 +383,7 @@ export default function CollectionsPage({
 										type: 'line',
 										data: [6, 9, 7, 11],
 										itemStyle: {
-											color: 'var(--ie-primary)',
+											color: '#1e40af',
 										},
 										smooth: true,
 									},
@@ -386,7 +392,7 @@ export default function CollectionsPage({
 										type: 'line',
 										data: [2, 3, 4, 6],
 										itemStyle: {
-											color: 'var(--ie-chart-teal)',
+											color: '#06b6d4',
 										},
 										smooth: true,
 									},
@@ -395,7 +401,7 @@ export default function CollectionsPage({
 						/>
 					</div>
 				) : (
-					<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+					<div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
 						{/* Favorites/Reports placeholder: reuse charts for now */}
 						<ChartCard
 							title='Need to meet'

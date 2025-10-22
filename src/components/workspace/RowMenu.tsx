@@ -18,7 +18,7 @@ export function RowMenu({ trigger }: { trigger: React.ReactNode }) {
 		}) => React.ReactNode,
 		label: string
 	) => (
-		<DropdownMenu.Item className='flex cursor-pointer items-center gap-3 rounded-[10px] px-3 py-2 text-sm outline-none select-none hover:bg-[color:var(--ie-badge-bg)]'>
+		<DropdownMenu.Item className='hover:bg-badge-bg flex cursor-pointer items-center gap-3 rounded-[10px] px-3 py-2 text-sm outline-none select-none'>
 			<Icon size={16} />
 			<span>{label}</span>
 		</DropdownMenu.Item>
@@ -31,7 +31,7 @@ export function RowMenu({ trigger }: { trigger: React.ReactNode }) {
 				<DropdownMenu.Content
 					sideOffset={6}
 					align='end'
-					className='z-50 w-56 rounded-[12px] border border-[color:var(--ie-border)] bg-white p-2 shadow-[var(--ie-shadow-card)]'
+					className='z-50 w-56 rounded-[12px] border border-slate-200 bg-white p-2 shadow-lg'
 				>
 					{item(FolderPlus, 'Add to Collection')}
 					{item(Share2, 'Share')}

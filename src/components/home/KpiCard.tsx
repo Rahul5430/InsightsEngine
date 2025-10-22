@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 
-// no badge inside KPI; trend rendered as right-aligned text to match design
-
 type Props = {
 	title: string;
 	value: string;
@@ -11,10 +9,10 @@ type Props = {
 };
 
 const trendColorToClass: Record<NonNullable<Props['trendColor']>, string> = {
-	success: 'text-[color:var(--ie-success)]',
-	danger: 'text-[color:var(--ie-danger)]',
-	warning: 'text-[color:var(--ie-warning)]',
-	muted: 'text-[color:var(--ie-text-muted)]',
+	success: 'text-emerald-600',
+	danger: 'text-red-600',
+	warning: 'text-amber-600',
+	muted: 'text-slate-500',
 };
 
 export function KpiCard({
@@ -25,24 +23,42 @@ export function KpiCard({
 	trailing,
 }: Props) {
 	return (
-		<div className='flex h-[110px] flex-col justify-between rounded-[14px] border border-[color:var(--ie-border)] bg-white p-3 shadow-[var(--ie-shadow-card)] sm:h-[124px] sm:p-5'>
-			<div className='flex items-start justify-between'>
-				<div className='text-[10px] font-semibold text-[color:var(--ie-text-muted)] sm:text-sm'>
-					{title}
-				</div>
-				{trailing}
-			</div>
-			<div className='mt-1 flex items-end justify-between gap-1 sm:mt-2 sm:gap-3'>
-				<div className='text-sm leading-none font-semibold tracking-tight text-[color:var(--ie-text)] sm:text-[24px]'>
-					{value}
-				</div>
-				{trend ? (
-					<div
-						className={`text-right text-[9px] leading-tight font-medium sm:text-[11px] ${trendColorToClass[trendColor]}`}
-					>
-						{trend}
+		<div className='ie-card-hover group relative min-h-[140px] overflow-hidden rounded-xl border border-slate-200 bg-white px-6 pt-6 pb-8 shadow-lg hover:border-slate-300'>
+			{/* Subtle gradient overlay */}
+			<div className='absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
+
+			<div className='relative flex h-full flex-col'>
+				<div className='mb-2 flex items-start justify-between'>
+					<div className='text-xs font-medium tracking-wide text-slate-500 uppercase'>
+						{title}
 					</div>
-				) : null}
+					{trailing && (
+						<div className='opacity-100 duration-300'>
+							{trailing}
+						</div>
+					)}
+				</div>
+
+				<div className='mt-6 flex items-baseline justify-between gap-4'>
+					<div className='flex-1'>
+						<div className='text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl'>
+							{value}
+						</div>
+					</div>
+					{trend ? (
+						<div
+							className={`text-right text-xs leading-relaxed font-medium ${trendColorToClass[trendColor]} max-w-[120px] flex-shrink-0`}
+						>
+							{trend}
+						</div>
+					) : null}
+				</div>
+
+				{/* Spacer for accent line */}
+				<div className='flex-1' />
+
+				{/* Subtle accent line */}
+				<div className='absolute bottom-0 left-0 z-10 h-1.5 w-1/3 bg-gradient-to-r from-blue-500 to-violet-500 transition-all duration-300 group-hover:w-full' />
 			</div>
 		</div>
 	);

@@ -44,7 +44,7 @@ export function AccordionRow({
 	}, [open]);
 
 	return (
-		<div className='rounded-[14px] border border-[color:var(--ie-border)] bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(245,247,255,1)_100%)] shadow-[var(--ie-shadow-soft)]'>
+		<div className='rounded-[14px] border border-slate-200 bg-gradient-to-b from-white to-slate-100 shadow-sm'>
 			<div
 				className='group flex h-[64px] w-full cursor-pointer items-center gap-2 px-5 text-left'
 				onClick={() => setOpen((v) => !v)}
@@ -59,11 +59,11 @@ export function AccordionRow({
 				}}
 			>
 				<span
-					className={`flex-shrink-0 text-[color:var(--ie-primary)] transition-transform duration-300 ${open ? 'rotate-90' : ''}`}
+					className={`flex-shrink-0 text-slate-800 transition-transform duration-300 ${open ? 'rotate-90' : ''}`}
 				>
 					<ChevronRight />
 				</span>
-				<span className='min-w-0 flex-1 truncate font-medium text-[color:var(--ie-text)]'>
+				<span className='min-w-0 flex-1 truncate font-medium text-slate-900'>
 					{title}
 				</span>
 				{insightsCount > 0 && (
@@ -78,7 +78,7 @@ export function AccordionRow({
 						onClick={(e) => {
 							e.stopPropagation();
 						}}
-						className='cursor-pointer rounded-full p-2 text-[color:var(--ie-text-muted)] transition-colors hover:bg-[color:var(--ie-badge-bg)] hover:text-[color:var(--ie-primary)]'
+						className='text-slate-900-muted cursor-pointer rounded-full p-2 transition-colors hover:bg-slate-50 hover:text-slate-800'
 					>
 						<Expand size={16} />
 					</button>
@@ -89,13 +89,13 @@ export function AccordionRow({
 							e.stopPropagation();
 							setFavourite((v) => !v);
 						}}
-						className='cursor-pointer rounded-full p-2 text-[color:var(--ie-text-muted)] transition-colors hover:bg-[color:var(--ie-badge-bg)] hover:text-[color:var(--ie-primary)]'
+						className='text-slate-900-muted cursor-pointer rounded-full p-2 transition-colors hover:bg-slate-50 hover:text-slate-800'
 					>
 						{favourite ? (
 							<Star
 								size={16}
 								fill='currentColor'
-								className='text-[color:var(--ie-primary)]'
+								className='text-slate-800'
 							/>
 						) : (
 							<Star size={16} />
@@ -107,7 +107,7 @@ export function AccordionRow({
 						onClick={(e) => {
 							e.stopPropagation();
 						}}
-						className='cursor-pointer rounded-full p-2 text-[color:var(--ie-text-muted)] transition-colors hover:bg-[color:var(--ie-badge-bg)] hover:text-[color:var(--ie-primary)]'
+						className='text-slate-900-muted cursor-pointer rounded-full p-2 transition-colors hover:bg-slate-50 hover:text-slate-800'
 					>
 						<ListFilter size={16} />
 					</button>
@@ -117,7 +117,7 @@ export function AccordionRow({
 								type='button'
 								aria-label='More'
 								onClick={(e) => e.stopPropagation()}
-								className='cursor-pointer rounded-full p-2 text-[color:var(--ie-text-muted)] transition-colors hover:bg-[color:var(--ie-badge-bg)] hover:text-[color:var(--ie-primary)]'
+								className='text-slate-900-muted cursor-pointer rounded-full p-2 transition-colors hover:bg-slate-50 hover:text-slate-800'
 							>
 								<Ellipsis size={16} />
 							</button>

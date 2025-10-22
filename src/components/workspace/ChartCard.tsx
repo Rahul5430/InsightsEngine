@@ -112,106 +112,130 @@ export function ChartCard({
 	// Map registration handled where map options are used; nothing to do here
 
 	return (
-		<div className='overflow-hidden rounded-[14px] border border-[color:var(--ie-border)] bg-white px-3 pb-2 shadow-[var(--ie-shadow-soft)]'>
-			<div className='mb-3 flex items-center justify-between'>
-				<div className='-ml-4 flex h-10 items-center rounded-br-3xl bg-[color:var(--ie-badge-bg)] px-4 text-sm font-semibold text-[color:var(--ie-nav)] shadow-[0_1px_0_rgba(10,84,198,0.06)]'>
-					<AIIcon size={16} />
-					{recommended ? (
-						<span className='ml-2'>Recommended</span>
-					) : null}
-				</div>
-				<div className='ml-auto flex flex-row'>
-					<button
-						type='button'
-						aria-label='Expand'
-						onClick={(e) => {
-							e.stopPropagation();
-						}}
-						className='cursor-pointer rounded-full p-2 text-[color:var(--ie-text-muted)] transition-colors hover:bg-[color:var(--ie-badge-bg)] hover:text-[color:var(--ie-primary)]'
-					>
-						<Expand size={16} />
-					</button>
-					<button
-						type='button'
-						aria-label='Star'
-						onClick={(e) => {
-							e.stopPropagation();
-							setFavourite((v) => !v);
-						}}
-						className='cursor-pointer rounded-full p-2 text-[color:var(--ie-text-muted)] transition-colors hover:bg-[color:var(--ie-badge-bg)] hover:text-[color:var(--ie-primary)]'
-					>
-						{favourite ? (
+		<div className='ie-card-hover group relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg hover:border-slate-300'>
+			{/* Header with modern badge */}
+			<div className='relative bg-gradient-to-r from-slate-50 to-slate-100 px-6 py-4'>
+				<div className='flex items-center justify-between'>
+					<div className='flex items-center gap-3'>
+						<div className='flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10'>
+							<AIIcon size={16} className='text-blue-500' />
+						</div>
+						{recommended ? (
+							<span className='text-sm font-semibold text-blue-500'>
+								Recommended
+							</span>
+						) : (
+							<span className='text-sm font-semibold text-slate-500'>
+								Chart
+							</span>
+						)}
+					</div>
+
+					<div className='flex items-center gap-1'>
+						<button
+							type='button'
+							aria-label='Expand'
+							onClick={(e) => {
+								e.stopPropagation();
+							}}
+							className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+						>
+							<Expand size={16} />
+						</button>
+						<button
+							type='button'
+							aria-label='Star'
+							onClick={(e) => {
+								e.stopPropagation();
+								setFavourite((v) => !v);
+							}}
+							className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+						>
 							<Star
 								size={16}
-								fill='currentColor'
-								className='text-[color:var(--ie-primary)]'
+								className={favourite ? 'text-amber-500' : ''}
+								fill={favourite ? 'currentColor' : 'none'}
 							/>
-						) : (
-							<Star size={16} />
-						)}
-					</button>
-					<button
-						type='button'
-						aria-label='Filter'
-						onClick={(e) => {
-							e.stopPropagation();
-						}}
-						className='cursor-pointer rounded-full p-2 text-[color:var(--ie-text-muted)] transition-colors hover:bg-[color:var(--ie-badge-bg)] hover:text-[color:var(--ie-primary)]'
-					>
-						<ListFilter size={16} />
-					</button>
-					<RowMenu
-						trigger={
-							<button
-								type='button'
-								aria-label='More'
-								onClick={(e) => e.stopPropagation()}
-								className='cursor-pointer rounded-full p-2 text-[color:var(--ie-text-muted)] transition-colors hover:bg-[color:var(--ie-badge-bg)] hover:text-[color:var(--ie-primary)]'
-							>
-								<Ellipsis size={16} />
-							</button>
-						}
-					/>
+						</button>
+						<button
+							type='button'
+							aria-label='Filter'
+							onClick={(e) => {
+								e.stopPropagation();
+							}}
+							className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+						>
+							<ListFilter size={16} />
+						</button>
+						<RowMenu
+							trigger={
+								<button
+									type='button'
+									aria-label='More'
+									onClick={(e) => e.stopPropagation()}
+									className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+								>
+									<Ellipsis size={16} />
+								</button>
+							}
+						/>
+					</div>
 				</div>
 			</div>
 
 			{/* Title */}
-			<div className='mb-2 text-[15px] font-medium text-[color:var(--ie-text)]'>
-				{title}
+			<div className='px-6 pt-4'>
+				<h3 className='text-lg leading-tight font-semibold text-slate-900'>
+					{title}
+				</h3>
 			</div>
 
-			{isMapUSA ? (
-				mapReady ? (
-					<ReactECharts
-						option={resolvedOption}
-						notMerge
-						lazyUpdate
-						style={{
-							height: 240,
-							pointerEvents: interactive ? 'auto' : 'none',
-						}}
-					/>
-				) : (
-					<div className='h-[240px] w-full rounded-md bg-[color:var(--ie-surface-muted)]' />
-				)
-			) : (
-				<ReactECharts
-					option={resolvedOption}
-					notMerge
-					lazyUpdate
-					style={{
-						height: 240,
-						pointerEvents: interactive ? 'auto' : 'none',
-					}}
-				/>
-			)}
+			{/* Chart area */}
+			<div className='p-6 pt-4'>
+				<div className='rounded-lg border border-slate-200 bg-white p-4 shadow-sm'>
+					{isMapUSA ? (
+						mapReady ? (
+							<ReactECharts
+								option={resolvedOption}
+								notMerge
+								lazyUpdate
+								style={{
+									height: 280,
+									pointerEvents: interactive
+										? 'auto'
+										: 'none',
+								}}
+							/>
+						) : (
+							<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
+						)
+					) : (
+						<ReactECharts
+							option={resolvedOption}
+							notMerge
+							lazyUpdate
+							style={{
+								height: 280,
+								pointerEvents: interactive ? 'auto' : 'none',
+							}}
+						/>
+					)}
+				</div>
+			</div>
 
 			{/* Source */}
 			{source ? (
-				<div className='mt-3 text-sm text-[color:var(--ie-text-muted)]'>
-					{source}
+				<div className='px-6 pb-6'>
+					<div className='rounded-lg bg-slate-100 px-4 py-3'>
+						<p className='text-xs leading-relaxed text-slate-500'>
+							{source}
+						</p>
+					</div>
 				</div>
 			) : null}
+
+			{/* Subtle accent line */}
+			<div className='absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-500 to-violet-500 transition-all duration-300 group-hover:w-full' />
 		</div>
 	);
 }

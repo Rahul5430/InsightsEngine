@@ -1,128 +1,283 @@
 @import 'tailwindcss';
 
 :root {
-	--background: var(--ie-surface);
-	--foreground: var(--ie-text);
+	--background: #ffffff;
+	--foreground: #1e293b;
 }
 
 @theme inline {
-	--color-background: var(--ie-surface);
-	--color-foreground: var(--ie-text);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
+	--font-sans: var(--font-inter);
+	--font-mono: var(--font-jetbrains-mono);
 }
 
-html {
-	color-scheme: light;
+@layer base {
+	html {
+		font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		scroll-behavior: smooth;
+	}
+
+	/* Focus styles */
+	*:focus-visible {
+		outline: 2px solid #3b82f6;
+		outline-offset: 2px;
+		border-radius: 0.125rem;
+	}
+
+	/* Button base styles */
+	button {
+		cursor: pointer;
+		transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+		border-radius: 0.375rem;
+	}
+
+	/* Scrollbar styles */
+	::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #f8fafc;
+		border-radius: 0.125rem;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #cbd5e1;
+		border-radius: 0.125rem;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #475569;
+	}
+
+	/* Selection styles */
+	::selection {
+		background: #3b82f6;
+		color: #ffffff;
+	}
+
+	::-moz-selection {
+		background: #3b82f6;
+		color: #ffffff;
+	}
 }
 
-body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+@layer components {
+
+	/* Dialog animations */
+	.ie-overlay {
+		opacity: 0;
+		animation: ie-fade-out 200ms ease-in;
+	}
+
+	.ie-overlay[data-state='open'] {
+		opacity: 1;
+		animation: ie-fade-in 200ms ease-out;
+	}
+
+	.ie-sheet {
+		transform: translateX(100%);
+		animation: ie-slide-out-right 200ms ease-in;
+	}
+
+	.ie-sheet[data-state='open'] {
+		transform: translateX(0);
+		animation: ie-slide-in-right 200ms ease-out;
+	}
+
+	/* Chat panel content shrinking */
+	main {
+		width: 100%;
+		transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	body.ie-chat-open main {
+		width: calc(100% - 440px);
+	}
+
+	/* Custom component classes */
+	.ie-card-hover {
+		transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.ie-card-hover:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	}
+
+	.ie-button-hover {
+		transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.ie-loading {
+		animation: ie-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	}
+
+	.ie-spinning {
+		animation: ie-spin 1s linear infinite;
+	}
+
+	.ie-touch-target {
+		min-height: 44px;
+		min-width: 44px;
+	}
+
+	.ie-focus-ring {
+		outline: 2px solid #3b82f6;
+		outline-offset: 2px;
+		border-radius: 0.125rem;
+	}
 }
 
-/* Animations for Radix dialogs (slide sheet and fade overlay) */
+@layer utilities {
+
+	/* Text utilities */
+	.ie-text-high-contrast {
+		color: #1e293b;
+	}
+
+	.ie-text-muted-contrast {
+		color: #64748b;
+	}
+
+	.ie-text-light-contrast {
+		color: #475569;
+	}
+
+	/* Spacing utilities */
+	.ie-spacing-xs {
+		margin: 0.25rem;
+	}
+
+	.ie-spacing-sm {
+		margin: 0.5rem;
+	}
+
+	.ie-spacing-md {
+		margin: 1rem;
+	}
+
+	.ie-spacing-lg {
+		margin: 1.5rem;
+	}
+
+	.ie-spacing-xl {
+		margin: 2rem;
+	}
+
+	.ie-padding-xs {
+		padding: 0.25rem;
+	}
+
+	.ie-padding-sm {
+		padding: 0.5rem;
+	}
+
+	.ie-padding-md {
+		padding: 1rem;
+	}
+
+	.ie-padding-lg {
+		padding: 1.5rem;
+	}
+
+	.ie-padding-xl {
+		padding: 2rem;
+	}
+}
+
+/* Keyframe animations */
 @keyframes ie-fade-in {
 	from {
-		opacity: 0
+		opacity: 0;
 	}
 
 	to {
-		opacity: 1
+		opacity: 1;
 	}
 }
 
 @keyframes ie-fade-out {
 	from {
-		opacity: 1
+		opacity: 1;
 	}
 
 	to {
-		opacity: 0
+		opacity: 0;
 	}
 }
 
 @keyframes ie-slide-in-right {
 	from {
-		transform: translateX(100%)
+		transform: translateX(100%);
 	}
 
 	to {
-		transform: translateX(0)
+		transform: translateX(0);
 	}
 }
 
 @keyframes ie-slide-out-right {
 	from {
-		transform: translateX(0)
+		transform: translateX(0);
 	}
 
 	to {
-		transform: translateX(100%)
+		transform: translateX(100%);
 	}
 }
 
-.ie-overlay[data-state="open"] {
-	animation: ie-fade-in 200ms ease-out forwards;
-}
-
-.ie-overlay[data-state="closed"] {
-	animation: ie-fade-out 200ms ease-in forwards;
-}
-
-.ie-sheet[data-state="open"] {
-	animation: ie-slide-in-right 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.ie-sheet[data-state="closed"] {
-	animation: ie-slide-out-right 250ms ease-in forwards;
-}
-
-/* When chat is open, constrain main content width to make room for the sheet */
-/* On mobile: hide main content completely, chat takes full screen */
-html.ie-chat-open #ie-app-container {
-	width: 0;
-	max-width: 0;
-	overflow: hidden;
-}
-
-/* On small screens and up: show content alongside chat panel */
-@media (min-width: 640px) {
-	html.ie-chat-open #ie-app-container {
-		width: calc(100vw - 440px);
-		max-width: calc(100vw - 440px);
-		overflow-x: hidden;
-	}
-}
-
-/* Ensure all content within the app container respects the width constraint */
-html.ie-chat-open #ie-app-container * {
-	box-sizing: border-box;
-}
-
-/* Mobile menu slide down animation */
-@keyframes slideDown {
+@keyframes ie-scale-in {
 	from {
 		opacity: 0;
-		transform: translateY(-10px);
+		transform: scale(0.95);
 	}
 
 	to {
 		opacity: 1;
-		transform: translateY(0);
+		transform: scale(1);
 	}
 }
 
-/* Mobile menu slide up animation */
-@keyframes slideUp {
+@keyframes ie-scale-out {
 	from {
 		opacity: 1;
-		transform: translateY(0);
+		transform: scale(1);
 	}
 
 	to {
 		opacity: 0;
-		transform: translateY(-10px);
+		transform: scale(0.95);
+	}
+}
+
+@keyframes ie-pulse {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+}
+
+@keyframes ie-spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
 	}
 }

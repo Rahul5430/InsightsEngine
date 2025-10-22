@@ -43,7 +43,7 @@ export function MobileMenu({ open, onClose }: Props) {
 				className='overflow-hidden rounded-b-2xl shadow-2xl'
 				style={{
 					background:
-						'linear-gradient(90deg, var(--ie-nav), var(--ie-nav-end))',
+						'linear-gradient(90deg, var(--color-nav), var(--color-nav-end))',
 					margin: 0,
 					padding: 0,
 				}}

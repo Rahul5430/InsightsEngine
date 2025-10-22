@@ -33,94 +33,95 @@ export function NavBar() {
 	}, [mobileMenuOpen]);
 
 	return (
-		<div
+		<nav
 			ref={navRef}
-			className='relative w-full bg-[color:var(--ie-nav)]'
-			style={{
-				background:
-					'linear-gradient(90deg, var(--ie-nav), var(--ie-nav-end))',
-			}}
+			className='sticky top-0 z-30 w-full border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100/95 backdrop-blur-md'
 		>
-			<div className='mx-auto flex h-14 max-w-6xl items-center gap-2 px-3 sm:gap-4 sm:px-6'>
-				{/* Logo - responsive sizing */}
+			<div className='mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:gap-6 sm:px-6'>
+				{/* Logo - modern styling */}
 				<Link
 					href='/'
-					className='text-sm font-semibold text-white sm:text-base'
+					className='flex items-center gap-2 text-lg font-bold text-slate-800 transition-colors hover:text-slate-700 sm:text-xl'
 				>
+					<div className='flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-violet-500'>
+						<span className='text-sm font-bold text-white'>IE</span>
+					</div>
 					<span className='hidden sm:inline'>Insights Engine</span>
-					<span className='sm:hidden'>IE</span>
 				</Link>
 
-				{/* desktop nav links */}
+				{/* Desktop nav links */}
 				<div className='hidden md:block'>
 					<NavLinks />
 				</div>
 
-				{/* Search bar - responsive width and visibility */}
-				<input
-					className='hidden w-[120px] rounded-[9999px] bg-white/95 px-3 py-1.5 text-xs text-[color:var(--ie-text)] outline-none placeholder:text-[color:var(--ie-text-muted)] sm:block sm:w-[180px] sm:px-4 sm:py-2 sm:text-sm md:w-[300px] lg:w-[350px]'
-					placeholder='Search...'
-				/>
+				{/* Search bar - modern design */}
+				<div className='relative max-w-md flex-1'>
+					<input
+						className='w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 transition-all placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none'
+						placeholder='Search insights, collections, or reports...'
+					/>
+				</div>
 
-				<div className='ml-auto flex items-center gap-1 sm:gap-2'>
-					{/* mobile hamburger menu */}
+				<div className='flex items-center gap-2'>
+					{/* Mobile hamburger menu */}
 					<button
 						aria-label='Menu'
 						onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-						className='grid h-7 w-7 cursor-pointer place-items-center rounded-full border border-white/70 text-white hover:bg-white/10 sm:h-8 sm:w-8 md:hidden'
+						className='ie-button-hover ie-touch-target grid h-12 w-12 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:hidden'
 					>
-						<Menu size={14} className='sm:h-4 sm:w-4' />
+						<Menu size={18} />
 					</button>
 
-					{/* Chat - always visible */}
+					{/* Chat - modern styling */}
 					<ChatPanel
 						trigger={
 							<button
 								aria-label='Chat'
-								className='grid h-7 w-7 cursor-pointer place-items-center rounded-full border border-white/70 text-white hover:bg-white/10 sm:h-8 sm:w-8'
+								className='ie-button-hover ie-touch-target relative grid h-12 w-12 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900'
 							>
-								<MessageCircle
-									size={14}
-									className='sm:h-4 sm:w-4'
-								/>
+								<MessageCircle size={18} />
+								{/* Notification dot */}
+								<span className='absolute -top-1 -right-1 h-3 w-3 rounded-full bg-red-500' />
 							</button>
 						}
 					/>
 
-					{/* Account - always visible */}
-					<button
-						aria-label='Account'
-						className='grid h-7 w-7 cursor-pointer place-items-center rounded-full border border-white/70 text-white hover:bg-white/10 sm:h-8 sm:w-8'
-					>
-						<User size={14} className='sm:h-4 sm:w-4' />
-					</button>
-
-					{/* Notifications - always visible */}
+					{/* Notifications - modern styling */}
 					<NotificationPanel
 						trigger={
 							<button
 								aria-label='Notifications'
-								className='grid h-7 w-7 cursor-pointer place-items-center rounded-full border border-white/70 text-white hover:bg-white/10 sm:h-8 sm:w-8'
+								className='ie-button-hover ie-touch-target relative grid h-12 w-12 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900'
 							>
-								<Bell size={14} className='sm:h-4 sm:w-4' />
+								<Bell size={18} />
+								{/* Notification dot */}
+								<span className='absolute -top-1 -right-1 h-3 w-3 rounded-full bg-red-500' />
 							</button>
 						}
 					/>
 
-					{/* Help - hidden on very small screens */}
+					{/* Account - modern styling */}
+					<button
+						aria-label='Account'
+						className='ie-button-hover grid h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+					>
+						<User size={18} />
+					</button>
+
+					{/* Help - hidden on small screens */}
 					<button
 						aria-label='Help'
-						className='grid hidden h-7 w-7 cursor-pointer place-items-center rounded-full border border-white/70 text-white hover:bg-white/10 sm:grid sm:h-8 sm:w-8'
+						className='ie-button-hover ie-touch-target hidden h-12 w-12 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 sm:grid'
 					>
-						<HelpCircle size={14} className='sm:h-4 sm:w-4' />
+						<HelpCircle size={18} />
 					</button>
 				</div>
 			</div>
 
-			{/* Mobile Menu Backdrop - only covers content below navbar */}
+			{/* Mobile Menu Backdrop - modern backdrop */}
 			{mobileMenuOpen && (
 				<div
-					className='animate-in fade-in fixed inset-x-0 top-14 bottom-0 z-40 bg-black/20 duration-200 md:hidden'
+					className='fixed inset-x-0 top-16 bottom-0 z-40 bg-black/20 backdrop-blur-sm md:hidden'
 					onClick={() => setMobileMenuOpen(false)}
 				/>
 			)}
@@ -130,6 +131,6 @@ export function NavBar() {
 				open={mobileMenuOpen}
 				onClose={() => setMobileMenuOpen(false)}
 			/>
-		</div>
+		</nav>
 	);
 }

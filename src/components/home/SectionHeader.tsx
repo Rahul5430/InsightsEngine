@@ -8,13 +8,9 @@ type Props = {
 export function SectionHeader({ left, right }: Props) {
 	return (
 		<div className='flex items-center justify-between py-4'>
-			<div className='text-lg font-semibold text-[color:var(--ie-text)]'>
-				{left}
-			</div>
+			<div className='text-lg font-semibold text-slate-900'>{left}</div>
 			{right ? (
-				<div className='text-sm text-[color:var(--ie-primary)]'>
-					{right}
-				</div>
+				<div className='text-sm text-slate-800'>{right}</div>
 			) : null}
 		</div>
 	);
