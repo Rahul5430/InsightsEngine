@@ -39,7 +39,7 @@ export function ChatPanel({ trigger }: { trigger: React.ReactNode }) {
 			<Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
 			<Dialog.Portal>
 				<Dialog.Overlay className='ie-overlay fixed inset-0 z-40 bg-black/40' />
-				<Dialog.Content className='ie-sheet fixed top-0 right-0 z-50 flex h-full w-full max-w-[95vw] flex-col overflow-hidden rounded-l-[16px] border-l border-slate-200 bg-white shadow-xl sm:w-[440px] sm:max-w-[440px]'>
+				<Dialog.Content className='ie-sheet data-[state=open]:animate-slide-up data-[state=closed]:animate-slide-down fixed inset-0 z-50 flex h-full w-full flex-col overflow-hidden bg-white sm:inset-auto sm:top-0 sm:right-0 sm:left-auto sm:h-full sm:w-[440px] sm:max-w-[440px] sm:rounded-l-[16px] sm:border-t-0 sm:border-l sm:data-[state=closed]:animate-none sm:data-[state=open]:animate-none'>
 					<div className='sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4'>
 						<Dialog.Title className='flex items-center gap-2 text-slate-900'>
 							<MessageCircle size={18} /> Smart Assistant

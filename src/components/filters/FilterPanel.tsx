@@ -75,7 +75,7 @@ export function FilterPanel({ trigger }: Props) {
 							</button>
 						</Dialog.Close>
 						<Dialog.Close asChild>
-							<button className='bg-primary hover:bg-primary-light cursor-pointer rounded-[10px] px-4 py-2 text-sm text-white'>
+							<button className='cursor-pointer rounded-[10px] px-4 py-2 text-sm'>
 								Apply
 							</button>
 						</Dialog.Close>

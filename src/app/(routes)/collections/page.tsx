@@ -9,6 +9,7 @@ import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { ListFilter, Plus } from 'lucide-react';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 import { CollectionCard } from '@/components/collections/CollectionCard';
 import { CollectionsTabs } from '@/components/collections/CollectionsTabs';
@@ -207,7 +208,7 @@ export default function CollectionsPage({
 				<div className='bg-[url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] absolute inset-0 opacity-20' />
 
 				<div className='relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20'>
-					<div className='flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between'>
+					<div className='flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between'>
 						<div>
 							<h1 className='text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl'>
 								Collections
@@ -217,27 +218,30 @@ export default function CollectionsPage({
 							</p>
 						</div>
 
-						<div className='flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-center'>
-							<div className='flex items-center gap-3'>
-								<CollectionsTabs />
+						<div className='flex h-11 w-full flex-row gap-4 sm:h-12.5 sm:w-auto sm:items-center sm:gap-6'>
+							<div className='flex h-full items-center gap-4 sm:gap-6'>
+								<Suspense fallback={null}>
+									<CollectionsTabs />
+								</Suspense>
 								<FilterPanel
 									trigger={
-										<button className='ie-button-hover ie-touch-target flex items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20'>
-											<ListFilter size={28} />
-											Filter
+										<button className='ie-button-hover ie-touch-target flex h-full items-center justify-center rounded-lg border border-white/20 bg-white/10 px-2 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20 sm:justify-between sm:gap-2 sm:px-3'>
+											<ListFilter size={15} />
+											<span className='inline max-sm:hidden max-lg:md:hidden'>
+												Filters
+											</span>
 										</button>
 									}
 								/>
 							</div>
 							<Link
 								href='/collections/create'
-								className='ie-button-hover ie-touch-target flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-lg hover:bg-white/95'
+								className='ie-button-hover ie-touch-target flex h-full items-center justify-center rounded-lg bg-white px-2 py-3 text-sm font-semibold text-slate-800 shadow-lg hover:bg-white/95 sm:gap-2 sm:px-3'
 							>
 								<Plus size={18} />
-								<span className='hidden sm:inline'>
+								<span className='inline max-sm:hidden max-lg:md:hidden'>
 									Create Collection
 								</span>
-								<span className='sm:hidden'>Create</span>
 							</Link>
 						</div>
 					</div>
@@ -246,7 +250,7 @@ export default function CollectionsPage({
 
 			<div className='mx-auto max-w-7xl px-4 py-16 sm:px-6'>
 				{current === 'collections' ? (
-					<div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+					<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
 						<CollectionCard
 							title='How is the brand growing?'
 							option={usaMapOption}
@@ -401,7 +405,7 @@ export default function CollectionsPage({
 						/>
 					</div>
 				) : (
-					<div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
+					<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3'>
 						{/* Favorites/Reports placeholder: reuse charts for now */}
 						<ChartCard
 							title='Need to meet'

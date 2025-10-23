@@ -1,3 +1,4 @@
+import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { AIIcon } from '@/components/common/AIIcon';
@@ -26,7 +27,7 @@ export default function Home() {
 
 					{/* KPI Cards Section */}
 					<div className='mt-16'>
-						<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+						<div className='grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4'>
 							<KpiCard
 								title='Net Sales'
 								value='$485M'
@@ -85,19 +86,7 @@ export default function Home() {
 							className='ie-button-hover ie-touch-target flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-900 hover:border-blue-500 hover:bg-slate-50'
 						>
 							View All
-							<svg
-								className='h-4 w-4'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2}
-									d='M9 5l7 7-7 7'
-								/>
-							</svg>
+							<ChevronRight className='h-4 w-4' />
 						</Link>
 					</div>
 				</div>
@@ -146,19 +135,7 @@ export default function Home() {
 							className='ie-button-hover ie-touch-target flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-900 hover:border-blue-500 hover:bg-slate-50'
 						>
 							View All
-							<svg
-								className='h-4 w-4'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2}
-									d='M9 5l7 7-7 7'
-								/>
-							</svg>
+							<ChevronRight className='h-4 w-4' />
 						</Link>
 					</div>
 				</div>

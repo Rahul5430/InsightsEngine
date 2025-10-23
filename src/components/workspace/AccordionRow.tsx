@@ -46,7 +46,7 @@ export function AccordionRow({
 	return (
 		<div className='rounded-[14px] border border-slate-200 bg-gradient-to-b from-white to-slate-100 shadow-sm'>
 			<div
-				className='group flex h-[64px] w-full cursor-pointer items-center gap-2 px-5 text-left'
+				className='group flex min-h-[64px] w-full cursor-pointer items-center gap-2 px-5 py-3 text-left'
 				onClick={() => setOpen((v) => !v)}
 				role='button'
 				aria-expanded={open}
@@ -63,7 +63,7 @@ export function AccordionRow({
 				>
 					<ChevronRight />
 				</span>
-				<span className='min-w-0 flex-1 truncate font-medium text-slate-900'>
+				<span className='min-w-0 flex-1 leading-tight font-medium break-words text-slate-900'>
 					{title}
 				</span>
 				{insightsCount > 0 && (

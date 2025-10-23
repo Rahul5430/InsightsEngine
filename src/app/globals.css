@@ -8,6 +8,10 @@
 @theme inline {
 	--font-sans: var(--font-inter);
 	--font-mono: var(--font-jetbrains-mono);
+	/* 856px */
+	--breakpoint-tablet: 53.5rem;
+	/* blue-500 */
+	--color-primary: #3b82f6;
 }
 
 @layer base {
@@ -118,82 +122,111 @@
 		transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
-	.ie-loading {
-		animation: ie-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-	}
-
-	.ie-spinning {
-		animation: ie-spin 1s linear infinite;
-	}
 
 	.ie-touch-target {
 		min-height: 44px;
 		min-width: 44px;
 	}
 
-	.ie-focus-ring {
-		outline: 2px solid #3b82f6;
-		outline-offset: 2px;
-		border-radius: 0.125rem;
+	/* Responsive navbar heights */
+	@media (max-width: 640px) {
+		.ie-mobile-menu {
+			top: 56px;
+			/* 14 * 4 = 56px for mobile */
+		}
 	}
+
+	@media (min-width: 640px) and (max-width: 768px) {
+		.ie-mobile-menu {
+			top: 64px;
+			/* 16 * 4 = 64px for sm screens */
+		}
+	}
+
+	/* Mobile menu responsive positioning */
+	.ie-mobile-menu {
+		top: 56px;
+	}
+
+	@media (min-width: 640px) {
+		.ie-mobile-menu {
+			top: 64px;
+		}
+	}
+
+	/* Mobile search animation */
+	.ie-mobile-search {
+		animation: ie-slide-down 200ms ease-out;
+	}
+
+	@keyframes ie-slide-down {
+		from {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Chat panel slide animations */
+	@keyframes slide-up {
+		from {
+			opacity: 0;
+			transform: translateY(100%);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes slide-down {
+		from {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		to {
+			opacity: 0;
+			transform: translateY(100%);
+		}
+	}
+
+	.animate-slide-up {
+		animation: slide-up 300ms ease-out;
+	}
+
+	.animate-slide-down {
+		animation: slide-down 300ms ease-in;
+	}
+
+	/* Mobile-only modal behavior for chat panel */
+	@media (max-width: 639px) {
+		.ie-overlay {
+			pointer-events: auto;
+		}
+	}
+
+	@media (min-width: 640px) {
+		.ie-overlay {
+			pointer-events: none;
+		}
+	}
+
+	/* Responsive button sizing for very small screens */
+	@media (max-width: 375px) {
+		.ie-touch-target {
+			min-height: 40px;
+			min-width: 40px;
+		}
+	}
+
 }
 
-@layer utilities {
-
-	/* Text utilities */
-	.ie-text-high-contrast {
-		color: #1e293b;
-	}
-
-	.ie-text-muted-contrast {
-		color: #64748b;
-	}
-
-	.ie-text-light-contrast {
-		color: #475569;
-	}
-
-	/* Spacing utilities */
-	.ie-spacing-xs {
-		margin: 0.25rem;
-	}
-
-	.ie-spacing-sm {
-		margin: 0.5rem;
-	}
-
-	.ie-spacing-md {
-		margin: 1rem;
-	}
-
-	.ie-spacing-lg {
-		margin: 1.5rem;
-	}
-
-	.ie-spacing-xl {
-		margin: 2rem;
-	}
-
-	.ie-padding-xs {
-		padding: 0.25rem;
-	}
-
-	.ie-padding-sm {
-		padding: 0.5rem;
-	}
-
-	.ie-padding-md {
-		padding: 1rem;
-	}
-
-	.ie-padding-lg {
-		padding: 1.5rem;
-	}
-
-	.ie-padding-xl {
-		padding: 2rem;
-	}
-}
 
 /* Keyframe animations */
 @keyframes ie-fade-in {
@@ -257,27 +290,5 @@
 	to {
 		opacity: 0;
 		transform: scale(0.95);
-	}
-}
-
-@keyframes ie-pulse {
-
-	0%,
-	100% {
-		opacity: 1;
-	}
-
-	50% {
-		opacity: 0.5;
-	}
-}
-
-@keyframes ie-spin {
-	from {
-		transform: rotate(0deg);
-	}
-
-	to {
-		transform: rotate(360deg);
 	}
 }

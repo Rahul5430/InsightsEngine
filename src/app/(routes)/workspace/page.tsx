@@ -429,24 +429,26 @@ export default function WorkspacePage() {
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
 				<div className='bg-[url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] absolute inset-0 opacity-20' />
 				<div className='relative mx-auto max-w-7xl px-4 py-16 sm:px-6'>
-					<div className='flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between'>
+					<div className='flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between'>
 						<div>
-							<h1 className='text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl'>
+							<h1 className='text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl'>
 								Workspace
 							</h1>
 							<p className='mt-4 text-lg text-white/90 sm:text-xl'>
 								Your active insights and analytics dashboard
 							</p>
 						</div>
-						<div className='flex items-center gap-3'>
+						<div className='md: flex h-11 w-full items-center justify-start gap-4 sm:h-12.5 sm:gap-6 md:justify-end'>
 							<Suspense fallback={null}>
 								<WorkspaceTabs />
 							</Suspense>
 							<FilterPanel
 								trigger={
-									<button className='ie-button-hover ie-touch-target flex items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20'>
-										<ListFilter size={28} />
-										Filters
+									<button className='ie-button-hover ie-touch-target flex h-full items-center justify-center rounded-lg border border-white/20 bg-white/10 px-2 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20 sm:justify-between sm:gap-2 sm:px-3'>
+										<ListFilter size={15} />
+										<span className='tablet:inline hidden'>
+											Filters
+										</span>
 									</button>
 								}
 							/>
@@ -455,7 +457,7 @@ export default function WorkspacePage() {
 
 					{/* KPI Cards Section */}
 					<div className='mt-16'>
-						<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+						<div className='grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4'>
 							<KpiCard
 								title='Net Sales'
 								value='$485M'

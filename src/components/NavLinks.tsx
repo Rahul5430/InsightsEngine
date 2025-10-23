@@ -7,20 +7,20 @@ export function NavLinks() {
 	const pathname = usePathname();
 
 	const linkClass = (href: string) => {
-		// Special case for home route - only match exact path
-		if (href === '/') {
-			return pathname === '/'
-				? 'rounded-[9999px] bg-white/90 px-3 py-1 text-sm text-nav'
-				: 'px-3 py-1 text-sm';
-		}
-		// For other routes, use startsWith
-		return pathname.startsWith(href)
-			? 'rounded-[9999px] bg-white/90 px-3 py-1 text-sm text-nav'
-			: 'px-3 py-1 text-sm';
+		const isActive =
+			href === '/' ? pathname === '/' : pathname.startsWith(href);
+		const baseClasses =
+			'ie-button-hover ie-touch-target flex items-center px-3 py-1.5 text-sm';
+		const activeClasses =
+			'rounded-lg bg-white font-medium text-slate-900 border border-slate-200';
+		const inactiveClasses =
+			'text-slate-500 hover:text-slate-900 transition-colors';
+
+		return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
 	};
 
 	return (
-		<nav className='hidden gap-2 md:flex'>
+		<nav className='flex items-center gap-1 lg:gap-2 xl:gap-3'>
 			<Link href='/' className={linkClass('/')}>
 				Home
 			</Link>

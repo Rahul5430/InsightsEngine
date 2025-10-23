@@ -32,7 +32,7 @@ export function RouteTabs({ param, items, defaultKey = 'all' }: Props) {
 		<Link
 			key={item.key}
 			href={buildHref(pathname, item.key, param, defaultKey)}
-			className={`flex-shrink-0 rounded-[8px] px-2 py-1 text-[10px] transition-colors sm:px-3 sm:py-1.5 sm:text-xs md:text-sm ${
+			className={`tablet:px-2.25 flex-shrink-0 rounded-md px-2 py-1 text-[10px] transition-colors sm:py-1.5 sm:text-xs md:px-2 md:text-sm lg:px-2.5 ${
 				current === item.key
 					? 'text-nav bg-white shadow'
 					: 'text-white/90 hover:bg-white/10'
@@ -43,7 +43,7 @@ export function RouteTabs({ param, items, defaultKey = 'all' }: Props) {
 	);
 
 	return (
-		<div className='flex w-full items-center gap-1.5 overflow-x-auto rounded-[14px] border border-white/30 bg-white/15 px-2 py-2 backdrop-blur sm:gap-2 md:flex-wrap md:overflow-visible'>
+		<div className='flex h-full items-center gap-1.5 overflow-hidden overflow-x-auto rounded-lg border border-white/30 bg-white/15 px-2 py-2 backdrop-blur sm:gap-2 md:flex-wrap'>
 			{items.map(chip)}
 		</div>
 	);
