@@ -1,84 +1,106 @@
 'use client';
 
-import type { EChartsOption } from 'echarts';
 import { ChevronLeft, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ChartCard } from '@/components/workspace/ChartCard';
+import {
+	type ChartDataConfig,
+	getChartDataById,
+	loadChartData,
+	transformChartData,
+} from '@/lib/chart-data-transformer';
 
 export default function AddToCollectionStep() {
 	const router = useRouter();
-
 	const [selected, setSelected] = useState<Set<number>>(new Set());
-
-	const lineOption: EChartsOption = useMemo(
-		() => ({
-			grid: { left: 48, right: 10, top: 30, bottom: 40 },
-			legend: { top: 0, data: ['Budget Target', 'Forecast'] },
-			xAxis: {
-				type: 'category',
-				data: ["Sep '25", "Oct '25", "Nov '25", "Dec '25"],
-			},
-			yAxis: { type: 'value' },
-			series: [
-				{
-					name: 'Budget Target',
-					type: 'line',
-					data: [260, 300, 340, 360],
-					itemStyle: { color: 'var(--ie-chart-green)' },
-				},
-				{
-					name: 'Forecast',
-					type: 'line',
-					data: [230, 280, 320, 350],
-					itemStyle: { color: 'var(--ie-primary)' },
-				},
-			],
-		}),
-		[]
+	const [chartConfig, setChartConfig] = useState<ChartDataConfig | null>(
+		null
 	);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
 
-	const barOption: EChartsOption = useMemo(
-		() => ({
-			grid: { left: 55, right: 10, top: 30, bottom: 40 },
-			xAxis: {
-				type: 'category',
-				data: ['ACT 25', 'Community', 'Top 40', 'Academic'],
-			},
-			yAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
-			series: [
-				{
-					type: 'bar',
-					data: [18, 12, 7, 6],
-					itemStyle: { color: 'var(--ie-primary)' },
-					barMaxWidth: 28,
-				},
-			],
-		}),
-		[]
-	);
+	useEffect(() => {
+		const loadData = async () => {
+			try {
+				const config = await loadChartData();
+				setChartConfig(config);
+			} catch (err) {
+				setError('Failed to load chart data');
+				// eslint-disable-next-line no-console
+				console.error('Error loading chart data:', err);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-	const waterfallOption: EChartsOption = useMemo(
-		() => ({
-			grid: { left: 55, right: 10, top: 30, bottom: 40 },
-			xAxis: {
-				type: 'category',
-				data: ['Baseline', 'EPI', 'Share', 'Mayo Clinic', 'Current'],
-			},
-			yAxis: { type: 'value' },
-			series: [
-				{
-					type: 'bar',
-					data: [9, -4, -6, 3, 9],
-					itemStyle: { color: 'var(--ie-primary)' },
-					barMaxWidth: 26,
-				},
-			],
-		}),
-		[]
-	);
+		loadData();
+	}, []);
+
+	if (loading) {
+		return (
+			<main className='ie-hide-fab min-h-screen'>
+				<div className='flex min-h-screen items-center justify-center'>
+					<div className='text-center'>
+						<div className='mx-auto h-12 w-12 animate-spin rounded-full border-b-2 border-blue-500'></div>
+						<p className='mt-4 text-slate-600'>
+							Loading chart data...
+						</p>
+					</div>
+				</div>
+			</main>
+		);
+	}
+
+	if (error || !chartConfig) {
+		return (
+			<main className='ie-hide-fab min-h-screen'>
+				<div className='flex min-h-screen items-center justify-center'>
+					<div className='text-center'>
+						<div className='mb-4 text-6xl text-red-500'>⚠️</div>
+						<h2 className='mb-2 text-2xl font-bold text-slate-900'>
+							Error Loading Data
+						</h2>
+						<p className='text-slate-600'>
+							{error || 'Chart data not available'}
+						</p>
+					</div>
+				</div>
+			</main>
+		);
+	}
+
+	// Get available charts for selection
+	const availableCharts = [
+		{ id: 'needToMeet', title: 'Need to meet' },
+		{ id: 'revenueVsForecast', title: 'Revenue vs forecast' },
+		{
+			id: 'leRevenueChangeBaseline',
+			title: 'LE revenue change v/s baseline',
+		},
+		{
+			id: 'postcardRecallRate',
+			title: 'Regional variation in ADC+IO adoption volume',
+		},
+		{
+			id: 'wellnessVisitGrowth',
+			title: 'ADC+IO utilization across key account segments',
+		},
+		{
+			id: 'marketShareRegions',
+			title: 'ADC+IO utilization across key account segments',
+		},
+		{
+			id: 'qoqMarketShareChangeMixed',
+			title: 'ADC+IO utilization across key account segments',
+		},
+		{
+			id: 'vaxneuvanceShareRegions',
+			title: 'ADC+IO utilization across key account segments',
+		},
+	];
 
 	return (
 		<main className='ie-hide-fab min-h-screen'>
@@ -111,53 +133,19 @@ export default function AddToCollectionStep() {
 
 			<div className='w-full px-6 pb-24'>
 				<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
-					{[
-						{ title: 'Need to meet', opt: lineOption },
-						{ title: 'Revenue vs forecast', opt: lineOption },
-						{
-							title: 'LE revenue change v/s baseline',
-							opt: waterfallOption,
-						},
-						{
-							title: 'Regional variation in ADC+IO adoption volume',
-							opt: barOption,
-						},
-						{
-							title: 'ADC+IO utilization across key account segments',
-							opt: barOption,
-						},
-						{
-							title: 'ADC+IO utilization across key account segments',
-							opt: barOption,
-						},
-						{
-							title: 'ADC+IO utilization across key account segments',
-							opt: barOption,
-						},
-						{
-							title: 'ADC+IO utilization across key account segments',
-							opt: barOption,
-						},
-					].map((c, idx) => (
-						<div
-							key={idx}
-							onClick={() => {
-								setSelected((prev) => {
-									const newSet = new Set(prev);
-									if (newSet.has(idx)) {
-										newSet.delete(idx);
-									} else {
-										newSet.add(idx);
-									}
-									return newSet;
-								});
-							}}
-							role='button'
-							tabIndex={0}
-							aria-pressed={selected.has(idx)}
-							onKeyDown={(e) => {
-								if (e.key === 'Enter' || e.key === ' ') {
-									e.preventDefault();
+					{availableCharts.map((chart, idx) => {
+						const chartData = getChartDataById(
+							chartConfig,
+							chart.id
+						);
+						if (!chartData) return null;
+
+						const chartOption = transformChartData(chartData);
+
+						return (
+							<div
+								key={idx}
+								onClick={() => {
 									setSelected((prev) => {
 										const newSet = new Set(prev);
 										if (newSet.has(idx)) {
@@ -167,21 +155,38 @@ export default function AddToCollectionStep() {
 										}
 										return newSet;
 									});
-								}
-							}}
-							className={`cursor-pointer rounded-[16px] text-left transition-all duration-200 ease-out ${
-								selected.has(idx)
-									? 'scale-[1.02] shadow-lg ring-2 ring-blue-500 ring-offset-2'
-									: 'hover:scale-[1.01] hover:shadow-md hover:ring-1 hover:ring-slate-300'
-							}`}
-						>
-							<ChartCard
-								title={c.title}
-								option={c.opt}
-								interactive={false}
-							/>
-						</div>
-					))}
+								}}
+								role='button'
+								tabIndex={0}
+								aria-pressed={selected.has(idx)}
+								onKeyDown={(e) => {
+									if (e.key === 'Enter' || e.key === ' ') {
+										e.preventDefault();
+										setSelected((prev) => {
+											const newSet = new Set(prev);
+											if (newSet.has(idx)) {
+												newSet.delete(idx);
+											} else {
+												newSet.add(idx);
+											}
+											return newSet;
+										});
+									}
+								}}
+								className={`cursor-pointer rounded-[16px] text-left transition-all duration-200 ease-out ${
+									selected.has(idx)
+										? 'scale-[1.02] shadow-lg ring-2 ring-blue-500 ring-offset-2'
+										: 'hover:scale-[1.01] hover:shadow-md hover:ring-1 hover:ring-slate-300'
+								}`}
+							>
+								<ChartCard
+									title={chart.title}
+									option={chartOption}
+									interactive={false}
+								/>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 

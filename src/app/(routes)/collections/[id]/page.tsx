@@ -1,6 +1,5 @@
 'use client';
 
-import type { EChartsOption } from 'echarts';
 import {
 	ChevronLeft,
 	Edit3,
@@ -11,86 +10,94 @@ import {
 	Star,
 } from 'lucide-react';
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
 import { EditCollectionModal } from '@/components/collections/EditCollectionModal';
 import { ChartCard } from '@/components/workspace/ChartCard';
+import {
+	type ChartDataConfig,
+	getChartDataById,
+	loadChartData,
+	transformChartData,
+} from '@/lib/chart-data-transformer';
 
 export default function CollectionPage() {
-	// Chart options for the collection
-	const needToMeetOption: EChartsOption = useMemo(
-		() => ({
-			grid: { left: 50, right: 10, top: 30, bottom: 40 },
-			legend: { top: 0, data: ['Budget Target', 'Forecast'] },
-			xAxis: {
-				type: 'category',
-				data: ["Sep '25", "Oct '25", "Nov '25", "Dec '25"],
-			},
-			yAxis: { type: 'value', axisLabel: { formatter: '{value}' } },
-			series: [
-				{
-					name: 'Budget Target',
-					type: 'line',
-					data: [120, 220, 300, 340],
-					itemStyle: { color: 'var(--color-chart-green)' },
-				},
-				{
-					name: 'Forecast',
-					type: 'line',
-					data: [260, 380, 400, 560],
-					itemStyle: { color: 'var(--color-primary)' },
-				},
-			],
-		}),
-		[]
+	const [chartConfig, setChartConfig] = useState<ChartDataConfig | null>(
+		null
+	);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const loadData = async () => {
+			try {
+				const config = await loadChartData();
+				setChartConfig(config);
+			} catch (err) {
+				setError('Failed to load chart data');
+				// eslint-disable-next-line no-console
+				console.error('Error loading chart data:', err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		loadData();
+	}, []);
+
+	if (loading) {
+		return (
+			<main className='min-h-screen'>
+				<div className='flex min-h-screen items-center justify-center'>
+					<div className='text-center'>
+						<div className='mx-auto h-12 w-12 animate-spin rounded-full border-b-2 border-blue-500'></div>
+						<p className='mt-4 text-slate-600'>
+							Loading chart data...
+						</p>
+					</div>
+				</div>
+			</main>
+		);
+	}
+
+	if (error || !chartConfig) {
+		return (
+			<main className='min-h-screen'>
+				<div className='flex min-h-screen items-center justify-center'>
+					<div className='text-center'>
+						<div className='mb-4 text-6xl text-red-500'>⚠️</div>
+						<h2 className='mb-2 text-2xl font-bold text-slate-900'>
+							Error Loading Data
+						</h2>
+						<p className='text-slate-600'>
+							{error || 'Chart data not available'}
+						</p>
+					</div>
+				</div>
+			</main>
+		);
+	}
+
+	// Get chart data for this collection
+	const needToMeetData = getChartDataById(chartConfig, 'needToMeet');
+	const revenueVsForecastData = getChartDataById(
+		chartConfig,
+		'revenueVsForecast'
+	);
+	const leRevenueChangeData = getChartDataById(
+		chartConfig,
+		'leRevenueChangeBaseline'
 	);
 
-	const revenueVsForecastOption: EChartsOption = useMemo(
-		() => ({
-			grid: { left: 50, right: 10, top: 30, bottom: 40 },
-			legend: { top: 0, data: ['Actuals', 'Forecast'] },
-			xAxis: {
-				type: 'category',
-				data: ['W1', 'W2', 'W3', 'W4'],
-			},
-			yAxis: { type: 'value', axisLabel: { formatter: '{value}' } },
-			series: [
-				{
-					name: 'Actuals',
-					type: 'line',
-					data: [8.5, 12.3, 15.7, 18.2],
-					itemStyle: { color: 'var(--color-chart-green)' },
-				},
-				{
-					name: 'Forecast',
-					type: 'line',
-					data: [10.2, 13.8, 16.1, 19.5],
-					itemStyle: { color: 'var(--color-primary)' },
-				},
-			],
-		}),
-		[]
-	);
-
-	const leRevenueChangeOption: EChartsOption = useMemo(
-		() => ({
-			grid: { left: 55, right: 10, top: 30, bottom: 40 },
-			xAxis: {
-				type: 'category',
-				data: ['Baseline', 'EPI', 'Share', 'Mayo Clinic', 'Current'],
-			},
-			yAxis: { type: 'value' },
-			series: [
-				{
-					type: 'bar',
-					data: [669, 5, -15, 31, 691],
-					itemStyle: { color: 'var(--color-primary)' },
-					barMaxWidth: 26,
-				},
-			],
-		}),
-		[]
-	);
+	const needToMeetOption = needToMeetData
+		? transformChartData(needToMeetData)
+		: null;
+	const revenueVsForecastOption = revenueVsForecastData
+		? transformChartData(revenueVsForecastData)
+		: null;
+	const leRevenueChangeOption = leRevenueChangeData
+		? transformChartData(leRevenueChangeData)
+		: null;
 
 	return (
 		<main className='min-h-screen'>
@@ -156,24 +163,30 @@ export default function CollectionPage() {
 
 				{/* Chart Cards Grid */}
 				<div className='mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-					<ChartCard
-						title='Need to meet'
-						option={needToMeetOption}
-						recommended={true}
-						source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
-					/>
-					<ChartCard
-						title='Revenue vs forecast'
-						option={revenueVsForecastOption}
-						recommended={true}
-						source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
-					/>
-					<ChartCard
-						title='LE revenue change v/s baseline'
-						option={leRevenueChangeOption}
-						recommended={true}
-						source='Epidemiology source (MAT 2025), Pfizer Internal data'
-					/>
+					{needToMeetOption && (
+						<ChartCard
+							title='Need to meet'
+							option={needToMeetOption}
+							recommended={true}
+							source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
+						/>
+					)}
+					{revenueVsForecastOption && (
+						<ChartCard
+							title='Revenue vs forecast'
+							option={revenueVsForecastOption}
+							recommended={true}
+							source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
+						/>
+					)}
+					{leRevenueChangeOption && (
+						<ChartCard
+							title='LE revenue change v/s baseline'
+							option={leRevenueChangeOption}
+							recommended={true}
+							source='Epidemiology source (MAT 2025), Pfizer Internal data'
+						/>
+					)}
 					{/* Empty Canvas */}
 					<div className='mx-auto flex w-full flex-col items-center justify-center rounded-[14px] border border-dashed border-slate-200 bg-slate-50/40 py-38 text-center'>
 						<div className='text-lg font-medium text-slate-900'>

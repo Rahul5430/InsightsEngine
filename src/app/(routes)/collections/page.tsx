@@ -1,3 +1,5 @@
+'use client';
+
 import type { EChartsOption } from 'echarts';
 import { MapChart } from 'echarts/charts';
 import {
@@ -9,13 +11,19 @@ import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { ListFilter, Plus } from 'lucide-react';
 import Link from 'next/link';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import { CollectionCard } from '@/components/collections/CollectionCard';
 import { CollectionsTabs } from '@/components/collections/CollectionsTabs';
 import { FilterPanel } from '@/components/filters/FilterPanel';
 import { ChartCard } from '@/components/workspace/ChartCard';
-import { chartColors } from '@/theme';
+import { ChartCardSkeleton } from '@/components/workspace/ChartCardSkeleton';
+import {
+	type ChartDataConfig,
+	getChartDataById,
+	loadChartData,
+	transformChartData,
+} from '@/lib/chart-data-transformer';
 
 // Register map/geo renderer parts required for USA map
 echarts.use([
@@ -26,179 +34,84 @@ echarts.use([
 	CanvasRenderer,
 ]);
 
-// Reuse/select a subset of chart options seen in Workspace for demo
-const needToMeetOption: EChartsOption = {
-	grid: { left: 50, right: 10, top: 30, bottom: 40 },
-	legend: { top: 0, data: ['Budget Target', 'Forecast'] },
-	xAxis: {
-		type: 'category',
-		data: ["Sep '25", "Oct '25", "Nov '25", "Dec '25"],
-	},
-	yAxis: { type: 'value', axisLabel: { formatter: '{value}' } },
-	series: [
-		{
-			name: 'Budget Target',
-			type: 'line',
-			data: [120, 220, 300, 340],
-			itemStyle: { color: chartColors.green },
-		},
-		{
-			name: 'Forecast',
-			type: 'line',
-			data: [260, 380, 400, 560],
-			itemStyle: { color: chartColors.primary },
-		},
-	],
-};
-
-const postcardRecallOption: EChartsOption = {
-	grid: { left: 45, right: 10, top: 35, bottom: 35 },
-	legend: {
-		top: 0,
-		data: ['Ped 3m-2y MD', 'Ped 3m-2y WV', 'Ped 24-55 MD', 'Ped 5-18MD'],
-	},
-	xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May'] },
-	yAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
-	series: [
-		{
-			name: 'Ped 3m-2y MD',
-			type: 'bar',
-			data: [88, 90, 85, 80, 76],
-			itemStyle: { color: chartColors.primary },
-			barMaxWidth: 24,
-		},
-		{
-			name: 'Ped 3m-2y WV',
-			type: 'bar',
-			data: [24, 22, 26, 25, 27],
-			itemStyle: { color: '#f97316' },
-			barMaxWidth: 24,
-		},
-		{
-			name: 'Ped 24-55 MD',
-			type: 'bar',
-			data: [6, 6, 8, 7, 5],
-			itemStyle: { color: chartColors.green },
-			barMaxWidth: 24,
-		},
-		{
-			name: 'Ped 5-18MD',
-			type: 'bar',
-			data: [0.5, 0.8, 1.0, 0.9, 0.7],
-			itemStyle: { color: '#64748b' },
-			barMaxWidth: 24,
-		},
-	],
-};
-
-const wellnessVisitGrowthOption: EChartsOption = {
-	grid: { left: 50, right: 10, top: 35, bottom: 45 },
-	legend: { top: 0, data: ['Ped 3m-2y MD', 'Ped 3m-2y WV', 'Ped ≤18 MD'] },
-	xAxis: { type: 'category', data: ['2022', '2023', '2024', 'MAT 2025'] },
-	yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
-	series: [
-		{
-			name: 'Ped 3m-2y MD',
-			type: 'line',
-			data: [64, 66, 67, 72],
-			itemStyle: { color: chartColors.primary },
-		},
-		{
-			name: 'Ped 3m-2y WV',
-			type: 'line',
-			data: [20, 24, 28, 26],
-			itemStyle: { color: '#f97316' },
-		},
-		{
-			name: 'Ped ≤18 MD',
-			type: 'line',
-			data: [8, 9, 11, 7],
-			itemStyle: { color: '#06b6d4' },
-		},
-	],
-};
-
-const usaMapOption: EChartsOption = {
-	tooltip: { trigger: 'item' },
-	visualMap: {
-		left: 0,
-		min: 0,
-		max: 100,
-		inRange: {
-			color: ['var(--color-chart-light-gray)', '#1e40af'],
-		},
-	},
-	geo: { map: 'USA', roam: false },
-	series: [
-		{
-			type: 'map',
-			map: 'USA',
-			data: [
-				{ name: 'California', value: 85 },
-				{ name: 'Texas', value: 72 },
-				{ name: 'New York', value: 64 },
-				{ name: 'Florida', value: 58 },
-				{ name: 'Washington', value: 67 },
-			],
-		},
-	],
-};
-
-const msRegionsOption: EChartsOption = {
-	grid: { left: 36, right: 10, top: 30, bottom: 30 },
-	xAxis: {
-		type: 'category',
-		data: [
-			'Nation',
-			'Northeast',
-			'Southeast',
-			'West',
-			'South Central',
-			'Greater',
-		],
-	},
-	yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
-	series: [
-		{
-			type: 'bar',
-			data: [94, 96, 91, 90, 68, 81],
-			itemStyle: { color: chartColors.primary },
-			barMaxWidth: 30,
-			label: { show: true, position: 'top', formatter: '{c}%' },
-		},
-	],
-};
-
-const msChangeMovableOption: EChartsOption = {
-	grid: { left: 36, right: 10, top: 30, bottom: 30 },
-	xAxis: {
-		type: 'category',
-		data: [
-			'Merch Entrenched',
-			'Mid',
-			'North',
-			'Great Lakes',
-			'South',
-			'West',
-		],
-	},
-	yAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
-	series: [
-		{
-			type: 'bar',
-			data: [5, 11, 9, 6, 3, 2],
-			itemStyle: { color: 'var(--color-chart-purple)' },
-			barMaxWidth: 30,
-		},
-	],
-};
-
 export default function CollectionsPage({
 	searchParams,
 }: {
 	searchParams?: Record<string, string | string[] | undefined>;
 }) {
 	const current = (searchParams?.c as string) || 'favorites';
+	const [chartConfig, setChartConfig] = useState<ChartDataConfig | null>(
+		null
+	);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const loadData = async () => {
+			try {
+				const config = await loadChartData();
+				setChartConfig(config);
+			} catch (err) {
+				setError('Failed to load chart data');
+				// eslint-disable-next-line no-console
+				console.error('Error loading chart data:', err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		loadData();
+	}, []);
+
+	// Helper function to get chart option by ID
+	const getChartOption = (chartId: string): EChartsOption | null => {
+		if (!chartConfig) return null;
+		const chartData = getChartDataById(chartConfig, chartId);
+		return chartData ? transformChartData(chartData) : null;
+	};
+
+	// Helper function to create collection card
+	const createCollectionCard = (collection: {
+		title: string;
+		chart: string;
+		newCount?: number;
+	}) => {
+		const chartOption = getChartOption(collection.chart);
+		if (!chartOption) return null;
+
+		return (
+			<CollectionCard
+				key={collection.title}
+				title={collection.title}
+				option={chartOption}
+				newCount={collection.newCount}
+			/>
+		);
+	};
+
+	// Helper function to create chart card
+	const createChartCard = (
+		chartId: string,
+		title?: string,
+		source?: string
+	) => {
+		if (!chartConfig) return null;
+		const chartData = getChartDataById(chartConfig, chartId);
+		if (!chartData) return null;
+
+		const chartOption = transformChartData(chartData);
+		return (
+			<ChartCard
+				key={chartId}
+				title={title || chartData.title}
+				option={chartOption}
+				recommended={chartData.recommended}
+				source={
+					source || 'Source: Vaccelerator (FCT_CUST_FINANCE) Sep 2025'
+				}
+			/>
+		);
+	};
 
 	return (
 		<main className='min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100'>
@@ -252,199 +165,57 @@ export default function CollectionsPage({
 			</div>
 
 			<div className='mx-auto max-w-7xl px-4 py-16 sm:px-6'>
-				{current === 'collections' ? (
-					<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-						<CollectionCard
-							title='How is the brand growing?'
-							option={usaMapOption}
-							newCount={2}
-						/>
-						<CollectionCard
-							title='Weekly Tactics Collection'
-							option={{
-								grid: {
-									left: 50,
-									right: 10,
-									top: 20,
-									bottom: 40,
-								},
-								xAxis: {
-									type: 'category',
-									data: [
-										'Texas Oncology',
-										'RMCC',
-										'FCS',
-										'Mayo Clinic',
-									],
-								},
-								yAxis: {
-									type: 'value',
-									axisLabel: { formatter: '{value}%' },
-								},
-								series: [
-									{
-										type: 'bar',
-										data: [67, 36, 31, 29],
-										itemStyle: {
-											color: '#1e40af',
-										},
-										barMaxWidth: 30,
-									},
-								],
-							}}
-							newCount={2}
-						/>
-						<CollectionCard
-							title='Quarterly Business Review'
-							option={needToMeetOption}
-							newCount={2}
-						/>
-						<CollectionCard
-							title='Competitor Watch'
-							option={{
-								grid: {
-									left: 45,
-									right: 10,
-									top: 25,
-									bottom: 40,
-								},
-								legend: {
-									top: 0,
-									data: [
-										'Merch Entrenched',
-										'Neutral Evaluators',
-										'Pfizer Enthused',
-									],
-								},
-								xAxis: {
-									type: 'category',
-									data: [
-										'Rock.',
-										'Mid.',
-										'North',
-										'Great',
-										'South',
-									],
-								},
-								yAxis: {
-									type: 'value',
-									axisLabel: { formatter: '{value}%' },
-								},
-								series: [
-									{
-										name: 'Merch Entrenched',
-										type: 'bar',
-										stack: 's',
-										data: [5, 11, 9, 6, 3],
-										itemStyle: {
-											color: '#f97316',
-										},
-									},
-									{
-										name: 'Neutral Evaluators',
-										type: 'bar',
-										stack: 's',
-										data: [0, 0, 2, 1, 0],
-										itemStyle: {
-											color: 'var(--color-chart-purple)',
-										},
-									},
-									{
-										name: 'Pfizer Enthused',
-										type: 'bar',
-										stack: 's',
-										data: [0, 0, 0, 0, 0],
-										itemStyle: {
-											color: 'var(--color-chart-blue)',
-										},
-									},
-								],
-							}}
-							newCount={3}
-						/>
-						<CollectionCard
-							title='Market Share Collection'
-							option={msRegionsOption}
-						/>
-						<CollectionCard
-							title='My Custom Collection'
-							option={{
-								grid: {
-									left: 50,
-									right: 10,
-									top: 20,
-									bottom: 50,
-								},
-								legend: {
-									top: 0,
-									data: ['Brand Share', 'Class Share'],
-								},
-								xAxis: {
-									type: 'category',
-									data: ['Q1', 'Q2', 'Q3', 'Q4'],
-								},
-								yAxis: { type: 'value' },
-								series: [
-									{
-										name: 'Brand Share',
-										type: 'line',
-										data: [6, 9, 7, 11],
-										itemStyle: {
-											color: '#1e40af',
-										},
-										smooth: true,
-									},
-									{
-										name: 'Class Share',
-										type: 'line',
-										data: [2, 3, 4, 6],
-										itemStyle: {
-											color: '#06b6d4',
-										},
-										smooth: true,
-									},
-								],
-							}}
-						/>
+				{loading ? (
+					// Show skeleton loading state
+					current === 'collections' ? (
+						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+						</div>
+					) : (
+						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3'>
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+							<ChartCardSkeleton />
+						</div>
+					)
+				) : error ? (
+					// Show error state
+					<div className='flex min-h-96 items-center justify-center'>
+						<div className='text-center'>
+							<div className='mb-4 text-6xl text-red-500'>⚠️</div>
+							<h2 className='mb-2 text-2xl font-bold text-slate-900'>
+								Error Loading Data
+							</h2>
+							<p className='text-slate-600'>
+								{error || 'Chart data not available'}
+							</p>
+						</div>
 					</div>
-				) : (
-					<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3'>
-						{/* Favorites/Reports placeholder: reuse charts for now */}
-						<ChartCard
-							title='Need to meet'
-							option={needToMeetOption}
-							recommended
-							source='Source: LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul’25)'
-						/>
-						<ChartCard
-							title='Postcard Recall Rate'
-							option={postcardRecallOption}
-							recommended
-							source='Source: ATU Q2’2025'
-						/>
-						<ChartCard
-							title='Wellness visit growth'
-							option={wellnessVisitGrowthOption}
-							recommended
-							source='Source: IQVIA LAAD 2025 Sep Feed'
-						/>
-						<ChartCard
-							title='Prevnar Peds volume change'
-							option={usaMapOption}
-							source='Source: Vaccelerator (FCT_CUST_FINANCE) Sep 2025'
-						/>
-						<ChartCard
-							title='Peds market share across regions'
-							option={msRegionsOption}
-							source='Source: Vaccelerator (FCT_CUST_FINANCE) Sep 2025'
-						/>
-						<ChartCard
-							title='Growth across movable segments'
-							option={msChangeMovableOption}
-							source='Source: Vaccelerator (FCT_CUST_FINANCE) Sep 2025'
-						/>
-					</div>
-				)}
+				) : chartConfig ? (
+					// Show actual content when data is loaded
+					current === 'collections' ? (
+						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+							{chartConfig.pageLayouts.collections.collections.map(
+								(collection) => createCollectionCard(collection)
+							)}
+						</div>
+					) : (
+						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3'>
+							{/* Favorites/Reports: use charts from JSON */}
+							{chartConfig.pageLayouts.collections.favorites.map(
+								(chartId: string) => createChartCard(chartId)
+							)}
+						</div>
+					)
+				) : null}
 			</div>
 		</main>
 	);

@@ -1,0 +1,26 @@
+category,region,segment,period,value,change_percentage,market_share,growth_rate,revenue,volume,territory,account_type,product_line,quarter,year
+brand_performance,Nation,All IDN,2024,485000000,32,94,15.2,485000000,3042,National,Enterprise,Vaxneuvance,Q4,2024
+brand_performance,Northeast,All IDN,2024,520000000,28,96,12.8,520000000,3250,Northeast,Enterprise,Vaxneuvance,Q4,2024
+brand_performance,Southeast,All IDN,2024,480000000,25,91,10.5,480000000,3000,Southeast,Enterprise,Vaxneuvance,Q4,2024
+brand_performance,West,All IDN,2024,460000000,22,90,8.9,460000000,2875,West,Enterprise,Vaxneuvance,Q4,2024
+brand_performance,South Central,All IDN,2024,350000000,18,68,6.2,350000000,2188,South Central,Enterprise,Vaxneuvance,Q4,2024
+brand_performance,Greater,All IDN,2024,420000000,20,81,7.8,420000000,2625,Greater,Enterprise,Vaxneuvance,Q4,2024
+brand_performance,Nation,Independent,2024,120000000,15,23,12.1,120000000,750,National,Independent,Vaxneuvance,Q4,2024
+brand_performance,Northeast,Independent,2024,130000000,18,24,14.5,130000000,812,Northeast,Independent,Vaxneuvance,Q4,2024
+brand_performance,Southeast,Independent,2024,110000000,12,21,9.8,110000000,688,Southeast,Independent,Vaxneuvance,Q4,2024
+brand_performance,West,Independent,2024,105000000,10,20,8.2,105000000,656,West,Independent,Vaxneuvance,Q4,2024
+brand_performance,South Central,Independent,2024,80000000,8,16,5.9,80000000,500,South Central,Independent,Vaxneuvance,Q4,2024
+brand_performance,Greater,Independent,2024,95000000,14,18,11.2,95000000,594,Greater,Independent,Vaxneuvance,Q4,2024
+revenue_forecast,National,Baseline,2024,669000000,0,100,0,669000000,4181,National,All,All Products,Q4,2024
+revenue_forecast,National,EPI,2024,5000000,0.7,0.7,0.7,5000000,31,National,All,All Products,Q4,2024
+revenue_forecast,National,Share,2024,-15000000,-2.2,-2.2,-2.2,-15000000,-94,National,All,All Products,Q4,2024
+revenue_forecast,National,Mayo Clinic,2024,31000000,4.6,4.6,4.6,31000000,194,National,All,All Products,Q4,2024
+revenue_forecast,National,Current,2024,691000000,3.3,103.3,3.3,691000000,4322,National,All,All Products,Q4,2024
+revenue_forecast,California,Budget Target,2024,120000000,0,0,0,120000000,750,California,All,All Products,Q4,2024
+revenue_forecast,California,Forecast,2024,260000000,117,0,117,260000000,1625,California,All,All Products,Q4,2024
+revenue_forecast,Texas,Budget Target,2024,220000000,0,0,0,220000000,1375,Texas,All,All Products,Q4,2024
+revenue_forecast,Texas,Forecast,2024,380000000,73,0,73,380000000,2375,Texas,All,All Products,Q4,2024
+revenue_forecast,New York,Budget Target,2024,300000000,0,0,0,300000000,1875,New York,All,All Products,Q4,2024
+revenue_forecast,New York,Forecast,2024,400000000,33,0,33,400000000,2500,New York,All,All Products,Q4,2024
+revenue_forecast,Florida,Budget Target,2024,340000000,0,0,0,340000000,2125,Florida,All,All Products,Q4,2024
+revenue_forecast,Florida,Forecast,2024,560000000,65,0,65,560000000,3500,Florida,All,All Products,Q4,2024
