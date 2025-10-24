@@ -88,24 +88,27 @@ export function ChartCard({
 	return (
 		<div className='ie-card-hover group relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg hover:border-slate-300'>
 			{/* Header with modern badge */}
-			<div className='relative bg-gradient-to-r from-slate-50 to-slate-100 px-6 py-4'>
+			<div className='relative bg-gradient-to-r from-slate-50 to-slate-100 px-3 py-3 md:px-6 md:py-4'>
 				<div className='flex items-center justify-between'>
-					<div className='flex items-center gap-3'>
-						<div className='flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10'>
-							<AIIcon size={16} className='text-blue-500' />
+					<div className='flex items-center gap-2 md:gap-3'>
+						<div className='flex h-6 w-6 items-center justify-center rounded-lg bg-blue-500/10 md:h-8 md:w-8'>
+							<AIIcon
+								size={14}
+								className='text-blue-500 md:h-4 md:w-4'
+							/>
 						</div>
 						{recommended ? (
-							<span className='text-sm font-semibold text-blue-500'>
+							<span className='text-xs font-semibold text-blue-500 md:text-sm'>
 								Recommended
 							</span>
 						) : (
-							<span className='text-sm font-semibold text-slate-500'>
+							<span className='text-xs font-semibold text-slate-500 md:text-sm'>
 								Chart
 							</span>
 						)}
 					</div>
 
-					<div className='flex items-center gap-1'>
+					<div className='flex items-center gap-0.5 md:gap-1'>
 						<button
 							type='button'
 							aria-label='Expand'
@@ -115,9 +118,9 @@ export function ChartCard({
 									e.stopPropagation();
 								}
 							}}
-							className={`ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
+							className={`ie-button-hover ie-touch-target rounded-lg p-1.5 text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:p-2 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
 						>
-							<Expand size={16} />
+							<Expand size={14} className='md:h-4 md:w-4' />
 						</button>
 						<button
 							type='button'
@@ -129,11 +132,11 @@ export function ChartCard({
 									setFavourite((v) => !v);
 								}
 							}}
-							className={`ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
+							className={`ie-button-hover ie-touch-target rounded-lg p-1.5 text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:p-2 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
 						>
 							<Star
-								size={16}
-								className={favourite ? 'text-amber-500' : ''}
+								size={14}
+								className={`md:h-4 md:w-4 ${favourite ? 'text-amber-500' : ''}`}
 								fill={favourite ? 'currentColor' : 'none'}
 							/>
 						</button>
@@ -146,9 +149,9 @@ export function ChartCard({
 									e.stopPropagation();
 								}
 							}}
-							className={`ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
+							className={`ie-button-hover ie-touch-target rounded-lg p-1.5 text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:p-2 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
 						>
-							<ListFilter size={16} />
+							<ListFilter size={14} className='md:h-4 md:w-4' />
 						</button>
 						{interactive ? (
 							<RowMenu
@@ -157,9 +160,12 @@ export function ChartCard({
 										type='button'
 										aria-label='More'
 										onClick={(e) => e.stopPropagation()}
-										className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+										className='ie-button-hover ie-touch-target rounded-lg p-1.5 text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:p-2'
 									>
-										<Ellipsis size={16} />
+										<Ellipsis
+											size={14}
+											className='md:h-4 md:w-4'
+										/>
 									</button>
 								}
 							/>
@@ -168,9 +174,9 @@ export function ChartCard({
 								type='button'
 								aria-label='More'
 								disabled
-								className='ie-button-hover ie-touch-target cursor-not-allowed rounded-lg p-2 text-slate-500 opacity-50'
+								className='ie-button-hover ie-touch-target cursor-not-allowed rounded-lg p-1.5 text-slate-500 opacity-50 md:p-2'
 							>
-								<Ellipsis size={16} />
+								<Ellipsis size={14} className='md:h-4 md:w-4' />
 							</button>
 						)}
 					</div>
@@ -178,15 +184,15 @@ export function ChartCard({
 			</div>
 
 			{/* Title */}
-			<div className='px-6 pt-4'>
-				<h2 className='text-lg leading-tight font-semibold text-slate-900'>
+			<div className='px-3 pt-3 md:px-6 md:pt-4'>
+				<h2 className='text-base leading-tight font-semibold text-slate-900 md:text-lg'>
 					{title}
 				</h2>
 			</div>
 
 			{/* Chart area */}
-			<div className='p-6 pt-4'>
-				<div className='rounded-lg border border-slate-200 bg-white p-4 shadow-sm'>
+			<div className='p-3 pt-3 md:p-6 md:pt-4'>
+				<div className='rounded-lg border border-slate-200 bg-white p-2 shadow-sm md:p-4'>
 					{isMapUSA ? (
 						mapReady ? (
 							<ReactECharts
@@ -227,8 +233,8 @@ export function ChartCard({
 
 			{/* Source */}
 			{source ? (
-				<div className='px-6 pb-6'>
-					<div className='rounded-lg bg-slate-200 px-4 py-3'>
+				<div className='px-3 pb-3 md:px-6 md:pb-6'>
+					<div className='rounded-lg bg-slate-200 px-2 py-2 md:px-4 md:py-3'>
 						<p className='text-xs leading-relaxed text-slate-700'>
 							{source}
 						</p>

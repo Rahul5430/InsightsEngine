@@ -119,7 +119,7 @@ export function NavBar() {
 
 			{/* Tablet & Desktop Layout (768px+) */}
 			<div className='hidden md:block'>
-				<div className='mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 lg:gap-6 lg:px-6'>
+				<div className='lg:max-w-8xl xl:max-w-9xl mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 lg:gap-6 lg:px-6 2xl:max-w-[1400px]'>
 					{/* Logo - full size for tablet/desktop */}
 					<Link
 						href='/'

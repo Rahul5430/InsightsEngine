@@ -63,7 +63,7 @@ export default function Home() {
 			</div>
 
 			{/* Workspace Section */}
-			<div className='mx-auto max-w-7xl px-4 pt-16 sm:px-6'>
+			<div className='lg:max-w-8xl xl:max-w-9xl mx-auto max-w-7xl px-4 pt-16 sm:px-6 2xl:max-w-[1400px]'>
 				<div className='mb-8 flex flex-wrap items-center justify-between gap-4'>
 					<div className='flex items-center gap-3'>
 						<div className='flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-500'>
@@ -112,7 +112,7 @@ export default function Home() {
 			</div>
 
 			{/* Collections Section */}
-			<div className='mx-auto max-w-7xl px-4 py-16 sm:px-6'>
+			<div className='lg:max-w-8xl xl:max-w-9xl mx-auto max-w-7xl px-4 py-16 sm:px-6 2xl:max-w-[1400px]'>
 				<div className='mb-8 flex flex-wrap items-center justify-between gap-4'>
 					<div className='flex items-center gap-3'>
 						<div className='flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-blue-500'>

@@ -120,7 +120,7 @@ export default function CollectionsPage({
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
 				<div className='bg-[url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] absolute inset-0 opacity-20' />
 
-				<div className='relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20'>
+				<div className='lg:max-w-8xl xl:max-w-9xl relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 2xl:max-w-[1400px]'>
 					<div className='flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between'>
 						<div>
 							<h1 className='text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl'>
@@ -164,11 +164,11 @@ export default function CollectionsPage({
 				</div>
 			</div>
 
-			<div className='mx-auto max-w-7xl px-4 py-16 sm:px-6'>
+			<div className='lg:max-w-8xl xl:max-w-9xl mx-auto max-w-7xl px-4 py-16 sm:px-6 2xl:max-w-[1400px]'>
 				{loading ? (
 					// Show skeleton loading state
 					current === 'collections' ? (
-						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 							<ChartCardSkeleton />
 							<ChartCardSkeleton />
 							<ChartCardSkeleton />
@@ -177,7 +177,7 @@ export default function CollectionsPage({
 							<ChartCardSkeleton />
 						</div>
 					) : (
-						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3'>
+						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 							<ChartCardSkeleton />
 							<ChartCardSkeleton />
 							<ChartCardSkeleton />
@@ -202,13 +202,13 @@ export default function CollectionsPage({
 				) : chartConfig ? (
 					// Show actual content when data is loaded
 					current === 'collections' ? (
-						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 							{chartConfig.pageLayouts.collections.collections.map(
 								(collection) => createCollectionCard(collection)
 							)}
 						</div>
 					) : (
-						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3'>
+						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 							{/* Favorites/Reports: use charts from JSON */}
 							{chartConfig.pageLayouts.collections.favorites.map(
 								(chartId: string) => createChartCard(chartId)

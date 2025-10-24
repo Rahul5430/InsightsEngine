@@ -135,7 +135,7 @@ export default function WorkspacePage() {
 			</div>
 
 			{/* Main Content Section */}
-			<div className='mx-auto max-w-7xl space-y-4 px-4 py-16 sm:px-6'>
+			<div className='lg:max-w-8xl xl:max-w-9xl mx-auto max-w-7xl space-y-4 px-4 py-16 sm:px-6 2xl:max-w-[1400px]'>
 				{loading ? (
 					// Show skeleton loading state for all 6 sections
 					<>
@@ -143,7 +143,7 @@ export default function WorkspacePage() {
 							title='How is the brand performing?'
 							insightsCount={6}
 						>
-							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
@@ -156,7 +156,7 @@ export default function WorkspacePage() {
 							title='How has the revenue forecast evolved?'
 							insightsCount={4}
 						>
-							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
@@ -167,7 +167,7 @@ export default function WorkspacePage() {
 							title='How are HCP and Caregiver attitudes impacting the business?'
 							insightsCount={3}
 						>
-							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
@@ -186,7 +186,7 @@ export default function WorkspacePage() {
 							title='How is the series completion and adherence evolving?'
 							insightsCount={3}
 						>
-							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
@@ -196,7 +196,7 @@ export default function WorkspacePage() {
 							title='What are the key operational metrics?'
 							insightsCount={4}
 						>
-							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+							<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
 								<ChartCardSkeleton />
@@ -233,7 +233,7 @@ export default function WorkspacePage() {
 									title={section.title}
 									insightsCount={section.insightsCount}
 								>
-									<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+									<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
 										{charts.map((chart, chartIndex) => {
 											const chartOption =
 												transformChartData(chart);
