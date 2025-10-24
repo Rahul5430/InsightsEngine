@@ -20,7 +20,9 @@ echarts.use([
 ]);
 
 // Lazy load ReactECharts to reduce initial bundle
-export const ReactECharts = lazy(() => import('echarts-for-react'));
+export const ReactECharts = lazy(() =>
+	import('echarts-for-react').then((module) => ({ default: module.default }))
+);
 
 // Export the core echarts instance
 export { echarts };

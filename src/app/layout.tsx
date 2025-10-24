@@ -26,16 +26,6 @@ export const metadata: Metadata = {
 	description: 'Modern analytics platform for data-driven insights',
 };
 
-// Preload critical resources
-export function generateViewport() {
-	return {
-		width: 'device-width',
-		initialScale: 1,
-		maximumScale: 1,
-		userScalable: false,
-	};
-}
-
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -44,20 +34,18 @@ export default function RootLayout({
 	return (
 		<html lang='en' className='h-full'>
 			<head>
-				{/* Preload critical resources */}
-				<link
-					rel='preload'
-					href='/fonts/inter-var.woff2'
-					as='font'
-					type='font/woff2'
-					crossOrigin='anonymous'
+				{/* Viewport meta tag for accessibility */}
+				<meta
+					name='viewport'
+					content='width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes'
 				/>
-				<link
-					rel='preload'
-					href='/fonts/jetbrains-mono-var.woff2'
-					as='font'
-					type='font/woff2'
-					crossOrigin='anonymous'
+				{/* DNS prefetch for external resources */}
+				<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+				<link rel='dns-prefetch' href='//fonts.gstatic.com' />
+				{/* Content Security Policy */}
+				<meta
+					httpEquiv='Content-Security-Policy'
+					content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none';"
 				/>
 			</head>
 			<body

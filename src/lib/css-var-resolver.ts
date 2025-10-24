@@ -13,12 +13,17 @@ export function resolveCssVar(value: unknown): unknown {
 		return cssVarCache.get(varName);
 	}
 
-	// Resolve CSS variable
-	const resolved = getComputedStyle(document.documentElement)
-		.getPropertyValue(varName)
-		.trim();
-
-	const result = resolved || value;
+	// Resolve CSS variable safely
+	let result = value;
+	try {
+		const resolved = getComputedStyle(document.documentElement)
+			.getPropertyValue(varName)
+			.trim();
+		result = resolved || value;
+	} catch {
+		// Fallback to original value if getComputedStyle fails
+		result = value;
+	}
 
 	// Cache the result
 	cssVarCache.set(varName, result);
