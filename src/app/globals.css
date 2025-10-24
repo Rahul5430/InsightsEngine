@@ -3,6 +3,15 @@
 :root {
 	--background: #ffffff;
 	--foreground: #1e293b;
+
+	/* Chart color variables */
+	--ie-chart-light-gray: #f8fafc;
+	--ie-chart-dark-gray: #64748b;
+	--ie-chart-blue: #3b82f6;
+	--ie-chart-green: #10b981;
+	--ie-chart-red: #ef4444;
+	--ie-chart-yellow: #f59e0b;
+	--ie-chart-purple: #8b5cf6;
 }
 
 @theme inline {

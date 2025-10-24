@@ -34,7 +34,10 @@ export function FilterPanel({ trigger }: Props) {
 							<div className='mb-2 text-sm font-semibold text-slate-900'>
 								Timeframe
 							</div>
-							<button className='flex w-full items-center justify-between rounded-[12px] border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-500 hover:border-slate-800'>
+							<button
+								aria-label='Choose timeframe option'
+								className='flex w-full items-center justify-between rounded-[12px] border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-500 hover:border-slate-800'
+							>
 								<span>Choose an option..</span>
 								<ChevronDown
 									size={16}
@@ -46,7 +49,10 @@ export function FilterPanel({ trigger }: Props) {
 							<div className='mb-2 text-sm font-semibold text-slate-900'>
 								Geography
 							</div>
-							<button className='flex w-full items-center justify-between rounded-[12px] border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-500 hover:border-slate-800'>
+							<button
+								aria-label='Choose geography option'
+								className='flex w-full items-center justify-between rounded-[12px] border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-500 hover:border-slate-800'
+							>
 								<span>Choose an option..</span>
 								<ChevronDown
 									size={16}
@@ -58,7 +64,10 @@ export function FilterPanel({ trigger }: Props) {
 							<div className='mb-2 text-sm font-semibold text-slate-900'>
 								Filter
 							</div>
-							<button className='flex w-full items-center justify-between rounded-[12px] border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-500 hover:border-slate-800'>
+							<button
+								aria-label='Choose filter option'
+								className='flex w-full items-center justify-between rounded-[12px] border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-500 hover:border-slate-800'
+							>
 								<span>Choose an option..</span>
 								<ChevronDown
 									size={16}

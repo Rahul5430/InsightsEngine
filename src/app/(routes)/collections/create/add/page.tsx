@@ -139,7 +139,7 @@ export default function AddToCollectionStep() {
 							opt: barOption,
 						},
 					].map((c, idx) => (
-						<button
+						<div
 							key={idx}
 							onClick={() => {
 								setSelected((prev) => {
@@ -152,10 +152,27 @@ export default function AddToCollectionStep() {
 									return newSet;
 								});
 							}}
-							className={`cursor-pointer rounded-[16px] text-left transition-shadow duration-200 ease-out ${
+							role='button'
+							tabIndex={0}
+							aria-pressed={selected.has(idx)}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter' || e.key === ' ') {
+									e.preventDefault();
+									setSelected((prev) => {
+										const newSet = new Set(prev);
+										if (newSet.has(idx)) {
+											newSet.delete(idx);
+										} else {
+											newSet.add(idx);
+										}
+										return newSet;
+									});
+								}
+							}}
+							className={`cursor-pointer rounded-[16px] text-left transition-all duration-200 ease-out ${
 								selected.has(idx)
-									? 'shadow-[0_0_0_2px_var(--ie-primary),0_16px_40px_rgba(2,6,23,0.18)]'
-									: 'shadow-[0_0_0_0_rgba(0,0,0,0)] hover:shadow-[0_0_0_2px_rgba(2,6,23,0.08)]'
+									? 'scale-[1.02] shadow-lg ring-2 ring-blue-500 ring-offset-2'
+									: 'hover:scale-[1.01] hover:shadow-md hover:ring-1 hover:ring-slate-300'
 							}`}
 						>
 							<ChartCard
@@ -163,7 +180,7 @@ export default function AddToCollectionStep() {
 								option={c.opt}
 								interactive={false}
 							/>
-						</button>
+						</div>
 					))}
 				</div>
 			</div>
@@ -182,7 +199,7 @@ export default function AddToCollectionStep() {
 						selected.size > 0 &&
 						router.push('/collections/my-custom-collection')
 					}
-					className={`rounded-[10px] px-4 py-2 text-sm font-medium ${selected.size === 0 ? 'bg-border cursor-not-allowed text-white' : 'bg-primary hover:bg-primary-light cursor-pointer text-white'}`}
+					className={`rounded-[10px] px-4 py-2 text-sm font-medium ${selected.size === 0 ? 'bg-border cursor-not-allowed bg-blue-300 text-white' : 'bg-primary hover:bg-primary-light cursor-pointer text-white'}`}
 				>
 					{selected.size === 0
 						? 'Add Insight'

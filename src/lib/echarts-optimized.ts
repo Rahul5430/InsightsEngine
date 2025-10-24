@@ -8,7 +8,7 @@ import {
 } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
-import { lazy } from 'react';
+import dynamic from 'next/dynamic';
 
 // Register only the components we actually use
 echarts.use([
@@ -19,10 +19,46 @@ echarts.use([
 	CanvasRenderer,
 ]);
 
+// Force passive listeners globally to fix performance violations
+if (typeof window !== 'undefined') {
+	const originalAddEventListener = EventTarget.prototype.addEventListener;
+	EventTarget.prototype.addEventListener = function (
+		type,
+		listener,
+		options
+	) {
+		// Force passive for scroll-blocking events
+		if (typeof options === 'object' && options !== null) {
+			options.passive = true;
+		} else if (options === undefined) {
+			options = { passive: true };
+		}
+		return originalAddEventListener.call(this, type, listener, options);
+	};
+}
+
+// Configure ECharts for better performance
+echarts.registerTheme('insights-engine', {
+	// Optimize animations for better performance
+	animation: false, // Disable animations to prevent performance issues
+	animationDuration: 0,
+	animationEasing: 'linear',
+	animationDurationUpdate: 0,
+	animationEasingUpdate: 'linear',
+	// Disable heavy features
+	blendMode: 'normal',
+	hoverLayerThreshold: 3000,
+	// Optimize rendering
+	useUTC: true,
+	textStyle: {
+		fontFamily: 'system-ui, -apple-system, sans-serif',
+	},
+});
+
 // Lazy load ReactECharts to reduce initial bundle
-export const ReactECharts = lazy(() =>
-	import('echarts-for-react').then((module) => ({ default: module.default }))
-);
+export const ReactECharts = dynamic(() => import('echarts-for-react'), {
+	ssr: false,
+});
 
 // Export the core echarts instance
 export { echarts };

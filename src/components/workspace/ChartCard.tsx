@@ -1,7 +1,7 @@
 'use client';
 
 import { Ellipsis, Expand, ListFilter, Star } from 'lucide-react';
-import { Suspense, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { AIIcon } from '@/components/common/AIIcon';
 import { deepResolveCssVars } from '@/lib/css-var-resolver';
@@ -109,21 +109,27 @@ export function ChartCard({
 						<button
 							type='button'
 							aria-label='Expand'
+							disabled={!interactive}
 							onClick={(e) => {
-								e.stopPropagation();
+								if (interactive) {
+									e.stopPropagation();
+								}
 							}}
-							className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+							className={`ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
 						>
 							<Expand size={16} />
 						</button>
 						<button
 							type='button'
 							aria-label='Star'
+							disabled={!interactive}
 							onClick={(e) => {
-								e.stopPropagation();
-								setFavourite((v) => !v);
+								if (interactive) {
+									e.stopPropagation();
+									setFavourite((v) => !v);
+								}
 							}}
-							className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+							className={`ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
 						>
 							<Star
 								size={16}
@@ -134,34 +140,48 @@ export function ChartCard({
 						<button
 							type='button'
 							aria-label='Filter'
+							disabled={!interactive}
 							onClick={(e) => {
-								e.stopPropagation();
+								if (interactive) {
+									e.stopPropagation();
+								}
 							}}
-							className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+							className={`ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
 						>
 							<ListFilter size={16} />
 						</button>
-						<RowMenu
-							trigger={
-								<button
-									type='button'
-									aria-label='More'
-									onClick={(e) => e.stopPropagation()}
-									className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
-								>
-									<Ellipsis size={16} />
-								</button>
-							}
-						/>
+						{interactive ? (
+							<RowMenu
+								trigger={
+									<button
+										type='button'
+										aria-label='More'
+										onClick={(e) => e.stopPropagation()}
+										className='ie-button-hover ie-touch-target rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+									>
+										<Ellipsis size={16} />
+									</button>
+								}
+							/>
+						) : (
+							<button
+								type='button'
+								aria-label='More'
+								disabled
+								className='ie-button-hover ie-touch-target cursor-not-allowed rounded-lg p-2 text-slate-500 opacity-50'
+							>
+								<Ellipsis size={16} />
+							</button>
+						)}
 					</div>
 				</div>
 			</div>
 
 			{/* Title */}
 			<div className='px-6 pt-4'>
-				<h3 className='text-lg leading-tight font-semibold text-slate-900'>
+				<h2 className='text-lg leading-tight font-semibold text-slate-900'>
 					{title}
-				</h3>
+				</h2>
 			</div>
 
 			{/* Chart area */}
@@ -169,36 +189,14 @@ export function ChartCard({
 				<div className='rounded-lg border border-slate-200 bg-white p-4 shadow-sm'>
 					{isMapUSA ? (
 						mapReady ? (
-							<Suspense
-								fallback={
-									<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
-								}
-							>
-								<ReactECharts
-									option={resolvedOption}
-									notMerge
-									lazyUpdate
-									style={{
-										height: 280,
-										pointerEvents: interactive
-											? 'auto'
-											: 'none',
-									}}
-								/>
-							</Suspense>
-						) : (
-							<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
-						)
-					) : (
-						<Suspense
-							fallback={
-								<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
-							}
-						>
 							<ReactECharts
 								option={resolvedOption}
+								theme='insights-engine'
 								notMerge
 								lazyUpdate
+								opts={{
+									renderer: 'canvas',
+								}}
 								style={{
 									height: 280,
 									pointerEvents: interactive
@@ -206,7 +204,23 @@ export function ChartCard({
 										: 'none',
 								}}
 							/>
-						</Suspense>
+						) : (
+							<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
+						)
+					) : (
+						<ReactECharts
+							option={resolvedOption}
+							theme='insights-engine'
+							notMerge
+							lazyUpdate
+							opts={{
+								renderer: 'canvas',
+							}}
+							style={{
+								height: 280,
+								pointerEvents: interactive ? 'auto' : 'none',
+							}}
+						/>
 					)}
 				</div>
 			</div>
@@ -214,8 +228,8 @@ export function ChartCard({
 			{/* Source */}
 			{source ? (
 				<div className='px-6 pb-6'>
-					<div className='rounded-lg bg-slate-100 px-4 py-3'>
-						<p className='text-xs leading-relaxed text-slate-500'>
+					<div className='rounded-lg bg-slate-200 px-4 py-3'>
+						<p className='text-xs leading-relaxed text-slate-700'>
 							{source}
 						</p>
 					</div>

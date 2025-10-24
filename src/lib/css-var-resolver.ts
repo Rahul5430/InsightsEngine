@@ -19,7 +19,42 @@ export function resolveCssVar(value: unknown): unknown {
 		const resolved = getComputedStyle(document.documentElement)
 			.getPropertyValue(varName)
 			.trim();
-		result = resolved || value;
+
+		// If resolved value is empty or invalid, use a fallback
+		if (!resolved || resolved === '') {
+			// Provide sensible fallbacks for common chart colors
+			if (
+				varName.includes('chart-light-gray') ||
+				varName.includes('light-gray')
+			) {
+				result = '#f8fafc';
+			} else if (
+				varName.includes('chart-dark-gray') ||
+				varName.includes('dark-gray')
+			) {
+				result = '#64748b';
+			} else if (
+				varName.includes('chart-blue') ||
+				varName.includes('blue')
+			) {
+				result = '#3b82f6';
+			} else if (
+				varName.includes('chart-green') ||
+				varName.includes('green')
+			) {
+				result = '#10b981';
+			} else if (
+				varName.includes('chart-red') ||
+				varName.includes('red')
+			) {
+				result = '#ef4444';
+			} else {
+				// Generic fallback for unknown variables
+				result = '#000000';
+			}
+		} else {
+			result = resolved;
+		}
 	} catch {
 		// Fallback to original value if getComputedStyle fails
 		result = value;
@@ -34,10 +69,6 @@ export function resolveCssVar(value: unknown): unknown {
 export function deepResolveCssVars(input: unknown): unknown {
 	const self = (x: unknown): unknown => {
 		if (Array.isArray(x)) {
-			// Use requestIdleCallback to yield control for large arrays
-			if (x.length > 100) {
-				return x.map(self);
-			}
 			return x.map(self);
 		}
 
@@ -45,16 +76,9 @@ export function deepResolveCssVars(input: unknown): unknown {
 			const out: Record<string, unknown> = {};
 			const entries = Object.entries(x as Record<string, unknown>);
 
-			// Process in chunks to avoid blocking
-			for (let i = 0; i < entries.length; i++) {
-				const [k, v] = entries[i];
+			// Process all entries at once - CSS var resolution is fast
+			for (const [k, v] of entries) {
 				out[k] = self(v);
-
-				// Yield control every 50 properties
-				if (i % 50 === 0 && i > 0) {
-					// Use setTimeout to yield control
-					setTimeout(() => {}, 0);
-				}
 			}
 			return out;
 		}

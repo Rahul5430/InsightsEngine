@@ -22,29 +22,60 @@ export function AccordionRow({
 }: Props) {
 	const [open, setOpen] = useState(defaultOpen);
 	const [favourite, setFavourite] = useState(false);
+	const [isVisible, setIsVisible] = useState(false);
+	const [hasLoaded, setHasLoaded] = useState(false);
 	const contentRef = useRef<HTMLDivElement>(null);
+	const accordionRef = useRef<HTMLDivElement>(null);
 	const [maxHeight, setMaxHeight] = useState<string>(
 		defaultOpen ? '9999px' : '0px'
 	);
 
+	// Intersection Observer for lazy loading
+	useEffect(() => {
+		const accordion = accordionRef.current;
+		if (!accordion) return;
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setIsVisible(true);
+					// Load content using requestAnimationFrame for better performance
+					requestAnimationFrame(() => {
+						requestAnimationFrame(() => setHasLoaded(true));
+					});
+					observer.disconnect();
+				}
+			},
+			{
+				rootMargin: '100px', // Start loading 100px before it comes into view
+				threshold: 0.1,
+			}
+		);
+
+		observer.observe(accordion);
+
+		return () => observer.disconnect();
+	}, []);
+
 	useEffect(() => {
 		const el = contentRef.current;
 		if (!el) return;
-		let timeoutId: number | undefined;
+
 		if (open) {
+			// Set to scroll height immediately, CSS transition handles the animation
 			setMaxHeight(`${el.scrollHeight}px`);
-			timeoutId = window.setTimeout(() => setMaxHeight('9999px'), 300);
 		} else {
+			// Set to current height first, then to 0 for smooth transition
 			setMaxHeight(`${el.scrollHeight}px`);
 			requestAnimationFrame(() => setMaxHeight('0px'));
 		}
-		return () => {
-			if (timeoutId) window.clearTimeout(timeoutId);
-		};
 	}, [open]);
 
 	return (
-		<div className='rounded-[14px] border border-slate-200 bg-gradient-to-b from-white to-slate-100 shadow-sm'>
+		<div
+			ref={accordionRef}
+			className='rounded-[14px] border border-slate-200 bg-gradient-to-b from-white to-slate-100 shadow-sm'
+		>
 			<div
 				className='group flex min-h-[64px] w-full cursor-pointer items-center gap-2 px-5 py-3 text-left'
 				onClick={() => setOpen((v) => !v)}
@@ -133,7 +164,14 @@ export function AccordionRow({
 				<div
 					className={`px-5 pb-5 transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0'}`}
 				>
-					{children}
+					{/* Lazy load children only when visible and accordion is open */}
+					{isVisible && open && hasLoaded ? (
+						children
+					) : isVisible && open ? (
+						<div className='flex items-center justify-center py-8'>
+							<div className='h-6 w-6 animate-spin rounded-full border-2 border-blue-500 border-t-transparent' />
+						</div>
+					) : null}
 				</div>
 			</div>
 		</div>

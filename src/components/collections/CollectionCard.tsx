@@ -1,7 +1,7 @@
 'use client';
 
 import { Ellipsis, Expand, Sparkles, Star } from 'lucide-react';
-import { Suspense, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import usaJson from '@/data/USA.json';
 import { deepResolveCssVars } from '@/lib/css-var-resolver';
@@ -117,9 +117,9 @@ export function CollectionCard({
 
 			{/* Title */}
 			<div className='px-6 pt-4'>
-				<h3 className='text-lg leading-tight font-semibold text-slate-900'>
+				<h2 className='text-lg leading-tight font-semibold text-slate-900'>
 					{title}
-				</h3>
+				</h2>
 			</div>
 
 			{/* Preview area */}
@@ -129,18 +129,16 @@ export function CollectionCard({
 						isMapUSA && !mapReady ? (
 							<div className='h-[200px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
 						) : (
-							<Suspense
-								fallback={
-									<div className='h-[200px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
-								}
-							>
-								<ReactECharts
-									option={resolvedOption}
-									notMerge
-									lazyUpdate
-									style={{ height: 200 }}
-								/>
-							</Suspense>
+							<ReactECharts
+								option={resolvedOption}
+								theme='insights-engine'
+								notMerge
+								lazyUpdate
+								opts={{
+									renderer: 'canvas',
+								}}
+								style={{ height: 200 }}
+							/>
 						)
 					) : (
 						(preview ?? (

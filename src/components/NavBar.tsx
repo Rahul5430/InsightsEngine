@@ -107,6 +107,8 @@ export function NavBar() {
 				{searchOpen && (
 					<div className='ie-mobile-search px-3 pb-3 sm:px-4'>
 						<input
+							id='mobile-search'
+							name='mobile-search'
 							className='w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 transition-all placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none'
 							placeholder='Search insights, collections, or reports...'
 							autoFocus
@@ -139,6 +141,8 @@ export function NavBar() {
 					{/* Search bar - responsive sizing */}
 					<div className='relative max-w-sm flex-1 lg:max-w-md xl:max-w-lg'>
 						<input
+							id='desktop-search'
+							name='desktop-search'
 							className='w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 transition-all placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none lg:px-4 lg:py-2.5'
 							placeholder='Search insights...'
 						/>

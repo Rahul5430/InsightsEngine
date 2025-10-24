@@ -225,7 +225,10 @@ export default function CollectionsPage({
 								</Suspense>
 								<FilterPanel
 									trigger={
-										<button className='ie-button-hover ie-touch-target flex h-full items-center justify-center rounded-lg border border-white/20 bg-white/10 px-2 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20 sm:justify-between sm:gap-2 sm:px-3'>
+										<button
+											aria-label='Open filters panel'
+											className='ie-button-hover ie-touch-target flex h-full items-center justify-center rounded-lg border border-white/20 bg-white/10 px-2 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20 sm:justify-between sm:gap-2 sm:px-3'
+										>
 											<ListFilter size={15} />
 											<span className='inline max-sm:hidden max-lg:md:hidden'>
 												Filters
