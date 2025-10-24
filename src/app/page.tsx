@@ -25,7 +25,7 @@ export default function Home() {
 						</p>
 					</div>
 
-					{/* KPI Cards Section */}
+					{/* KPI Cards Section - LCP Element */}
 					<div className='mt-16'>
 						<div className='grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4'>
 							<KpiCard
@@ -34,6 +34,7 @@ export default function Home() {
 								trend='↑ 32% YoY | 32% QoQ'
 								trendColor='success'
 								trailing={<AIIcon />}
+								fetchPriority='high'
 							/>
 							<KpiCard
 								title='Growth Net Sales'

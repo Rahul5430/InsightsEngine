@@ -1,12 +1,12 @@
 'use client';
 
-import type { EChartsOption } from 'echarts';
-import * as echarts from 'echarts/core';
-import ReactECharts from 'echarts-for-react';
 import { Ellipsis, Expand, ListFilter, Star } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 
 import { AIIcon } from '@/components/common/AIIcon';
+import { deepResolveCssVars } from '@/lib/css-var-resolver';
+import type { EChartsOption } from '@/lib/echarts-optimized';
+import { echarts, ReactECharts } from '@/lib/echarts-optimized';
 
 import { RowMenu } from './RowMenu';
 
@@ -52,38 +52,12 @@ export function ChartCard({
 
 	const [mapReady, setMapReady] = useState<boolean>(() => !isMapUSA);
 
-	function resolveCssVar(value: unknown): unknown {
-		if (typeof value === 'string' && value.startsWith('var(')) {
-			const varName = value.slice(4, -1).trim();
-			const resolved = getComputedStyle(document.documentElement)
-				.getPropertyValue(varName)
-				.trim();
-			return resolved || value;
-		}
-		return value;
-	}
-
-	const deepResolveCssVars = useCallback((input: unknown): unknown => {
-		const self = (x: unknown): unknown => {
-			if (Array.isArray(x)) return x.map(self);
-			if (x && typeof x === 'object') {
-				const out: Record<string, unknown> = {};
-				for (const [k, v] of Object.entries(
-					x as Record<string, unknown>
-				)) {
-					out[k] = self(v);
-				}
-				return out;
-			}
-			return resolveCssVar(x);
-		};
-		return self(input);
-	}, []);
+	// Use optimized CSS variable resolver
 
 	const resolvedOption = useMemo(() => {
 		if (typeof window === 'undefined') return option;
 		return deepResolveCssVars(option) as EChartsOption;
-	}, [option, deepResolveCssVars]);
+	}, [option]);
 
 	// Ensure USA map is registered on the client when needed
 	useEffect(() => {
@@ -195,6 +169,32 @@ export function ChartCard({
 				<div className='rounded-lg border border-slate-200 bg-white p-4 shadow-sm'>
 					{isMapUSA ? (
 						mapReady ? (
+							<Suspense
+								fallback={
+									<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
+								}
+							>
+								<ReactECharts
+									option={resolvedOption}
+									notMerge
+									lazyUpdate
+									style={{
+										height: 280,
+										pointerEvents: interactive
+											? 'auto'
+											: 'none',
+									}}
+								/>
+							</Suspense>
+						) : (
+							<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
+						)
+					) : (
+						<Suspense
+							fallback={
+								<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
+							}
+						>
 							<ReactECharts
 								option={resolvedOption}
 								notMerge
@@ -206,19 +206,7 @@ export function ChartCard({
 										: 'none',
 								}}
 							/>
-						) : (
-							<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
-						)
-					) : (
-						<ReactECharts
-							option={resolvedOption}
-							notMerge
-							lazyUpdate
-							style={{
-								height: 280,
-								pointerEvents: interactive ? 'auto' : 'none',
-							}}
-						/>
+						</Suspense>
 					)}
 				</div>
 			</div>

@@ -1,12 +1,12 @@
 'use client';
 
-import type { EChartsOption } from 'echarts';
-import * as echarts from 'echarts/core';
-import ReactECharts from 'echarts-for-react';
 import { Ellipsis, Expand, Sparkles, Star } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 
 import usaJson from '@/data/USA.json';
+import { deepResolveCssVars } from '@/lib/css-var-resolver';
+import type { EChartsOption } from '@/lib/echarts-optimized';
+import { echarts, ReactECharts } from '@/lib/echarts-optimized';
 
 type Props = {
 	title: string;
@@ -23,41 +23,13 @@ export function CollectionCard({
 }: Props) {
 	const [favourite, setFavourite] = useState(false);
 
-	// resolve CSS variables inside ECharts option on client
-	function resolveCssVar(value: unknown): unknown {
-		if (typeof window === 'undefined') return value;
-		if (typeof value === 'string' && value.startsWith('var(')) {
-			const varName = value.slice(4, -1).trim();
-			const resolved = getComputedStyle(document.documentElement)
-				.getPropertyValue(varName)
-				.trim();
-			return resolved || value;
-		}
-		return value;
-	}
-
-	const deepResolveCssVars = useCallback((input: unknown): unknown => {
-		const self = (x: unknown): unknown => {
-			if (Array.isArray(x)) return x.map(self);
-			if (x && typeof x === 'object') {
-				const out: Record<string, unknown> = {};
-				for (const [k, v] of Object.entries(
-					x as Record<string, unknown>
-				)) {
-					out[k] = self(v);
-				}
-				return out;
-			}
-			return resolveCssVar(x);
-		};
-		return self(input);
-	}, []);
+	// Use optimized CSS variable resolver
 
 	const resolvedOption = useMemo(() => {
 		if (!option) return undefined;
 		if (typeof window === 'undefined') return option;
 		return deepResolveCssVars(option) as EChartsOption;
-	}, [option, deepResolveCssVars]);
+	}, [option]);
 
 	// Detect and register USA map if needed
 	const isMapUSA = useMemo(() => {
@@ -157,12 +129,18 @@ export function CollectionCard({
 						isMapUSA && !mapReady ? (
 							<div className='h-[200px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
 						) : (
-							<ReactECharts
-								option={resolvedOption}
-								notMerge
-								lazyUpdate
-								style={{ height: 200 }}
-							/>
+							<Suspense
+								fallback={
+									<div className='h-[200px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
+								}
+							>
+								<ReactECharts
+									option={resolvedOption}
+									notMerge
+									lazyUpdate
+									style={{ height: 200 }}
+								/>
+							</Suspense>
 						)
 					) : (
 						(preview ?? (

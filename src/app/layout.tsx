@@ -26,6 +26,16 @@ export const metadata: Metadata = {
 	description: 'Modern analytics platform for data-driven insights',
 };
 
+// Preload critical resources
+export function generateViewport() {
+	return {
+		width: 'device-width',
+		initialScale: 1,
+		maximumScale: 1,
+		userScalable: false,
+	};
+}
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -33,6 +43,23 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' className='h-full'>
+			<head>
+				{/* Preload critical resources */}
+				<link
+					rel='preload'
+					href='/fonts/inter-var.woff2'
+					as='font'
+					type='font/woff2'
+					crossOrigin='anonymous'
+				/>
+				<link
+					rel='preload'
+					href='/fonts/jetbrains-mono-var.woff2'
+					as='font'
+					type='font/woff2'
+					crossOrigin='anonymous'
+				/>
+			</head>
 			<body
 				className={`${inter.variable} ${jetbrainsMono.variable} h-full overflow-x-hidden antialiased`}
 				style={{

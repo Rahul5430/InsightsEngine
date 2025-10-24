@@ -6,6 +6,7 @@ type Props = {
 	trend?: string;
 	trendColor?: 'success' | 'danger' | 'warning' | 'muted';
 	trailing?: ReactNode;
+	fetchPriority?: 'high' | 'low' | 'auto';
 };
 
 const trendColorToClass: Record<NonNullable<Props['trendColor']>, string> = {
@@ -21,6 +22,7 @@ export function KpiCard({
 	trend,
 	trendColor = 'success',
 	trailing,
+	fetchPriority = 'auto',
 }: Props) {
 	function deriveTrendParts(input: string): string[] {
 		const normalized = input.replace(/\s+/g, ' ').trim();
@@ -44,7 +46,10 @@ export function KpiCard({
 	const trendParts = trend ? deriveTrendParts(trend) : undefined;
 
 	return (
-		<div className='ie-card-hover group relative min-h-[80px] overflow-hidden rounded-xl border border-slate-200 bg-white px-3 py-3 shadow-lg hover:border-slate-300 sm:min-h-[120px] sm:px-6 sm:pt-6 sm:pb-8 lg:min-h-[140px]'>
+		<div
+			className='ie-card-hover group relative min-h-[80px] overflow-hidden rounded-xl border border-slate-200 bg-white px-3 py-3 shadow-lg hover:border-slate-300 sm:min-h-[120px] sm:px-6 sm:pt-6 sm:pb-8 lg:min-h-[140px]'
+			{...(fetchPriority !== 'auto' && { fetchPriority })}
+		>
 			{/* Subtle gradient overlay */}
 			<div className='absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
 
