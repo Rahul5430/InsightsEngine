@@ -67,7 +67,7 @@ export default function WorkspacePage() {
 	const kpiData = chartConfig ? getKpiData(chartConfig) : defaultKpiData;
 
 	return (
-		<main className='min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100'>
+		<main className='bg-gradient-to-br from-white via-slate-50 to-slate-100'>
 			{/* Hero Section with KPI Cards */}
 			<div className='relative overflow-hidden'>
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
@@ -135,7 +135,7 @@ export default function WorkspacePage() {
 			</div>
 
 			{/* Main Content Section */}
-			<div className='lg:max-w-8xl xl:max-w-9xl mx-auto max-w-7xl space-y-4 px-4 py-16 sm:px-6 2xl:max-w-[1400px]'>
+			<div className='tablet:mx-4 mx-auto space-y-4 px-4 py-16 sm:px-6 lg:mx-10'>
 				{loading ? (
 					// Show skeleton loading state for all 6 sections
 					<>
@@ -233,7 +233,7 @@ export default function WorkspacePage() {
 									title={section.title}
 									insightsCount={section.insightsCount}
 								>
-									<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
+									<div className='tablet:grid-cols-2 grid grid-cols-1 gap-4 min-[1400px]:!grid-cols-3'>
 										{charts.map((chart, chartIndex) => {
 											const chartOption =
 												transformChartData(chart);
@@ -242,6 +242,7 @@ export default function WorkspacePage() {
 													key={`${chart.id}-${chartIndex}`}
 													title={chart.title}
 													option={chartOption}
+													chartData={chart}
 													recommended={
 														chart.recommended
 													}

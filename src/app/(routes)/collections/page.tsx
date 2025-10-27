@@ -11,6 +11,7 @@ import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { ListFilter, Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 
 import { CollectionCard } from '@/components/collections/CollectionCard';
@@ -34,12 +35,10 @@ echarts.use([
 	CanvasRenderer,
 ]);
 
-export default function CollectionsPage({
-	searchParams,
-}: {
-	searchParams?: Record<string, string | string[] | undefined>;
-}) {
-	const current = (searchParams?.c as string) || 'favorites';
+function CollectionsPageContent() {
+	const searchParams = useSearchParams();
+	const current = (searchParams.get('c') as string) || 'favorites';
+
 	const [chartConfig, setChartConfig] = useState<ChartDataConfig | null>(
 		null
 	);
@@ -62,6 +61,10 @@ export default function CollectionsPage({
 
 		loadData();
 	}, []);
+
+	// Grid layout constant
+	const gridClassName =
+		'grid tablet:grid-cols-2 gap-4 sm:gap-6 grid-cols-1 min-[1400px]:!grid-cols-3';
 
 	// Helper function to get chart option by ID
 	const getChartOption = (chartId: string): EChartsOption | null => {
@@ -96,15 +99,19 @@ export default function CollectionsPage({
 		source?: string
 	) => {
 		if (!chartConfig) return null;
+
 		const chartData = getChartDataById(chartConfig, chartId);
+
 		if (!chartData) return null;
 
 		const chartOption = transformChartData(chartData);
+
 		return (
 			<ChartCard
 				key={chartId}
 				title={title || chartData.title}
 				option={chartOption}
+				chartData={chartData}
 				recommended={chartData.recommended}
 				source={
 					source || 'Source: Vaccelerator (FCT_CUST_FINANCE) Sep 2025'
@@ -114,7 +121,7 @@ export default function CollectionsPage({
 	};
 
 	return (
-		<main className='min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100'>
+		<main className='bg-gradient-to-br from-white via-slate-50 to-slate-100'>
 			{/* Hero Section */}
 			<div className='relative overflow-hidden'>
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
@@ -164,28 +171,16 @@ export default function CollectionsPage({
 				</div>
 			</div>
 
-			<div className='lg:max-w-8xl xl:max-w-9xl mx-auto max-w-7xl px-4 py-16 sm:px-6 2xl:max-w-[1400px]'>
+			<div className='tablet:mx-4 mx-auto px-4 py-16 sm:px-6 lg:mx-10'>
 				{loading ? (
 					// Show skeleton loading state
-					current === 'collections' ? (
-						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-						</div>
-					) : (
-						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-							<ChartCardSkeleton />
-						</div>
-					)
+					<div className={gridClassName}>
+						{Array.from({
+							length: current === 'collections' ? 6 : 7,
+						}).map((_, i) => (
+							<ChartCardSkeleton key={i} />
+						))}
+					</div>
 				) : error ? (
 					// Show error state
 					<div className='flex min-h-96 items-center justify-center'>
@@ -201,22 +196,31 @@ export default function CollectionsPage({
 					</div>
 				) : chartConfig ? (
 					// Show actual content when data is loaded
-					current === 'collections' ? (
-						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
-							{chartConfig.pageLayouts.collections.collections.map(
-								(collection) => createCollectionCard(collection)
-							)}
-						</div>
-					) : (
-						<div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
-							{/* Favorites/Reports: use charts from JSON */}
-							{chartConfig.pageLayouts.collections.favorites.map(
-								(chartId: string) => createChartCard(chartId)
-							)}
-						</div>
-					)
+					<div className={gridClassName}>
+						{current === 'collections'
+							? chartConfig.pageLayouts.collections.collections.map(
+									(collection) =>
+										createCollectionCard(collection)
+								)
+							: chartConfig.pageLayouts.collections.favorites.map(
+									(chartId: string) =>
+										createChartCard(chartId)
+								)}
+					</div>
 				) : null}
 			</div>
 		</main>
+	);
+}
+
+export default function CollectionsPage() {
+	return (
+		<Suspense
+			fallback={
+				<div className='min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100' />
+			}
+		>
+			<CollectionsPageContent />
+		</Suspense>
 	);
 }

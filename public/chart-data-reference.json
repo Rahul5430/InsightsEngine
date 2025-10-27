@@ -2,7 +2,7 @@
   "metadata": {
     "description": "Sales report driven chart data structure for InsightsEngine application",
     "version": "2.0.0",
-    "generatedAt": "2025-10-24T12:19:15.917Z",
+    "generatedAt": "2025-10-27T17:09:10.762Z",
     "dataSource": "Sales Report CSV",
     "totalRecords": 25,
     "sourceFile": "sales-report.csv"
@@ -80,33 +80,201 @@
       "xAxisField": "region",
       "yAxisField": "revenue",
       "mapType": "USA",
-      "valueField": "revenue",
-      "nameField": "region",
+      "valueField": "value",
+      "nameField": "name",
       "recommended": true,
       "data": [
         {
-          "region": "Nation",
-          "revenue": 485000000
+          "name": "Alabama",
+          "value": 50416666
         },
         {
-          "region": "Northeast",
-          "revenue": 520000000
+          "name": "Arizona",
+          "value": 50416666
         },
         {
-          "region": "Southeast",
-          "revenue": 480000000
+          "name": "Arkansas",
+          "value": 50416666
         },
         {
-          "region": "West",
-          "revenue": 460000000
+          "name": "California",
+          "value": 50416666
         },
         {
-          "region": "South Central",
-          "revenue": 350000000
+          "name": "Colorado",
+          "value": 50416666
         },
         {
-          "region": "Greater",
-          "revenue": 420000000
+          "name": "Connecticut",
+          "value": 50416666
+        },
+        {
+          "name": "Delaware",
+          "value": 50416666
+        },
+        {
+          "name": "Florida",
+          "value": 50416666
+        },
+        {
+          "name": "Georgia",
+          "value": 50416666
+        },
+        {
+          "name": "Idaho",
+          "value": 50416666
+        },
+        {
+          "name": "Illinois",
+          "value": 50416666
+        },
+        {
+          "name": "Indiana",
+          "value": 50416666
+        },
+        {
+          "name": "Iowa",
+          "value": 43333333
+        },
+        {
+          "name": "Kansas",
+          "value": 43333333
+        },
+        {
+          "name": "Kentucky",
+          "value": 43333333
+        },
+        {
+          "name": "Louisiana",
+          "value": 43333333
+        },
+        {
+          "name": "Maine",
+          "value": 43333333
+        },
+        {
+          "name": "Maryland",
+          "value": 43333333
+        },
+        {
+          "name": "Massachusetts",
+          "value": 43333333
+        },
+        {
+          "name": "Michigan",
+          "value": 43333333
+        },
+        {
+          "name": "Minnesota",
+          "value": 43333333
+        },
+        {
+          "name": "Mississippi",
+          "value": 43333333
+        },
+        {
+          "name": "Missouri",
+          "value": 43333333
+        },
+        {
+          "name": "Montana",
+          "value": 43333333
+        },
+        {
+          "name": "Nebraska",
+          "value": 30000000
+        },
+        {
+          "name": "Nevada",
+          "value": 30000000
+        },
+        {
+          "name": "New Hampshire",
+          "value": 30000000
+        },
+        {
+          "name": "New Jersey",
+          "value": 30000000
+        },
+        {
+          "name": "New Mexico",
+          "value": 30000000
+        },
+        {
+          "name": "New York",
+          "value": 30000000
+        },
+        {
+          "name": "North Carolina",
+          "value": 30000000
+        },
+        {
+          "name": "North Dakota",
+          "value": 30000000
+        },
+        {
+          "name": "Ohio",
+          "value": 30000000
+        },
+        {
+          "name": "Oklahoma",
+          "value": 30000000
+        },
+        {
+          "name": "Oregon",
+          "value": 30000000
+        },
+        {
+          "name": "Pennsylvania",
+          "value": 30000000
+        },
+        {
+          "name": "Rhode Island",
+          "value": 46000000
+        },
+        {
+          "name": "South Carolina",
+          "value": 46000000
+        },
+        {
+          "name": "South Dakota",
+          "value": 46000000
+        },
+        {
+          "name": "Tennessee",
+          "value": 46000000
+        },
+        {
+          "name": "Texas",
+          "value": 46000000
+        },
+        {
+          "name": "Utah",
+          "value": 46000000
+        },
+        {
+          "name": "Vermont",
+          "value": 46000000
+        },
+        {
+          "name": "Virginia",
+          "value": 46000000
+        },
+        {
+          "name": "Washington",
+          "value": 46000000
+        },
+        {
+          "name": "West Virginia",
+          "value": 46000000
+        },
+        {
+          "name": "Wisconsin",
+          "value": 43750000
+        },
+        {
+          "name": "Wyoming",
+          "value": 43750000
         }
       ]
     },
@@ -813,18 +981,43 @@
     "collections": {
       "favorites": [
         "market_share_regions",
-        "revenue_vs_forecast"
+        "market_share_change_segments",
+        "revenue_by_region_map",
+        "revenue_vs_forecast",
+        "postcard_recall_rate",
+        "wellness_visit_growth",
+        "vaccination_rate_south_central"
       ],
       "collections": [
         {
-          "title": "Brand Performance Collection",
-          "chart": "market_share_regions",
+          "title": "How is the brand growing?",
+          "chart": "revenue_by_region_map",
           "newCount": 2
         },
         {
-          "title": "Revenue Forecast Collection",
+          "title": "Weekly Tactics Collection",
+          "chart": "call_activity_volume",
+          "newCount": 2
+        },
+        {
+          "title": "Quarterly Business Review",
           "chart": "revenue_vs_forecast",
-          "newCount": 1
+          "newCount": 2
+        },
+        {
+          "title": "Competitor Watch",
+          "chart": "market_share_change_segments",
+          "newCount": 3
+        },
+        {
+          "title": "Market Share Collection",
+          "chart": "market_share_regions",
+          "newCount": 0
+        },
+        {
+          "title": "My Custom Collection",
+          "chart": "growth_trend_regions",
+          "newCount": 0
         }
       ]
     }

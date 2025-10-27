@@ -4,6 +4,8 @@ import { Ellipsis, Expand, ListFilter, Star } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 import { AIIcon } from '@/components/common/AIIcon';
+import type { ChartData } from '@/lib/chart-data-transformer';
+import { ChartJsChart } from '@/lib/chartjs-transformer';
 import { deepResolveCssVars } from '@/lib/css-var-resolver';
 import type { EChartsOption } from '@/lib/echarts-optimized';
 import { echarts, ReactECharts } from '@/lib/echarts-optimized';
@@ -16,6 +18,7 @@ type Props = {
 	source?: string;
 	recommended?: boolean;
 	interactive?: boolean; // when false, disable inner interactions (for selectable grids)
+	chartData?: ChartData; // Optional chart data for Chart.js
 };
 
 export function ChartCard({
@@ -24,8 +27,14 @@ export function ChartCard({
 	source = 'Source: Vaccelerator (FCT_CUST_FINANCE) Sep 2025',
 	recommended = false,
 	interactive = true,
+	chartData,
 }: Props) {
 	const [favourite, setFavourite] = useState(false);
+
+	// Determine which chart library to use
+	// Use Chart.js for bar, line, and waterfall charts
+	// Keep echarts for map charts (better geographic support)
+	const useChartJs = chartData && chartData.type;
 
 	const isMapUSA = useMemo(() => {
 		try {
@@ -193,26 +202,10 @@ export function ChartCard({
 			{/* Chart area */}
 			<div className='p-3 pt-3 md:p-6 md:pt-4'>
 				<div className='rounded-lg border border-slate-200 bg-white p-2 shadow-sm md:p-4'>
-					{isMapUSA ? (
-						mapReady ? (
-							<ReactECharts
-								option={resolvedOption}
-								theme='insights-engine'
-								notMerge
-								lazyUpdate
-								opts={{
-									renderer: 'canvas',
-								}}
-								style={{
-									height: 280,
-									pointerEvents: interactive
-										? 'auto'
-										: 'none',
-								}}
-							/>
-						) : (
-							<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
-						)
+					{isMapUSA && !mapReady ? (
+						<div className='h-[280px] w-full animate-pulse rounded-md bg-gradient-to-br from-slate-100 to-slate-50' />
+					) : useChartJs && chartData ? (
+						<ChartJsChart chartData={chartData} height={280} />
 					) : (
 						<ReactECharts
 							option={resolvedOption}

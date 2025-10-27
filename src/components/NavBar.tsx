@@ -119,7 +119,7 @@ export function NavBar() {
 
 			{/* Tablet & Desktop Layout (768px+) */}
 			<div className='hidden md:block'>
-				<div className='lg:max-w-8xl xl:max-w-9xl mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 lg:gap-6 lg:px-6 2xl:max-w-[1400px]'>
+				<div className='tablet:mx-4 mx-auto flex h-16 items-center gap-4 px-4 lg:mx-10 lg:gap-6 lg:px-6'>
 					{/* Logo - full size for tablet/desktop */}
 					<Link
 						href='/'
@@ -139,12 +139,13 @@ export function NavBar() {
 					</div>
 
 					{/* Search bar - responsive sizing */}
-					<div className='relative max-w-sm flex-1 lg:max-w-md xl:max-w-lg'>
+					<div className='relative mx-auto max-w-sm flex-1 lg:max-w-md xl:max-w-lg'>
+						<Search className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400 lg:h-5 lg:w-5' />
 						<input
 							id='desktop-search'
 							name='desktop-search'
-							className='w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 transition-all placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none lg:px-4 lg:py-2.5'
-							placeholder='Search insights...'
+							className='w-full rounded-lg border border-slate-200 bg-white px-10 py-2 text-sm text-slate-900 transition-all placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none lg:px-12 lg:py-2.5'
+							placeholder='Search for insights...'
 						/>
 					</div>
 
@@ -154,7 +155,7 @@ export function NavBar() {
 							trigger={
 								<button
 									aria-label='Chat'
-									className='ie-button-hover ie-touch-target relative grid h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 lg:h-12 lg:w-12'
+									className='ie-button-hover ie-touch-target grid h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 lg:h-12 lg:w-12'
 								>
 									<MessageCircle
 										size={16}
@@ -164,26 +165,6 @@ export function NavBar() {
 										size={18}
 										className='hidden lg:block'
 									/>
-									{/* Notification dot */}
-									<span className='absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-red-500 lg:h-3 lg:w-3' />
-								</button>
-							}
-						/>
-
-						{/* Notifications - responsive sizing */}
-						<NotificationPanel
-							trigger={
-								<button
-									aria-label='Notifications'
-									className='ie-button-hover ie-touch-target relative grid h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 lg:h-12 lg:w-12'
-								>
-									<Bell size={16} className='lg:hidden' />
-									<Bell
-										size={18}
-										className='hidden lg:block'
-									/>
-									{/* Notification dot */}
-									<span className='absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-red-500 lg:h-3 lg:w-3' />
 								</button>
 							}
 						/>
@@ -196,6 +177,22 @@ export function NavBar() {
 							<User size={16} className='lg:hidden' />
 							<User size={18} className='hidden lg:block' />
 						</button>
+
+						{/* Notifications - responsive sizing */}
+						<NotificationPanel
+							trigger={
+								<button
+									aria-label='Notifications'
+									className='ie-button-hover ie-touch-target grid h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 lg:h-12 lg:w-12'
+								>
+									<Bell size={16} className='lg:hidden' />
+									<Bell
+										size={18}
+										className='hidden lg:block'
+									/>
+								</button>
+							}
+						/>
 
 						{/* Help - visible on larger screens */}
 						<button

@@ -102,7 +102,95 @@ function generateChartConfigurations(salesData) {
 					})),
 			};
 
-			// Revenue by Region (Map)
+			// All continental USA states
+			const allStates = [
+				'Alabama',
+				'Arizona',
+				'Arkansas',
+				'California',
+				'Colorado',
+				'Connecticut',
+				'Delaware',
+				'Florida',
+				'Georgia',
+				'Idaho',
+				'Illinois',
+				'Indiana',
+				'Iowa',
+				'Kansas',
+				'Kentucky',
+				'Louisiana',
+				'Maine',
+				'Maryland',
+				'Massachusetts',
+				'Michigan',
+				'Minnesota',
+				'Mississippi',
+				'Missouri',
+				'Montana',
+				'Nebraska',
+				'Nevada',
+				'New Hampshire',
+				'New Jersey',
+				'New Mexico',
+				'New York',
+				'North Carolina',
+				'North Dakota',
+				'Ohio',
+				'Oklahoma',
+				'Oregon',
+				'Pennsylvania',
+				'Rhode Island',
+				'South Carolina',
+				'South Dakota',
+				'Tennessee',
+				'Texas',
+				'Utah',
+				'Vermont',
+				'Virginia',
+				'Washington',
+				'West Virginia',
+				'Wisconsin',
+				'Wyoming',
+			];
+
+			// Get revenue data for regions
+			const regionRevenue = {};
+			data.filter((row) => row.segment === 'All IDN').forEach((row) => {
+				regionRevenue[row.region] = row.revenue;
+			});
+
+			// Distribute revenue across all states (proportional to region size)
+			const stateData = [];
+			const regionStateCounts = {
+				Northeast: 12,
+				Southeast: 12,
+				West: 10,
+				'South Central': 8,
+				Greater: 6,
+				Nation: Math.floor(allStates.length / 4),
+			};
+
+			// Assign data to all states
+			let stateIndex = 0;
+			Object.entries(regionRevenue).forEach(([region, revenue]) => {
+				const stateCount = regionStateCounts[region] || 5;
+				const revenuePerState = Math.floor(revenue / stateCount);
+
+				for (
+					let i = 0;
+					i < stateCount && stateIndex < allStates.length;
+					i++
+				) {
+					stateData.push({
+						name: allStates[stateIndex],
+						value: revenuePerState,
+					});
+					stateIndex++;
+					console.log('stateData:', stateData);
+				}
+			});
+
 			charts.revenue_by_region_map = {
 				id: 'revenue_by_region_map',
 				title: 'Revenue distribution across regions',
@@ -111,15 +199,10 @@ function generateChartConfigurations(salesData) {
 				xAxisField: 'region',
 				yAxisField: 'revenue',
 				mapType: 'USA',
-				valueField: 'revenue',
-				nameField: 'region',
+				valueField: 'value',
+				nameField: 'name',
 				recommended: true,
-				data: data
-					.filter((row) => row.segment === 'All IDN')
-					.map((row) => ({
-						region: row.region,
-						revenue: row.revenue,
-					})),
+				data: stateData,
 			};
 
 			// Growth Rate Trend by Region (Line Chart)
@@ -543,17 +626,45 @@ function generatePageLayouts() {
 	];
 
 	const collectionsLayout = {
-		favorites: ['market_share_regions', 'revenue_vs_forecast'],
+		favorites: [
+			'market_share_regions',
+			'market_share_change_segments',
+			'revenue_by_region_map',
+			'revenue_vs_forecast',
+			'postcard_recall_rate',
+			'wellness_visit_growth',
+			'vaccination_rate_south_central',
+		],
 		collections: [
 			{
-				title: 'Brand Performance Collection',
-				chart: 'market_share_regions',
+				title: 'How is the brand growing?',
+				chart: 'revenue_by_region_map',
 				newCount: 2,
 			},
 			{
-				title: 'Revenue Forecast Collection',
+				title: 'Weekly Tactics Collection',
+				chart: 'call_activity_volume',
+				newCount: 2,
+			},
+			{
+				title: 'Quarterly Business Review',
 				chart: 'revenue_vs_forecast',
-				newCount: 1,
+				newCount: 2,
+			},
+			{
+				title: 'Competitor Watch',
+				chart: 'market_share_change_segments',
+				newCount: 3,
+			},
+			{
+				title: 'Market Share Collection',
+				chart: 'market_share_regions',
+				newCount: 0,
+			},
+			{
+				title: 'My Custom Collection',
+				chart: 'growth_trend_regions',
+				newCount: 0,
 			},
 		],
 	};

@@ -1,17 +1,19 @@
 import type { EChartsOption } from 'echarts';
 
-// Color palette for automatic assignment
+// Color palette for automatic assignment - vibrant, accessible colors
 const CHART_COLORS = [
-	'#1e293b', // primary
-	'#10b981', // green
-	'#f97316', // orange
-	'#06b6d4', // teal
-	'#8b5cf6', // purple
 	'#3b82f6', // blue
-	'#64748b', // gray
+	'#10b981', // green
+	'#f59e0b', // amber
+	'#ef4444', // red
+	'#8b5cf6', // violet
+	'#06b6d4', // cyan
+	'#f97316', // orange
 	'#ec4899', // pink
+	'#14b8a6', // teal
+	'#a855f7', // purple
+	'#22c55e', // emerald
 	'#6366f1', // indigo
-	'#047857', // dark green
 ];
 
 export interface ChartData {
@@ -75,15 +77,7 @@ export interface ChartDataConfig {
  */
 export function transformChartData(chartData: ChartData): EChartsOption {
 	const baseOption: EChartsOption = {
-		grid: { left: 50, right: 10, top: 30, bottom: 40 },
-		title: {
-			text: chartData.title,
-			left: 'center',
-			textStyle: {
-				fontSize: 16,
-				fontWeight: 'bold',
-			},
-		},
+		grid: { left: 60, right: 20, top: 20, bottom: 50 },
 	};
 
 	// Handle different chart types
@@ -142,7 +136,13 @@ function transformBarChart(
 
 		return {
 			...baseOption,
-			legend: { top: 0, data: Object.keys(seriesGroups) },
+			legend: {
+				top: 5,
+				left: 'center',
+				itemGap: 20,
+				textStyle: { fontSize: 11 },
+				data: Object.keys(seriesGroups),
+			},
 			xAxis: {
 				type: 'category',
 				data: categories,
@@ -244,15 +244,19 @@ function transformLineChart(
 				}),
 				itemStyle: { color: CHART_COLORS[index % CHART_COLORS.length] },
 				smooth: smooth || false,
-				areaStyle: areaStyle
-					? { color: CHART_COLORS[index % CHART_COLORS.length] }
-					: undefined,
+				areaStyle: areaStyle ? { opacity: 0.3 } : undefined,
 			})
 		);
 
 		return {
 			...baseOption,
-			legend: { top: 0, data: Object.keys(seriesGroups) },
+			legend: {
+				top: 5,
+				left: 'center',
+				itemGap: 20,
+				textStyle: { fontSize: 11 },
+				data: Object.keys(seriesGroups),
+			},
 			xAxis: {
 				type: 'category',
 				data: categories,
@@ -313,7 +317,45 @@ function transformMapChart(
 		return baseOption;
 	}
 
-	const values = data.map((d) => d[valueField] as number);
+	const values = data
+		.map((d) => d[valueField] as number)
+		.filter((v) => v != null);
+
+	// Handle edge cases where all values are 0 or null
+	if (values.length === 0 || values.every((v) => v === 0)) {
+		const minValue = 0;
+		const maxValue = 100; // Default max for empty data
+		return {
+			...baseOption,
+			tooltip: { trigger: 'item' },
+			visualMap: {
+				left: 0,
+				min: minValue,
+				max: maxValue,
+				inRange: {
+					color: ['#e2e8f0', '#3b82f6', '#1e40af'],
+				},
+				textStyle: { color: '#64748b' },
+			},
+			geo: {
+				map: mapType,
+				roam: false,
+				itemStyle: { borderColor: '#cbd5e1' },
+			},
+			series: [
+				{
+					type: 'map',
+					map: mapType,
+					data: data.map((item) => ({
+						name: item[nameField] as string,
+						value: (item[valueField] || 0) as number,
+					})),
+					itemStyle: { areaColor: '#f1f5f9' },
+				},
+			],
+		};
+	}
+
 	const minValue = Math.min(...values);
 	const maxValue = Math.max(...values);
 
@@ -325,18 +367,59 @@ function transformMapChart(
 			min: minValue,
 			max: maxValue,
 			inRange: {
-				color: ['#e2e8f0', '#1e293b'],
+				color: ['#dbeafe', '#93c5fd', '#3b82f6', '#2563eb', '#1e40af'], // Light to dark blue gradient
+			},
+			textStyle: { color: '#64748b' },
+			calculable: false,
+		},
+		geo: {
+			map: mapType,
+			roam: false,
+			layoutCenter: ['50%', '50%'],
+			layoutSize: '100%',
+			zoom: 1,
+			itemStyle: {
+				borderColor: '#cbd5e1',
+				borderWidth: 1,
+				areaColor: '#f1f5f9', // Default color for states without data
+			},
+			emphasis: {
+				itemStyle: {
+					areaColor: '#3b82f6',
+					borderColor: '#1e40af',
+					borderWidth: 2,
+				},
+				label: {
+					show: true,
+					fontSize: 12,
+					fontWeight: 'bold',
+					color: '#1e293b',
+				},
 			},
 		},
-		geo: { map: mapType, roam: false },
 		series: [
 			{
 				type: 'map',
 				map: mapType,
 				data: data.map((item) => ({
 					name: item[nameField] as string,
-					value: item[valueField] as number,
+					value: (item[valueField] || 0) as number,
 				})),
+				label: {
+					show: false,
+				},
+				emphasis: {
+					label: {
+						show: true,
+						fontSize: 12,
+						fontWeight: 'bold',
+					},
+					itemStyle: {
+						areaColor: '#3b82f6',
+						borderColor: '#1e40af',
+						borderWidth: 2,
+					},
+				},
 			},
 		],
 	};

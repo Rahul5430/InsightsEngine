@@ -37,8 +37,26 @@ if (typeof window !== 'undefined') {
 	};
 }
 
+// Color palette for charts - vibrant, accessible colors
+const CHART_COLORS = [
+	'#3b82f6', // blue
+	'#10b981', // green
+	'#f59e0b', // amber
+	'#ef4444', // red
+	'#8b5cf6', // violet
+	'#06b6d4', // cyan
+	'#f97316', // orange
+	'#ec4899', // pink
+	'#14b8a6', // teal
+	'#a855f7', // purple
+	'#22c55e', // emerald
+	'#6366f1', // indigo
+];
+
 // Configure ECharts for better performance
 echarts.registerTheme('insights-engine', {
+	// Color palette for automatic assignment
+	color: CHART_COLORS,
 	// Optimize animations for better performance
 	animation: false, // Disable animations to prevent performance issues
 	animationDuration: 0,

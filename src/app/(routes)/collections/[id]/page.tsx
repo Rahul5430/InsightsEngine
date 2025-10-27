@@ -163,26 +163,29 @@ export default function CollectionPage() {
 
 				{/* Chart Cards Grid */}
 				<div className='mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-					{needToMeetOption && (
+					{needToMeetOption && needToMeetData && (
 						<ChartCard
 							title='Need to meet'
 							option={needToMeetOption}
+							chartData={needToMeetData}
 							recommended={true}
 							source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
 						/>
 					)}
-					{revenueVsForecastOption && (
+					{revenueVsForecastOption && revenueVsForecastData && (
 						<ChartCard
 							title='Revenue vs forecast'
 							option={revenueVsForecastOption}
+							chartData={revenueVsForecastData}
 							recommended={true}
 							source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
 						/>
 					)}
-					{leRevenueChangeOption && (
+					{leRevenueChangeOption && leRevenueChangeData && (
 						<ChartCard
 							title='LE revenue change v/s baseline'
 							option={leRevenueChangeOption}
+							chartData={leRevenueChangeData}
 							recommended={true}
 							source='Epidemiology source (MAT 2025), Pfizer Internal data'
 						/>

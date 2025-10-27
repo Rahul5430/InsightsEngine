@@ -8,7 +8,7 @@ import { KpiCard } from '@/components/home/KpiCard';
 
 export default function Home() {
 	return (
-		<main className='min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100'>
+		<main className='bg-gradient-to-br from-white via-slate-50 to-slate-100'>
 			{/* Hero Section with KPI Cards */}
 			<div className='relative overflow-hidden'>
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
@@ -63,7 +63,7 @@ export default function Home() {
 			</div>
 
 			{/* Workspace Section */}
-			<div className='lg:max-w-8xl xl:max-w-9xl mx-auto max-w-7xl px-4 pt-16 sm:px-6 2xl:max-w-[1400px]'>
+			<div className='tablet:mx-4 mx-auto px-4 pt-16 lg:mx-10'>
 				<div className='mb-8 flex flex-wrap items-center justify-between gap-4'>
 					<div className='flex items-center gap-3'>
 						<div className='flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-500'>
@@ -112,7 +112,7 @@ export default function Home() {
 			</div>
 
 			{/* Collections Section */}
-			<div className='lg:max-w-8xl xl:max-w-9xl mx-auto max-w-7xl px-4 py-16 sm:px-6 2xl:max-w-[1400px]'>
+			<div className='tablet:mx-4 mx-auto px-4 py-16 lg:mx-10'>
 				<div className='mb-8 flex flex-wrap items-center justify-between gap-4'>
 					<div className='flex items-center gap-3'>
 						<div className='flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-blue-500'>
