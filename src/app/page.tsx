@@ -9,7 +9,6 @@ import { KpiCard } from '@/components/home/KpiCard';
 export default function Home() {
 	return (
 		<main className='bg-gradient-to-br from-white via-slate-50 to-slate-100'>
-			{/* Hero Section with KPI Cards */}
 			<div className='relative overflow-hidden'>
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
 				<div className='bg-[url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] absolute inset-0 opacity-20' />
@@ -25,7 +24,6 @@ export default function Home() {
 						</p>
 					</div>
 
-					{/* KPI Cards Section - LCP Element */}
 					<div className='mt-16'>
 						<div className='grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4'>
 							<KpiCard
@@ -62,7 +60,6 @@ export default function Home() {
 				</div>
 			</div>
 
-			{/* Workspace Section */}
 			<div className='tablet:mx-4 mx-auto px-4 pt-16 lg:mx-10'>
 				<div className='mb-8 flex flex-wrap items-center justify-between gap-4'>
 					<div className='flex items-center gap-3'>
@@ -111,7 +108,6 @@ export default function Home() {
 				</div>
 			</div>
 
-			{/* Collections Section */}
 			<div className='tablet:mx-4 mx-auto px-4 py-16 lg:mx-10'>
 				<div className='mb-8 flex flex-wrap items-center justify-between gap-4'>
 					<div className='flex items-center gap-3'>

@@ -4,7 +4,7 @@ This document explains how to convert real sales report CSV data into chart conf
 
 ## Overview
 
-The application now supports real sales report data where business metrics are automatically converted into meaningful chart visualizations. This eliminates the need for technical chart configuration columns.
+The application now supports real sales report data where business metrics are automatically converted into meaningful chart visualizations. This eliminates the need for technical chart configuration columns and renders charts via Chart.js.
 
 ## Files
 
@@ -151,8 +151,8 @@ The converter intelligently maps sales data to chart configurations:
 
 ### Map Charts
 
-- **Geographic Distribution**: Revenue by region
-- **Performance Mapping**: Market share by territory
+- **Geographic Distribution**: Revenue by region (Chart.js choropleth)
+- **Performance Mapping**: Market share by territory (Chart.js choropleth)
 
 ## Business Logic
 
@@ -214,8 +214,8 @@ console.log('Generated charts:', Object.keys(chartConfigurations));
 The converted JSON is automatically used by the application:
 
 1. Charts load from `public/chart-data-reference.json`
-2. Data is transformed using `src/lib/chart-data-transformer.ts`
-3. Charts are rendered using ECharts components
+2. Data is consumed directly by `src/components/common/ChartCard.tsx` via `src/lib/chartjs-transformer.tsx`
+3. Charts are rendered using Chart.js (`react-chartjs-2` and `chartjs-chart-geo` for maps)
 4. All pages use the same sales-driven data source
 
 ## Advanced Configuration

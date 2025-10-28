@@ -50,7 +50,6 @@ export function KpiCard({
 			className='ie-card-hover group relative min-h-[80px] overflow-hidden rounded-xl border border-slate-200 bg-white px-3 py-3 shadow-lg hover:border-slate-300 sm:min-h-[120px] sm:px-6 sm:pt-6 sm:pb-8 lg:min-h-[140px]'
 			{...(fetchPriority !== 'auto' && { fetchPriority })}
 		>
-			{/* Subtle gradient overlay */}
 			<div className='absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
 
 			<div className='relative flex h-full flex-col'>
@@ -75,11 +74,9 @@ export function KpiCard({
 						<div
 							className={`mb-2 text-left text-xs leading-relaxed font-medium sm:mb-0 sm:text-right ${trendColorToClass[trendColor]}`}
 						>
-							{/* Single line for mobile and tablet */}
 							<div className='block break-words lg:hidden'>
 								{trend}
 							</div>
-							{/* Split lines for desktop */}
 							<div className='hidden lg:block'>
 								{trendParts && trendParts.length > 1 ? (
 									<>
@@ -103,10 +100,7 @@ export function KpiCard({
 					) : null}
 				</div>
 
-				{/* Spacer for accent line */}
 				<div className='flex-1' />
-
-				{/* Subtle accent line */}
 				<div className='absolute bottom-0 left-0 z-10 h-1.5 w-1/3 bg-gradient-to-r from-blue-500 to-violet-500 transition-all duration-300 group-hover:w-full' />
 			</div>
 		</div>

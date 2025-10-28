@@ -38,7 +38,6 @@ ChartJS.register(
 	ChartGeo.GeoFeature
 );
 
-// Color palette matching echarts colors
 const CHART_COLORS = [
 	'#3b82f6', // blue
 	'#10b981', // green

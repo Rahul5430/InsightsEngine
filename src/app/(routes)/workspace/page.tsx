@@ -1,17 +1,12 @@
 'use client';
-
-import { MapChart } from 'echarts/charts';
-import { GeoComponent } from 'echarts/components';
-import * as echarts from 'echarts/core';
-import { CanvasRenderer } from 'echarts/renderers';
 import { ListFilter } from 'lucide-react';
 import { Suspense, useEffect, useState } from 'react';
 
 import { AIIcon } from '@/components/common/AIIcon';
+import { ChartCard as CommonChartCard } from '@/components/common/ChartCard';
 import { FilterPanel } from '@/components/filters/FilterPanel';
 import { KpiCard } from '@/components/home/KpiCard';
 import { AccordionRow } from '@/components/workspace/AccordionRow';
-import { ChartCard } from '@/components/workspace/ChartCard';
 import { ChartCardSkeleton } from '@/components/workspace/ChartCardSkeleton';
 import { WorkspaceTabs } from '@/components/workspace/WorkspaceTabs';
 import {
@@ -19,10 +14,7 @@ import {
 	getChartsForSection,
 	getKpiData,
 	loadChartData,
-	transformChartData,
 } from '@/lib/chart-data-transformer';
-
-echarts.use([MapChart, GeoComponent, CanvasRenderer]);
 
 export default function WorkspacePage() {
 	const [chartConfig, setChartConfig] = useState<ChartDataConfig | null>(
@@ -68,7 +60,6 @@ export default function WorkspacePage() {
 
 	return (
 		<main className='bg-gradient-to-br from-white via-slate-50 to-slate-100'>
-			{/* Hero Section with KPI Cards */}
 			<div className='relative overflow-hidden'>
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
 				<div className='bg-[url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] absolute inset-0 opacity-20' />
@@ -137,7 +128,6 @@ export default function WorkspacePage() {
 			{/* Main Content Section */}
 			<div className='tablet:mx-4 mx-auto space-y-4 px-4 py-16 sm:px-6 lg:mx-10'>
 				{loading ? (
-					// Show skeleton loading state for all 6 sections
 					<>
 						<AccordionRow
 							title='How is the brand performing?'
@@ -205,7 +195,6 @@ export default function WorkspacePage() {
 						</AccordionRow>
 					</>
 				) : error ? (
-					// Show error state
 					<div className='flex min-h-96 items-center justify-center'>
 						<div className='text-center'>
 							<div className='mb-4 text-6xl text-red-500'>⚠️</div>
@@ -218,7 +207,6 @@ export default function WorkspacePage() {
 						</div>
 					</div>
 				) : chartConfig ? (
-					// Show actual charts when data is loaded
 					chartConfig.pageLayouts.workspace.sections.map(
 						(section, sectionIndex) => {
 							const charts = getChartsForSection(
@@ -235,13 +223,11 @@ export default function WorkspacePage() {
 								>
 									<div className='tablet:grid-cols-2 grid grid-cols-1 gap-4 min-[1400px]:!grid-cols-3'>
 										{charts.map((chart, chartIndex) => {
-											const chartOption =
-												transformChartData(chart);
 											return (
-												<ChartCard
+												<CommonChartCard
+													variant='chart'
 													key={`${chart.id}-${chartIndex}`}
 													title={chart.title}
-													option={chartOption}
 													chartData={chart}
 													recommended={
 														chart.recommended

@@ -5,12 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { ChartCard } from '@/components/workspace/ChartCard';
+import { ChartCard as CommonChartCard } from '@/components/common/ChartCard';
 import {
 	type ChartDataConfig,
 	getChartDataById,
 	loadChartData,
-	transformChartData,
 } from '@/lib/chart-data-transformer';
 
 export default function AddToCollectionStep() {
@@ -104,7 +103,6 @@ export default function AddToCollectionStep() {
 
 	return (
 		<main className='ie-hide-fab min-h-screen'>
-			{/* Header persists with navbar since this is a full route */}
 			<div className='w-full px-6 py-4'>
 				<div className='flex items-center justify-between'>
 					<div className='flex items-center gap-3'>
@@ -139,8 +137,6 @@ export default function AddToCollectionStep() {
 							chart.id
 						);
 						if (!chartData) return null;
-
-						const chartOption = transformChartData(chartData);
 
 						return (
 							<div
@@ -179,10 +175,11 @@ export default function AddToCollectionStep() {
 										: 'hover:scale-[1.01] hover:shadow-md hover:ring-1 hover:ring-slate-300'
 								}`}
 							>
-								<ChartCard
+								<CommonChartCard
+									variant='chart'
 									title={chart.title}
-									option={chartOption}
 									interactive={false}
+									chartData={chartData}
 								/>
 							</div>
 						);
@@ -190,7 +187,6 @@ export default function AddToCollectionStep() {
 				</div>
 			</div>
 
-			{/* Sticky footer */}
 			<div className='sticky bottom-0 z-10 flex w-full items-center justify-end gap-3 border-t border-slate-200 bg-white px-6 py-3 pr-28'>
 				<Link
 					href='/collections/create'

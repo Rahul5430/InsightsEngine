@@ -15,7 +15,6 @@ export default function CreateCollectionPage() {
 	return (
 		<main className='min-h-screen'>
 			<div className='mx-auto max-w-6xl px-6 py-4'>
-				{/* Header */}
 				<div className='flex items-center justify-between'>
 					<div className='flex items-center gap-3'>
 						<Link
@@ -74,7 +73,6 @@ export default function CreateCollectionPage() {
 					</div>
 				</div>
 
-				{/* Canvas */}
 				<div className='mt-6 rounded-[14px] border border-dashed border-slate-200 bg-slate-50/40'>
 					<div className='mx-auto flex min-h-[520px] max-w-4xl flex-col items-center justify-center px-6 py-16 text-center'>
 						<div className='text-lg font-medium text-slate-900'>

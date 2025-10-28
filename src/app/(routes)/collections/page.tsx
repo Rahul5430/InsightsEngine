@@ -1,39 +1,19 @@
 'use client';
 
-import type { EChartsOption } from 'echarts';
-import { MapChart } from 'echarts/charts';
-import {
-	GeoComponent,
-	LegendComponent,
-	TooltipComponent,
-} from 'echarts/components';
-import * as echarts from 'echarts/core';
-import { CanvasRenderer } from 'echarts/renderers';
 import { ListFilter, Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 
-import { CollectionCard } from '@/components/collections/CollectionCard';
 import { CollectionsTabs } from '@/components/collections/CollectionsTabs';
+import { ChartCard as CommonChartCard } from '@/components/common/ChartCard';
 import { FilterPanel } from '@/components/filters/FilterPanel';
-import { ChartCard } from '@/components/workspace/ChartCard';
 import { ChartCardSkeleton } from '@/components/workspace/ChartCardSkeleton';
 import {
 	type ChartDataConfig,
 	getChartDataById,
 	loadChartData,
-	transformChartData,
 } from '@/lib/chart-data-transformer';
-
-// Register map/geo renderer parts required for USA map
-echarts.use([
-	MapChart,
-	GeoComponent,
-	TooltipComponent,
-	LegendComponent,
-	CanvasRenderer,
-]);
 
 function CollectionsPageContent() {
 	const searchParams = useSearchParams();
@@ -66,28 +46,22 @@ function CollectionsPageContent() {
 	const gridClassName =
 		'grid tablet:grid-cols-2 gap-4 sm:gap-6 grid-cols-1 min-[1400px]:!grid-cols-3';
 
-	// Helper function to get chart option by ID
-	const getChartOption = (chartId: string): EChartsOption | null => {
-		if (!chartConfig) return null;
-		const chartData = getChartDataById(chartConfig, chartId);
-		return chartData ? transformChartData(chartData) : null;
-	};
-
 	// Helper function to create collection card
 	const createCollectionCard = (collection: {
 		title: string;
 		chart: string;
 		newCount?: number;
 	}) => {
-		const chartOption = getChartOption(collection.chart);
-		if (!chartOption) return null;
+		const chartData = chartConfig?.chartConfigurations[collection.chart];
+		if (!chartData) return null;
 
 		return (
-			<CollectionCard
+			<CommonChartCard
 				key={collection.title}
+				variant='collection'
 				title={collection.title}
-				option={chartOption}
 				newCount={collection.newCount}
+				chartData={chartData}
 			/>
 		);
 	};
@@ -104,13 +78,11 @@ function CollectionsPageContent() {
 
 		if (!chartData) return null;
 
-		const chartOption = transformChartData(chartData);
-
 		return (
-			<ChartCard
+			<CommonChartCard
 				key={chartId}
+				variant='chart'
 				title={title || chartData.title}
-				option={chartOption}
 				chartData={chartData}
 				recommended={chartData.recommended}
 				source={
@@ -122,7 +94,6 @@ function CollectionsPageContent() {
 
 	return (
 		<main className='bg-gradient-to-br from-white via-slate-50 to-slate-100'>
-			{/* Hero Section */}
 			<div className='relative overflow-hidden'>
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-blue-500 opacity-90' />
 				<div className='bg-[url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] absolute inset-0 opacity-20' />
@@ -173,7 +144,6 @@ function CollectionsPageContent() {
 
 			<div className='tablet:mx-4 mx-auto px-4 py-16 sm:px-6 lg:mx-10'>
 				{loading ? (
-					// Show skeleton loading state
 					<div className={gridClassName}>
 						{Array.from({
 							length: current === 'collections' ? 6 : 7,
@@ -182,7 +152,6 @@ function CollectionsPageContent() {
 						))}
 					</div>
 				) : error ? (
-					// Show error state
 					<div className='flex min-h-96 items-center justify-center'>
 						<div className='text-center'>
 							<div className='mb-4 text-6xl text-red-500'>⚠️</div>
@@ -195,7 +164,6 @@ function CollectionsPageContent() {
 						</div>
 					</div>
 				) : chartConfig ? (
-					// Show actual content when data is loaded
 					<div className={gridClassName}>
 						{current === 'collections'
 							? chartConfig.pageLayouts.collections.collections.map(

@@ -201,7 +201,6 @@ export function AccordionRow({
 				<div
 					className={`px-3 pb-3 transition-opacity duration-300 md:px-5 md:pb-5 ${open ? 'opacity-100' : 'opacity-0'}`}
 				>
-					{/* Lazy load children only when visible and content should be shown */}
 					{isVisible && showContent && hasLoaded ? (
 						children
 					) : isVisible && showContent ? (

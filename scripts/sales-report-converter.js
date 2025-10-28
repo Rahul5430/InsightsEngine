@@ -187,9 +187,30 @@ function generateChartConfigurations(salesData) {
 						value: revenuePerState,
 					});
 					stateIndex++;
-					console.log('stateData:', stateData);
 				}
 			});
+
+			// Normalize map values into a uniform 0-100 range for choropleth
+			if (stateData.length > 0) {
+				const values = stateData
+					.map((d) => d.value)
+					.filter((v) => v != null);
+				const min = Math.min(...values);
+				const max = Math.max(...values);
+				if (isFinite(min) && isFinite(max)) {
+					const denom = max - min;
+					stateData.forEach((d) => {
+						const v = d.value ?? 0;
+						const normalized =
+							denom === 0
+								? 50
+								: Math.round(((v - min) / denom) * 100);
+						// preserve original while writing normalized to value used by charts
+						d.originalValue = v;
+						d.value = normalized;
+					});
+				}
+			}
 
 			charts.revenue_by_region_map = {
 				id: 'revenue_by_region_map',

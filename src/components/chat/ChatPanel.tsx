@@ -65,7 +65,6 @@ export function ChatPanel({ trigger }: { trigger: React.ReactNode }) {
 								{m.content}
 							</div>
 						))}
-						{/* simple placeholder chart image block */}
 						<div className='rounded-[12px] border border-slate-200 p-3'>
 							<div className='mb-2 text-sm font-medium text-slate-900'>
 								Here is the historical Postcard Recent Rate in

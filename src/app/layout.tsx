@@ -34,20 +34,16 @@ export default function RootLayout({
 	return (
 		<html lang='en' className='h-full' data-scroll-behavior='smooth'>
 			<head>
-				{/* Viewport meta tag for accessibility */}
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes'
 				/>
-				{/* DNS prefetch for external resources */}
 				<link rel='dns-prefetch' href='//fonts.googleapis.com' />
 				<link rel='dns-prefetch' href='//fonts.gstatic.com' />
-				{/* Content Security Policy */}
 				<meta
 					httpEquiv='Content-Security-Policy'
 					content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; base-uri 'self'; form-action 'self';"
 				/>
-				{/* Trusted Types for DOM-based XSS protection */}
 				<meta httpEquiv='Trusted-Types' content="'none'" />
 			</head>
 			<body
@@ -63,7 +59,6 @@ export default function RootLayout({
 				>
 					<NavBar />
 					{children}
-					{/* Hide FAB on certain routes via CSS: pages can add body class 'ie-hide-fab' */}
 					<div className='[&_.ie-hide-fab_&]:hidden'>
 						<Fab />
 					</div>

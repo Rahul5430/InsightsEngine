@@ -2,11 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
 	experimental: {
-		optimizePackageImports: [
-			'echarts',
-			'echarts-for-react',
-			'lucide-react',
-		],
+		optimizePackageImports: ['lucide-react'],
 	},
 	compiler: {
 		// Remove console logs in production

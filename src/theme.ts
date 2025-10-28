@@ -1,4 +1,3 @@
-// Chart colors for ECharts configurations
 export const chartColors = {
 	primary: '#1e293b', // slate-800
 	green: '#10b981', // emerald-500

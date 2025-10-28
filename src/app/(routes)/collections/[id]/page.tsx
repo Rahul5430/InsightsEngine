@@ -13,12 +13,11 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { EditCollectionModal } from '@/components/collections/EditCollectionModal';
-import { ChartCard } from '@/components/workspace/ChartCard';
+import { ChartCard as CommonChartCard } from '@/components/common/ChartCard';
 import {
 	type ChartDataConfig,
 	getChartDataById,
 	loadChartData,
-	transformChartData,
 } from '@/lib/chart-data-transformer';
 
 export default function CollectionPage() {
@@ -89,20 +88,11 @@ export default function CollectionPage() {
 		'leRevenueChangeBaseline'
 	);
 
-	const needToMeetOption = needToMeetData
-		? transformChartData(needToMeetData)
-		: null;
-	const revenueVsForecastOption = revenueVsForecastData
-		? transformChartData(revenueVsForecastData)
-		: null;
-	const leRevenueChangeOption = leRevenueChangeData
-		? transformChartData(leRevenueChangeData)
-		: null;
+	// Options no longer used; Chart.js renders directly from chartData
 
 	return (
 		<main className='min-h-screen'>
 			<div className='mx-auto max-w-6xl px-6 py-4'>
-				{/* Header */}
 				<div className='flex items-center justify-between'>
 					<div className='flex items-center gap-3'>
 						<Link
@@ -161,36 +151,35 @@ export default function CollectionPage() {
 					</div>
 				</div>
 
-				{/* Chart Cards Grid */}
 				<div className='mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-					{needToMeetOption && needToMeetData && (
-						<ChartCard
+					{needToMeetData && (
+						<CommonChartCard
+							variant='chart'
 							title='Need to meet'
-							option={needToMeetOption}
 							chartData={needToMeetData}
 							recommended={true}
 							source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
 						/>
 					)}
-					{revenueVsForecastOption && revenueVsForecastData && (
-						<ChartCard
+					{revenueVsForecastData && (
+						<CommonChartCard
+							variant='chart'
 							title='Revenue vs forecast'
-							option={revenueVsForecastOption}
 							chartData={revenueVsForecastData}
 							recommended={true}
 							source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
 						/>
 					)}
-					{leRevenueChangeOption && leRevenueChangeData && (
-						<ChartCard
+					{leRevenueChangeData && (
+						<CommonChartCard
+							variant='chart'
 							title='LE revenue change v/s baseline'
-							option={leRevenueChangeOption}
 							chartData={leRevenueChangeData}
 							recommended={true}
 							source='Epidemiology source (MAT 2025), Pfizer Internal data'
 						/>
 					)}
-					{/* Empty Canvas */}
+
 					<div className='mx-auto flex w-full flex-col items-center justify-center rounded-[14px] border border-dashed border-slate-200 bg-slate-50/40 py-38 text-center'>
 						<div className='text-lg font-medium text-slate-900'>
 							Start adding to your collection!

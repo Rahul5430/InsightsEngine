@@ -59,11 +59,8 @@ export function NavBar() {
 			ref={navRef}
 			className='sticky top-0 z-30 w-full border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100/95 backdrop-blur-md'
 		>
-			{/* Mobile Layout (320px-767px) */}
 			<div className='md:hidden'>
-				{/* Main mobile navbar */}
 				<div className='flex h-14 items-center justify-between px-3 sm:h-16 sm:px-4'>
-					{/* Logo - compact for mobile */}
 					<Link
 						href='/'
 						className='flex items-center gap-2 text-base font-bold text-slate-800 transition-colors hover:text-slate-700'
@@ -79,7 +76,6 @@ export function NavBar() {
 					</Link>
 
 					<div className='flex items-center gap-1'>
-						{/* Mobile search toggle */}
 						<button
 							aria-label='Search'
 							onClick={() => setSearchOpen(!searchOpen)}
@@ -92,7 +88,6 @@ export function NavBar() {
 							)}
 						</button>
 
-						{/* Mobile hamburger menu */}
 						<button
 							aria-label='Menu'
 							onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -103,7 +98,6 @@ export function NavBar() {
 					</div>
 				</div>
 
-				{/* Collapsible search bar for mobile */}
 				{searchOpen && (
 					<div className='ie-mobile-search px-3 pb-3 sm:px-4'>
 						<input
@@ -117,10 +111,8 @@ export function NavBar() {
 				)}
 			</div>
 
-			{/* Tablet & Desktop Layout (768px+) */}
 			<div className='hidden md:block'>
 				<div className='tablet:mx-4 mx-auto flex h-16 items-center gap-4 px-4 lg:mx-10 lg:gap-6 lg:px-6'>
-					{/* Logo - full size for tablet/desktop */}
 					<Link
 						href='/'
 						className='flex items-center gap-2 text-lg font-bold text-slate-800 transition-colors hover:text-slate-700 lg:text-xl'
@@ -133,12 +125,10 @@ export function NavBar() {
 						<span>Insights Engine</span>
 					</Link>
 
-					{/* Tablet & Desktop nav links */}
 					<div className='hidden md:block'>
 						<NavLinks />
 					</div>
 
-					{/* Search bar - responsive sizing */}
 					<div className='relative mx-auto max-w-sm flex-1 lg:max-w-md xl:max-w-lg'>
 						<Search className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400 lg:h-5 lg:w-5' />
 						<input
@@ -150,7 +140,6 @@ export function NavBar() {
 					</div>
 
 					<div className='flex items-center gap-1 lg:gap-2'>
-						{/* Chat - responsive sizing */}
 						<ChatPanel
 							trigger={
 								<button
@@ -169,7 +158,6 @@ export function NavBar() {
 							}
 						/>
 
-						{/* Account - responsive sizing */}
 						<button
 							aria-label='Account'
 							className='ie-button-hover ie-touch-target grid h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 lg:h-12 lg:w-12'
@@ -178,7 +166,6 @@ export function NavBar() {
 							<User size={18} className='hidden lg:block' />
 						</button>
 
-						{/* Notifications - responsive sizing */}
 						<NotificationPanel
 							trigger={
 								<button
@@ -194,7 +181,6 @@ export function NavBar() {
 							}
 						/>
 
-						{/* Help - visible on larger screens */}
 						<button
 							aria-label='Help'
 							className='ie-button-hover ie-touch-target hidden h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 lg:grid lg:h-12 lg:w-12'
@@ -206,7 +192,6 @@ export function NavBar() {
 				</div>
 			</div>
 
-			{/* Mobile Menu Backdrop - modern backdrop */}
 			{mobileMenuOpen && (
 				<div
 					className={`fixed inset-x-0 bottom-0 z-40 bg-black/30 backdrop-blur-sm md:hidden ${
@@ -216,7 +201,6 @@ export function NavBar() {
 				/>
 			)}
 
-			{/* Mobile Menu */}
 			<MobileMenu
 				open={mobileMenuOpen}
 				onClose={() => setMobileMenuOpen(false)}
