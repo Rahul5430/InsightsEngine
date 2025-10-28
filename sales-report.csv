@@ -1,4 +1,4 @@
-category,region,segment,period,value,change_percentage,market_share,growth_rate,revenue,volume,territory,account_type,product_line,quarter,year
+category,region,segment,period,value,change_percentage,market_share,growth_rate,revenue,volume,territory,account_type,product_line,quarter,year,state,recall_rate,visit_count,age_group,performance_score,count,vaccination_rate,completion_rate,missed_count,population_change,product,call_count
 brand_performance,Nation,All IDN,2024,485000000,32,94,15.2,485000000,3042,National,Enterprise,Vaxneuvance,Q4,2024
 brand_performance,Northeast,All IDN,2024,520000000,28,96,12.8,520000000,3250,Northeast,Enterprise,Vaxneuvance,Q4,2024
 brand_performance,Southeast,All IDN,2024,480000000,25,91,10.5,480000000,3000,Southeast,Enterprise,Vaxneuvance,Q4,2024
@@ -24,3 +24,115 @@ revenue_forecast,New York,Budget Target,2024,300000000,0,0,0,300000000,1875,New 
 revenue_forecast,New York,Forecast,2024,400000000,33,0,33,400000000,2500,New York,All,All Products,Q4,2024
 revenue_forecast,Florida,Budget Target,2024,340000000,0,0,0,340000000,2125,Florida,All,All Products,Q4,2024
 revenue_forecast,Florida,Forecast,2024,560000000,65,0,65,560000000,3500,Florida,All,All Products,Q4,2024
+brand_performance,California,All IDN,2024,380000000,20,88,11.1,380000000,2400,,,,,2024,California,,,,,,,,,,,
+brand_performance,Texas,All IDN,2024,600000000,22,90,12.3,600000000,3600,,,,,2024,Texas,,,,,,,,,,,
+brand_performance,New York,All IDN,2024,700000000,24,92,13.4,700000000,4200,,,,,2024,New York,,,,,,,,,,,
+brand_performance,Florida,All IDN,2024,900000000,26,93,14.5,900000000,5400,,,,,2024,Florida,,,,,,,,,,,
+brand_performance,Illinois,All IDN,2024,650000000,21,89,11.8,650000000,4062,,,,,2024,Illinois,,,,,,,,,,,
+brand_performance,Pennsylvania,All IDN,2024,420000000,19,87,10.9,420000000,2625,,,,,2024,Pennsylvania,,,,,,,,,,,
+brand_performance,Georgia,All IDN,2024,310000000,17,86,10.2,310000000,1938,,,,,2024,Georgia,,,,,,,,,,,
+brand_performance,Ohio,All IDN,2024,290000000,16,85,9.9,290000000,1812,,,,,2024,Ohio,,,,,,,,,,,
+brand_performance,North Carolina,All IDN,2024,270000000,15,84,9.5,270000000,1688,,,,,2024,North Carolina,,,,,,,,,,,
+brand_performance,Washington,All IDN,2024,250000000,14,83,9.1,250000000,1562,,,,,2024,Washington,,,,,,,,,,,
+brand_performance,Arizona,All IDN,2024,230000000,13,82,8.7,230000000,1438,,,,,2024,Arizona,,,,,,,,,,,
+brand_performance,New Jersey,All IDN,2024,260000000,15,84,9.4,260000000,1625,,,,,2024,New Jersey,,,,,,,,,,,
+brand_performance,Michigan,All IDN,2024,240000000,14,83,9.0,240000000,1500,,,,,2024,Michigan,,,,,,,,,,,
+brand_performance,Massachusetts,All IDN,2024,280000000,16,85,9.8,280000000,1750,,,,,2024,Massachusetts,,,,,,,,,,,
+brand_performance,Virginia,All IDN,2024,260000000,15,84,9.4,260000000,1625,,,,,2024,Virginia,,,,,,,,,,,
+brand_performance,Colorado,All IDN,2024,220000000,13,82,8.8,220000000,1375,,,,,2024,Colorado,,,,,,,,,,,
+brand_performance,Tennessee,All IDN,2024,210000000,12,81,8.5,210000000,1312,,,,,2024,Tennessee,,,,,,,,,,,
+brand_performance,Indiana,All IDN,2024,200000000,12,81,8.3,200000000,1250,,,,,2024,Indiana,,,,,,,,,,,
+brand_performance,Missouri,All IDN,2024,190000000,11,80,8.1,190000000,1188,,,,,2024,Missouri,,,,,,,,,,,
+brand_performance,Wisconsin,All IDN,2024,185000000,11,80,8.0,185000000,1156,,,,,2024,Wisconsin,,,,,,,,,,,
+brand_performance,Minnesota,All IDN,2024,195000000,11,80,8.2,195000000,1219,,,,,2024,Minnesota,,,,,,,,,,,
+brand_performance,Maryland,All IDN,2024,205000000,12,81,8.4,205000000,1281,,,,,2024,Maryland,,,,,,,,,,,
+brand_performance,Alabama,All IDN,2024,175000000,10,79,7.8,175000000,1094,,,,,2024,Alabama,,,,,,,,,,,
+brand_performance,South Carolina,All IDN,2024,170000000,10,79,7.7,170000000,1062,,,,,2024,South Carolina,,,,,,,,,,,
+brand_performance,Kentucky,All IDN,2024,165000000,9,78,7.5,165000000,1031,,,,,2024,Kentucky,,,,,,,,,,,
+brand_performance,Oregon,All IDN,2024,160000000,9,78,7.4,160000000,1000,,,,,2024,Oregon,,,,,,,,,,,
+brand_performance,Connecticut,All IDN,2024,155000000,9,78,7.3,155000000,969,,,,,2024,Connecticut,,,,,,,,,,,
+brand_performance,Oklahoma,All IDN,2024,150000000,8,77,7.2,150000000,938,,,,,2024,Oklahoma,,,,,,,,,,,
+brand_performance,Iowa,All IDN,2024,140000000,8,77,7.0,140000000,875,,,,,2024,Iowa,,,,,,,,,,,
+brand_performance,Nevada,All IDN,2024,145000000,8,77,7.1,145000000,906,,,,,2024,Nevada,,,,,,,,,,,
+brand_performance,Utah,All IDN,2024,135000000,7,76,6.9,135000000,844,,,,,2024,Utah,,,,,,,,,,,
+brand_performance,Kansas,All IDN,2024,130000000,7,76,6.8,130000000,812,,,,,2024,Kansas,,,,,,,,,,,
+brand_performance,New Mexico,All IDN,2024,125000000,7,76,6.7,125000000,781,,,,,2024,New Mexico,,,,,,,,,,,
+brand_performance,Mississippi,All IDN,2024,120000000,7,76,6.6,120000000,750,,,,,2024,Mississippi,,,,,,,,,,,
+brand_performance,Arkansas,All IDN,2024,118000000,7,76,6.5,118000000,738,,,,,2024,Arkansas,,,,,,,,,,,
+brand_performance,Louisiana,All IDN,2024,122000000,7,76,6.6,122000000,762,,,,,2024,Louisiana,,,,,,,,,,,
+brand_performance,West Virginia,All IDN,2024,95000000,6,75,6.2,95000000,594,,,,,2024,West Virginia,,,,,,,,,,,
+brand_performance,Delaware,All IDN,2024,90000000,6,75,6.1,90000000,562,,,,,2024,Delaware,,,,,,,,,,,
+brand_performance,Rhode Island,All IDN,2024,88000000,6,75,6.0,88000000,550,,,,,2024,Rhode Island,,,,,,,,,,,
+brand_performance,Vermont,All IDN,2024,85000000,5,74,5.9,85000000,531,,,,,2024,Vermont,,,,,,,,,,,
+brand_performance,New Hampshire,All IDN,2024,92000000,6,75,6.1,92000000,575,,,,,2024,New Hampshire,,,,,,,,,,,
+brand_performance,Maine,All IDN,2024,87000000,5,74,5.9,87000000,544,,,,,2024,Maine,,,,,,,,,,,
+brand_performance,Montana,All IDN,2024,80000000,5,74,5.8,80000000,500,,,,,2024,Montana,,,,,,,,,,,
+brand_performance,Wyoming,All IDN,2024,75000000,5,74,5.7,75000000,469,,,,,2024,Wyoming,,,,,,,,,,,
+brand_performance,Idaho,All IDN,2024,99000000,6,75,6.2,99000000,619,,,,,2024,Idaho,,,,,,,,,,,
+brand_performance,North Dakota,All IDN,2024,70000000,4,73,5.5,70000000,438,,,,,2024,North Dakota,,,,,,,,,,,
+brand_performance,South Dakota,All IDN,2024,72000000,4,73,5.6,72000000,450,,,,,2024,South Dakota,,,,,,,,,,,
+brand_performance,Nebraska,All IDN,2024,110000000,7,76,6.3,110000000,688,,,,,2024,Nebraska,,,,,,,,,,,
+brand_performance,Alaska,All IDN,2024,60000000,4,73,5.3,60000000,375,,,,,2024,Alaska,,,,,,,,,,,
+brand_performance,Hawaii,All IDN,2024,95000000,6,75,6.2,95000000,594,,,,,2024,Hawaii,,,,,,,,,,,
+hcp_attitudes,Nation,All,Jan 2024,,,,,, ,,, ,,,2024,,85,,,,,,,,,
+hcp_attitudes,Northeast,All,Jan 2024,,,,,, ,,, ,,,2024,,88,,,,,,,,,
+hcp_attitudes,Southeast,All,Jan 2024,,,,,, ,,, ,,,2024,,82,,,,,,,,,
+hcp_attitudes,West,All,Jan 2024,,,,,, ,,, ,,,2024,,87,,,,,,,,,
+hcp_attitudes,South Central,All,Jan 2024,,,,,, ,,, ,,,2024,,79,,,,,,,,,
+hcp_attitudes,Greater,All,Jan 2024,,,,,, ,,, ,,,2024,,84,,,,,,,,,
+hcp_attitudes,,,Jan 2024,,,,,, ,,, ,,,2024,, ,,,12,,,,,,,,
+hcp_attitudes,,,Feb 2024,,,,,, ,,, ,,,2024,, ,,,15,,,,,,,,
+hcp_attitudes,,,Mar 2024,,,,,, ,,, ,,,2024,, ,,,18,,,,,,,,
+hcp_attitudes,,,Apr 2024,,,,,, ,,, ,,,2024,, ,,,22,,,,,,,,
+hcp_attitudes,,,May 2024,,,,,, ,,, ,,,2024,, ,,,25,,,,,,,,
+hcp_attitudes,,,Jun 2024,,,,,, ,,, ,,,2024,, ,,,28,,,,,,,,
+hcp_attitudes,,,,,,,, ,,, ,,,2024,, ,,, ,,, ,,, ,,, ,,, ,,,0-2 years,45,,,,
+hcp_attitudes,,,,,,,, ,,, ,,,2024,, ,,, ,,, ,,, ,,, ,,, ,,,3-5 years,38,,,,
+hcp_attitudes,,,,,,,, ,,, ,,,2024,, ,,, ,,, ,,, ,,, ,,, ,,,6-11 years,52,,,,
+hcp_attitudes,,,,,,,, ,,, ,,,2024,, ,,, ,,, ,,, ,,, ,,, ,,,12-17 years,41,,,,
+hcp_attitudes,,,,,,,, ,,, ,,,2024,, ,,, ,,, ,,, ,,, ,,, ,,,18+ years,67,,,,
+political_sentiments,,,,,,,, ,,, ,,,2020,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,
+political_sentiments,,,,,,,, ,,, ,,,2021,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,
+political_sentiments,,,,,,,, ,,, ,,,2022,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,
+political_sentiments,,,,,,,, ,,, ,,,2023,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,
+political_sentiments,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,
+political_sentiments,Texas,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,68
+political_sentiments,Oklahoma,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,72
+political_sentiments,Arkansas,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,65
+political_sentiments,Louisiana,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,70
+political_sentiments,Mississippi,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,63
+series_completion,Nation,All,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,,,,,,,,,,78
+series_completion,Northeast,All,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,,,,,,,,,,82
+series_completion,Southeast,All,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,,,,,,,,,,75
+series_completion,West,All,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,,,,,,,,,,80
+series_completion,South Central,All,,,,,,,, ,,, ,,,2024,,,,,,,,,,,,,,,,,,,,,,,72
+series_completion,Greater,All,,,,,,,, ,,, ,,,2024,,,,,,,, ,,,,,,,,,,,,,,,,,,76
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,12
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,15
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,18
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,14
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,16
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,13
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,2.1
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,1.8
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,1.5
+series_completion,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,1.2
+operational_metrics,National,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,18
+operational_metrics,Northeast,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,4.2
+operational_metrics,Southeast,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,3.8
+operational_metrics,West,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,3.5
+operational_metrics,South Central,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,3.2
+operational_metrics,Greater,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,3.3
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,85,,,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,88,,,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,92,,,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,89,,,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,94,,,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,91,,,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,,Enterprise,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,,Independent,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,,Health System,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,,Clinic,,,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,,,,,Vaxneuvance,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,,,,,Prevnar 13,,
+operational_metrics,,,,,,,, ,,, ,,,2024,,,,,,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,, ,,,,,,,,,,,,,,Other Vaccines,,

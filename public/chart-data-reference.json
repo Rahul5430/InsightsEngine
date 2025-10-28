@@ -2,9 +2,9 @@
   "metadata": {
     "description": "Sales report driven chart data structure for InsightsEngine application",
     "version": "2.0.0",
-    "generatedAt": "2025-10-27T17:09:10.762Z",
+    "generatedAt": "2025-10-28T13:54:29.342Z",
     "dataSource": "Sales Report CSV",
-    "totalRecords": 25,
+    "totalRecords": 137,
     "sourceFile": "sales-report.csv"
   },
   "chartConfigurations": {
@@ -72,212 +72,6 @@
         }
       ]
     },
-    "revenue_by_region_map": {
-      "id": "revenue_by_region_map",
-      "title": "Revenue distribution across regions",
-      "type": "map",
-      "category": "brand_performance",
-      "xAxisField": "region",
-      "yAxisField": "revenue",
-      "mapType": "USA",
-      "valueField": "value",
-      "nameField": "name",
-      "recommended": true,
-      "data": [
-        {
-          "name": "Alabama",
-          "value": 50416666
-        },
-        {
-          "name": "Arizona",
-          "value": 50416666
-        },
-        {
-          "name": "Arkansas",
-          "value": 50416666
-        },
-        {
-          "name": "California",
-          "value": 50416666
-        },
-        {
-          "name": "Colorado",
-          "value": 50416666
-        },
-        {
-          "name": "Connecticut",
-          "value": 50416666
-        },
-        {
-          "name": "Delaware",
-          "value": 50416666
-        },
-        {
-          "name": "Florida",
-          "value": 50416666
-        },
-        {
-          "name": "Georgia",
-          "value": 50416666
-        },
-        {
-          "name": "Idaho",
-          "value": 50416666
-        },
-        {
-          "name": "Illinois",
-          "value": 50416666
-        },
-        {
-          "name": "Indiana",
-          "value": 50416666
-        },
-        {
-          "name": "Iowa",
-          "value": 43333333
-        },
-        {
-          "name": "Kansas",
-          "value": 43333333
-        },
-        {
-          "name": "Kentucky",
-          "value": 43333333
-        },
-        {
-          "name": "Louisiana",
-          "value": 43333333
-        },
-        {
-          "name": "Maine",
-          "value": 43333333
-        },
-        {
-          "name": "Maryland",
-          "value": 43333333
-        },
-        {
-          "name": "Massachusetts",
-          "value": 43333333
-        },
-        {
-          "name": "Michigan",
-          "value": 43333333
-        },
-        {
-          "name": "Minnesota",
-          "value": 43333333
-        },
-        {
-          "name": "Mississippi",
-          "value": 43333333
-        },
-        {
-          "name": "Missouri",
-          "value": 43333333
-        },
-        {
-          "name": "Montana",
-          "value": 43333333
-        },
-        {
-          "name": "Nebraska",
-          "value": 30000000
-        },
-        {
-          "name": "Nevada",
-          "value": 30000000
-        },
-        {
-          "name": "New Hampshire",
-          "value": 30000000
-        },
-        {
-          "name": "New Jersey",
-          "value": 30000000
-        },
-        {
-          "name": "New Mexico",
-          "value": 30000000
-        },
-        {
-          "name": "New York",
-          "value": 30000000
-        },
-        {
-          "name": "North Carolina",
-          "value": 30000000
-        },
-        {
-          "name": "North Dakota",
-          "value": 30000000
-        },
-        {
-          "name": "Ohio",
-          "value": 30000000
-        },
-        {
-          "name": "Oklahoma",
-          "value": 30000000
-        },
-        {
-          "name": "Oregon",
-          "value": 30000000
-        },
-        {
-          "name": "Pennsylvania",
-          "value": 30000000
-        },
-        {
-          "name": "Rhode Island",
-          "value": 46000000
-        },
-        {
-          "name": "South Carolina",
-          "value": 46000000
-        },
-        {
-          "name": "South Dakota",
-          "value": 46000000
-        },
-        {
-          "name": "Tennessee",
-          "value": 46000000
-        },
-        {
-          "name": "Texas",
-          "value": 46000000
-        },
-        {
-          "name": "Utah",
-          "value": 46000000
-        },
-        {
-          "name": "Vermont",
-          "value": 46000000
-        },
-        {
-          "name": "Virginia",
-          "value": 46000000
-        },
-        {
-          "name": "Washington",
-          "value": 46000000
-        },
-        {
-          "name": "West Virginia",
-          "value": 46000000
-        },
-        {
-          "name": "Wisconsin",
-          "value": 43750000
-        },
-        {
-          "name": "Wyoming",
-          "value": 43750000
-        }
-      ]
-    },
     "growth_trend_regions": {
       "id": "growth_trend_regions",
       "title": "Growth rate trend across regions",
@@ -314,6 +108,206 @@
         {
           "region": "Greater",
           "growth_rate": 7.8
+        },
+        {
+          "region": "California",
+          "growth_rate": 11.1
+        },
+        {
+          "region": "Texas",
+          "growth_rate": 12.3
+        },
+        {
+          "region": "New York",
+          "growth_rate": 13.4
+        },
+        {
+          "region": "Florida",
+          "growth_rate": 14.5
+        },
+        {
+          "region": "Illinois",
+          "growth_rate": 11.8
+        },
+        {
+          "region": "Pennsylvania",
+          "growth_rate": 10.9
+        },
+        {
+          "region": "Georgia",
+          "growth_rate": 10.2
+        },
+        {
+          "region": "Ohio",
+          "growth_rate": 9.9
+        },
+        {
+          "region": "North Carolina",
+          "growth_rate": 9.5
+        },
+        {
+          "region": "Washington",
+          "growth_rate": 9.1
+        },
+        {
+          "region": "Arizona",
+          "growth_rate": 8.7
+        },
+        {
+          "region": "New Jersey",
+          "growth_rate": 9.4
+        },
+        {
+          "region": "Michigan",
+          "growth_rate": 9
+        },
+        {
+          "region": "Massachusetts",
+          "growth_rate": 9.8
+        },
+        {
+          "region": "Virginia",
+          "growth_rate": 9.4
+        },
+        {
+          "region": "Colorado",
+          "growth_rate": 8.8
+        },
+        {
+          "region": "Tennessee",
+          "growth_rate": 8.5
+        },
+        {
+          "region": "Indiana",
+          "growth_rate": 8.3
+        },
+        {
+          "region": "Missouri",
+          "growth_rate": 8.1
+        },
+        {
+          "region": "Wisconsin",
+          "growth_rate": 8
+        },
+        {
+          "region": "Minnesota",
+          "growth_rate": 8.2
+        },
+        {
+          "region": "Maryland",
+          "growth_rate": 8.4
+        },
+        {
+          "region": "Alabama",
+          "growth_rate": 7.8
+        },
+        {
+          "region": "South Carolina",
+          "growth_rate": 7.7
+        },
+        {
+          "region": "Kentucky",
+          "growth_rate": 7.5
+        },
+        {
+          "region": "Oregon",
+          "growth_rate": 7.4
+        },
+        {
+          "region": "Connecticut",
+          "growth_rate": 7.3
+        },
+        {
+          "region": "Oklahoma",
+          "growth_rate": 7.2
+        },
+        {
+          "region": "Iowa",
+          "growth_rate": 7
+        },
+        {
+          "region": "Nevada",
+          "growth_rate": 7.1
+        },
+        {
+          "region": "Utah",
+          "growth_rate": 6.9
+        },
+        {
+          "region": "Kansas",
+          "growth_rate": 6.8
+        },
+        {
+          "region": "New Mexico",
+          "growth_rate": 6.7
+        },
+        {
+          "region": "Mississippi",
+          "growth_rate": 6.6
+        },
+        {
+          "region": "Arkansas",
+          "growth_rate": 6.5
+        },
+        {
+          "region": "Louisiana",
+          "growth_rate": 6.6
+        },
+        {
+          "region": "West Virginia",
+          "growth_rate": 6.2
+        },
+        {
+          "region": "Delaware",
+          "growth_rate": 6.1
+        },
+        {
+          "region": "Rhode Island",
+          "growth_rate": 6
+        },
+        {
+          "region": "Vermont",
+          "growth_rate": 5.9
+        },
+        {
+          "region": "New Hampshire",
+          "growth_rate": 6.1
+        },
+        {
+          "region": "Maine",
+          "growth_rate": 5.9
+        },
+        {
+          "region": "Montana",
+          "growth_rate": 5.8
+        },
+        {
+          "region": "Wyoming",
+          "growth_rate": 5.7
+        },
+        {
+          "region": "Idaho",
+          "growth_rate": 6.2
+        },
+        {
+          "region": "North Dakota",
+          "growth_rate": 5.5
+        },
+        {
+          "region": "South Dakota",
+          "growth_rate": 5.6
+        },
+        {
+          "region": "Nebraska",
+          "growth_rate": 6.3
+        },
+        {
+          "region": "Alaska",
+          "growth_rate": 5.3
+        },
+        {
+          "region": "Hawaii",
+          "growth_rate": 6.2
         }
       ]
     },
@@ -461,6 +455,767 @@
           "region": "Florida",
           "value": 560,
           "segment": "Forecast"
+        }
+      ]
+    },
+    "revenue_by_region_map": {
+      "id": "revenue_by_region_map",
+      "title": "Revenue distribution across regions",
+      "type": "map",
+      "category": "brand_performance",
+      "xAxisField": "region",
+      "yAxisField": "revenue",
+      "mapType": "USA",
+      "valueField": "value",
+      "nameField": "name",
+      "recommended": true,
+      "data": [
+        {
+          "name": "California",
+          "value": 38,
+          "originalValue": 380000000
+        },
+        {
+          "name": "Texas",
+          "value": 64,
+          "originalValue": 600000000
+        },
+        {
+          "name": "New York",
+          "value": 76,
+          "originalValue": 700000000
+        },
+        {
+          "name": "Florida",
+          "value": 100,
+          "originalValue": 900000000
+        },
+        {
+          "name": "Illinois",
+          "value": 70,
+          "originalValue": 650000000
+        },
+        {
+          "name": "Pennsylvania",
+          "value": 43,
+          "originalValue": 420000000
+        },
+        {
+          "name": "Georgia",
+          "value": 30,
+          "originalValue": 310000000
+        },
+        {
+          "name": "Ohio",
+          "value": 27,
+          "originalValue": 290000000
+        },
+        {
+          "name": "North Carolina",
+          "value": 25,
+          "originalValue": 270000000
+        },
+        {
+          "name": "Washington",
+          "value": 23,
+          "originalValue": 250000000
+        },
+        {
+          "name": "Arizona",
+          "value": 20,
+          "originalValue": 230000000
+        },
+        {
+          "name": "New Jersey",
+          "value": 24,
+          "originalValue": 260000000
+        },
+        {
+          "name": "Michigan",
+          "value": 21,
+          "originalValue": 240000000
+        },
+        {
+          "name": "Massachusetts",
+          "value": 26,
+          "originalValue": 280000000
+        },
+        {
+          "name": "Virginia",
+          "value": 24,
+          "originalValue": 260000000
+        },
+        {
+          "name": "Colorado",
+          "value": 19,
+          "originalValue": 220000000
+        },
+        {
+          "name": "Tennessee",
+          "value": 18,
+          "originalValue": 210000000
+        },
+        {
+          "name": "Indiana",
+          "value": 17,
+          "originalValue": 200000000
+        },
+        {
+          "name": "Missouri",
+          "value": 15,
+          "originalValue": 190000000
+        },
+        {
+          "name": "Wisconsin",
+          "value": 15,
+          "originalValue": 185000000
+        },
+        {
+          "name": "Minnesota",
+          "value": 16,
+          "originalValue": 195000000
+        },
+        {
+          "name": "Maryland",
+          "value": 17,
+          "originalValue": 205000000
+        },
+        {
+          "name": "Alabama",
+          "value": 14,
+          "originalValue": 175000000
+        },
+        {
+          "name": "South Carolina",
+          "value": 13,
+          "originalValue": 170000000
+        },
+        {
+          "name": "Kentucky",
+          "value": 13,
+          "originalValue": 165000000
+        },
+        {
+          "name": "Oregon",
+          "value": 12,
+          "originalValue": 160000000
+        },
+        {
+          "name": "Connecticut",
+          "value": 11,
+          "originalValue": 155000000
+        },
+        {
+          "name": "Oklahoma",
+          "value": 11,
+          "originalValue": 150000000
+        },
+        {
+          "name": "Iowa",
+          "value": 10,
+          "originalValue": 140000000
+        },
+        {
+          "name": "Nevada",
+          "value": 10,
+          "originalValue": 145000000
+        },
+        {
+          "name": "Utah",
+          "value": 9,
+          "originalValue": 135000000
+        },
+        {
+          "name": "Kansas",
+          "value": 8,
+          "originalValue": 130000000
+        },
+        {
+          "name": "New Mexico",
+          "value": 8,
+          "originalValue": 125000000
+        },
+        {
+          "name": "Mississippi",
+          "value": 7,
+          "originalValue": 120000000
+        },
+        {
+          "name": "Arkansas",
+          "value": 7,
+          "originalValue": 118000000
+        },
+        {
+          "name": "Louisiana",
+          "value": 7,
+          "originalValue": 122000000
+        },
+        {
+          "name": "West Virginia",
+          "value": 4,
+          "originalValue": 95000000
+        },
+        {
+          "name": "Delaware",
+          "value": 4,
+          "originalValue": 90000000
+        },
+        {
+          "name": "Rhode Island",
+          "value": 3,
+          "originalValue": 88000000
+        },
+        {
+          "name": "Vermont",
+          "value": 3,
+          "originalValue": 85000000
+        },
+        {
+          "name": "New Hampshire",
+          "value": 4,
+          "originalValue": 92000000
+        },
+        {
+          "name": "Maine",
+          "value": 3,
+          "originalValue": 87000000
+        },
+        {
+          "name": "Montana",
+          "value": 2,
+          "originalValue": 80000000
+        },
+        {
+          "name": "Wyoming",
+          "value": 2,
+          "originalValue": 75000000
+        },
+        {
+          "name": "Idaho",
+          "value": 5,
+          "originalValue": 99000000
+        },
+        {
+          "name": "North Dakota",
+          "value": 1,
+          "originalValue": 70000000
+        },
+        {
+          "name": "South Dakota",
+          "value": 1,
+          "originalValue": 72000000
+        },
+        {
+          "name": "Nebraska",
+          "value": 6,
+          "originalValue": 110000000
+        },
+        {
+          "name": "Alaska",
+          "value": 0,
+          "originalValue": 60000000
+        },
+        {
+          "name": "Hawaii",
+          "value": 4,
+          "originalValue": 95000000
+        }
+      ]
+    },
+    "vaxneuvance_share_regions": {
+      "id": "vaxneuvance_share_regions",
+      "title": "Vaxneuvance share across regions",
+      "type": "bar",
+      "category": "brand_performance",
+      "xAxisField": "region",
+      "yAxisField": "market_share",
+      "yAxisUnit": "%",
+      "recommended": false,
+      "stacked": false,
+      "smooth": false,
+      "areaStyle": false,
+      "data": [
+        {
+          "region": "Nation",
+          "market_share": 94
+        },
+        {
+          "region": "Northeast",
+          "market_share": 96
+        },
+        {
+          "region": "Southeast",
+          "market_share": 91
+        },
+        {
+          "region": "West",
+          "market_share": 90
+        },
+        {
+          "region": "South Central",
+          "market_share": 68
+        },
+        {
+          "region": "Greater",
+          "market_share": 81
+        },
+        {
+          "region": "California",
+          "market_share": 88
+        },
+        {
+          "region": "Texas",
+          "market_share": 90
+        },
+        {
+          "region": "New York",
+          "market_share": 92
+        },
+        {
+          "region": "Florida",
+          "market_share": 93
+        },
+        {
+          "region": "Illinois",
+          "market_share": 89
+        },
+        {
+          "region": "Pennsylvania",
+          "market_share": 87
+        },
+        {
+          "region": "Georgia",
+          "market_share": 86
+        },
+        {
+          "region": "Ohio",
+          "market_share": 85
+        },
+        {
+          "region": "North Carolina",
+          "market_share": 84
+        },
+        {
+          "region": "Washington",
+          "market_share": 83
+        },
+        {
+          "region": "Arizona",
+          "market_share": 82
+        },
+        {
+          "region": "New Jersey",
+          "market_share": 84
+        },
+        {
+          "region": "Michigan",
+          "market_share": 83
+        },
+        {
+          "region": "Massachusetts",
+          "market_share": 85
+        },
+        {
+          "region": "Virginia",
+          "market_share": 84
+        },
+        {
+          "region": "Colorado",
+          "market_share": 82
+        },
+        {
+          "region": "Tennessee",
+          "market_share": 81
+        },
+        {
+          "region": "Indiana",
+          "market_share": 81
+        },
+        {
+          "region": "Missouri",
+          "market_share": 80
+        },
+        {
+          "region": "Wisconsin",
+          "market_share": 80
+        },
+        {
+          "region": "Minnesota",
+          "market_share": 80
+        },
+        {
+          "region": "Maryland",
+          "market_share": 81
+        },
+        {
+          "region": "Alabama",
+          "market_share": 79
+        },
+        {
+          "region": "South Carolina",
+          "market_share": 79
+        },
+        {
+          "region": "Kentucky",
+          "market_share": 78
+        },
+        {
+          "region": "Oregon",
+          "market_share": 78
+        },
+        {
+          "region": "Connecticut",
+          "market_share": 78
+        },
+        {
+          "region": "Oklahoma",
+          "market_share": 77
+        },
+        {
+          "region": "Iowa",
+          "market_share": 77
+        },
+        {
+          "region": "Nevada",
+          "market_share": 77
+        },
+        {
+          "region": "Utah",
+          "market_share": 76
+        },
+        {
+          "region": "Kansas",
+          "market_share": 76
+        },
+        {
+          "region": "New Mexico",
+          "market_share": 76
+        },
+        {
+          "region": "Mississippi",
+          "market_share": 76
+        },
+        {
+          "region": "Arkansas",
+          "market_share": 76
+        },
+        {
+          "region": "Louisiana",
+          "market_share": 76
+        },
+        {
+          "region": "West Virginia",
+          "market_share": 75
+        },
+        {
+          "region": "Delaware",
+          "market_share": 75
+        },
+        {
+          "region": "Rhode Island",
+          "market_share": 75
+        },
+        {
+          "region": "Vermont",
+          "market_share": 74
+        },
+        {
+          "region": "New Hampshire",
+          "market_share": 75
+        },
+        {
+          "region": "Maine",
+          "market_share": 74
+        },
+        {
+          "region": "Montana",
+          "market_share": 74
+        },
+        {
+          "region": "Wyoming",
+          "market_share": 74
+        },
+        {
+          "region": "Idaho",
+          "market_share": 75
+        },
+        {
+          "region": "North Dakota",
+          "market_share": 73
+        },
+        {
+          "region": "South Dakota",
+          "market_share": 73
+        },
+        {
+          "region": "Nebraska",
+          "market_share": 76
+        },
+        {
+          "region": "Alaska",
+          "market_share": 73
+        },
+        {
+          "region": "Hawaii",
+          "market_share": 75
+        }
+      ]
+    },
+    "qoq_market_share_change": {
+      "id": "qoq_market_share_change",
+      "title": "QoQ market share change",
+      "type": "bar",
+      "category": "brand_performance",
+      "xAxisField": "region",
+      "yAxisField": "change_percentage",
+      "yAxisUnit": "%",
+      "recommended": false,
+      "stacked": false,
+      "smooth": false,
+      "areaStyle": false,
+      "data": [
+        {
+          "region": "Nation",
+          "change_percentage": 32
+        },
+        {
+          "region": "Northeast",
+          "change_percentage": 28
+        },
+        {
+          "region": "Southeast",
+          "change_percentage": 25
+        },
+        {
+          "region": "West",
+          "change_percentage": 22
+        },
+        {
+          "region": "South Central",
+          "change_percentage": 18
+        },
+        {
+          "region": "Greater",
+          "change_percentage": 20
+        },
+        {
+          "region": "California",
+          "change_percentage": 20
+        },
+        {
+          "region": "Texas",
+          "change_percentage": 22
+        },
+        {
+          "region": "New York",
+          "change_percentage": 24
+        },
+        {
+          "region": "Florida",
+          "change_percentage": 26
+        },
+        {
+          "region": "Illinois",
+          "change_percentage": 21
+        },
+        {
+          "region": "Pennsylvania",
+          "change_percentage": 19
+        },
+        {
+          "region": "Georgia",
+          "change_percentage": 17
+        },
+        {
+          "region": "Ohio",
+          "change_percentage": 16
+        },
+        {
+          "region": "North Carolina",
+          "change_percentage": 15
+        },
+        {
+          "region": "Washington",
+          "change_percentage": 14
+        },
+        {
+          "region": "Arizona",
+          "change_percentage": 13
+        },
+        {
+          "region": "New Jersey",
+          "change_percentage": 15
+        },
+        {
+          "region": "Michigan",
+          "change_percentage": 14
+        },
+        {
+          "region": "Massachusetts",
+          "change_percentage": 16
+        },
+        {
+          "region": "Virginia",
+          "change_percentage": 15
+        },
+        {
+          "region": "Colorado",
+          "change_percentage": 13
+        },
+        {
+          "region": "Tennessee",
+          "change_percentage": 12
+        },
+        {
+          "region": "Indiana",
+          "change_percentage": 12
+        },
+        {
+          "region": "Missouri",
+          "change_percentage": 11
+        },
+        {
+          "region": "Wisconsin",
+          "change_percentage": 11
+        },
+        {
+          "region": "Minnesota",
+          "change_percentage": 11
+        },
+        {
+          "region": "Maryland",
+          "change_percentage": 12
+        },
+        {
+          "region": "Alabama",
+          "change_percentage": 10
+        },
+        {
+          "region": "South Carolina",
+          "change_percentage": 10
+        },
+        {
+          "region": "Kentucky",
+          "change_percentage": 9
+        },
+        {
+          "region": "Oregon",
+          "change_percentage": 9
+        },
+        {
+          "region": "Connecticut",
+          "change_percentage": 9
+        },
+        {
+          "region": "Oklahoma",
+          "change_percentage": 8
+        },
+        {
+          "region": "Iowa",
+          "change_percentage": 8
+        },
+        {
+          "region": "Nevada",
+          "change_percentage": 8
+        },
+        {
+          "region": "Utah",
+          "change_percentage": 7
+        },
+        {
+          "region": "Kansas",
+          "change_percentage": 7
+        },
+        {
+          "region": "New Mexico",
+          "change_percentage": 7
+        },
+        {
+          "region": "Mississippi",
+          "change_percentage": 7
+        },
+        {
+          "region": "Arkansas",
+          "change_percentage": 7
+        },
+        {
+          "region": "Louisiana",
+          "change_percentage": 7
+        },
+        {
+          "region": "West Virginia",
+          "change_percentage": 6
+        },
+        {
+          "region": "Delaware",
+          "change_percentage": 6
+        },
+        {
+          "region": "Rhode Island",
+          "change_percentage": 6
+        },
+        {
+          "region": "Vermont",
+          "change_percentage": 5
+        },
+        {
+          "region": "New Hampshire",
+          "change_percentage": 6
+        },
+        {
+          "region": "Maine",
+          "change_percentage": 5
+        },
+        {
+          "region": "Montana",
+          "change_percentage": 5
+        },
+        {
+          "region": "Wyoming",
+          "change_percentage": 5
+        },
+        {
+          "region": "Idaho",
+          "change_percentage": 6
+        },
+        {
+          "region": "North Dakota",
+          "change_percentage": 4
+        },
+        {
+          "region": "South Dakota",
+          "change_percentage": 4
+        },
+        {
+          "region": "Nebraska",
+          "change_percentage": 7
+        },
+        {
+          "region": "Alaska",
+          "change_percentage": 4
+        },
+        {
+          "region": "Hawaii",
+          "change_percentage": 6
+        }
+      ]
+    },
+    "le_revenue_change_baseline": {
+      "id": "le_revenue_change_baseline",
+      "title": "LE revenue change v/s baseline",
+      "type": "bar",
+      "category": "revenue_forecast",
+      "xAxisField": "segment",
+      "yAxisField": "value",
+      "yAxisUnit": "M",
+      "recommended": false,
+      "stacked": false,
+      "smooth": false,
+      "areaStyle": false,
+      "data": [
+        {
+          "segment": "Change vs Baseline",
+          "value": 22
         }
       ]
     },
@@ -897,22 +1652,22 @@
     "netSales": {
       "title": "Net Sales",
       "value": "$485M",
-      "trend": "↑ 24.2% YoY | 24.2% QoQ"
+      "trend": "↑ 113.7% YoY | 113.7% QoQ"
     },
     "growthNetSales": {
       "title": "Growth Net Sales",
-      "value": "$117M",
-      "trend": "↑ 24.2%"
+      "value": "$551M",
+      "trend": "↑ 113.7%"
     },
     "dailySales": {
       "title": "Daily Sales",
       "value": "3042 std.",
-      "trend": "↑ 24.2% in total volume"
+      "trend": "↑ 113.7% in total volume"
     },
     "callActivityVolume": {
       "title": "Call Activity Volume",
       "value": "3K",
-      "trend": "↑ 24.2%"
+      "trend": "↑ 113.7%"
     }
   },
   "pageLayouts": {
