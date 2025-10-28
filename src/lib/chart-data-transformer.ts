@@ -99,7 +99,10 @@ export function getKpiData(config: ChartDataConfig): KpiData {
  */
 export async function loadChartData(): Promise<ChartDataConfig> {
 	try {
-		const response = await fetch('/chart-data-reference.json');
+		// Keep cached; revalidate with server based on ETag/Last-Modified
+		const response = await fetch('/chart-data-reference.json', {
+			cache: 'no-cache',
+		});
 		if (!response.ok) {
 			throw new Error('Failed to load chart data');
 		}
