@@ -719,6 +719,133 @@ function convertSalesReportToJSON() {
 			`   Created ${Object.keys(chartConfigurations).length} chart configurations`
 		);
 
+		// Inject example demo charts that are always present (not CSV-driven)
+		(function injectExampleCharts() {
+			const lineDemo = {
+				id: 'line-chart-1',
+				title: 'Budget Target vs. Forecast',
+				type: 'line',
+				xAxisField: 'Month',
+				yAxisField: 'Value',
+				seriesField: 'SeriesName',
+				data: [
+					{
+						Month: "Sep '25",
+						SeriesName: 'Budget Target',
+						Value: 260,
+						Color: 'var(--ie-chart-green)',
+					},
+					{
+						Month: "Oct '25",
+						SeriesName: 'Budget Target',
+						Value: 300,
+						Color: 'var(--ie-chart-green)',
+					},
+					{
+						Month: "Nov '25",
+						SeriesName: 'Budget Target',
+						Value: 340,
+						Color: 'var(--ie-chart-green)',
+					},
+					{
+						Month: "Dec '25",
+						SeriesName: 'Budget Target',
+						Value: 360,
+						Color: 'var(--ie-chart-green)',
+					},
+					{
+						Month: "Sep '25",
+						SeriesName: 'Forecast',
+						Value: 230,
+						Color: 'var(--ie-primary)',
+					},
+					{
+						Month: "Oct '25",
+						SeriesName: 'Forecast',
+						Value: 280,
+						Color: 'var(--ie-primary)',
+					},
+					{
+						Month: "Nov '25",
+						SeriesName: 'Forecast',
+						Value: 320,
+						Color: 'var(--ie-primary)',
+					},
+					{
+						Month: "Dec '25",
+						SeriesName: 'Forecast',
+						Value: 350,
+						Color: 'var(--ie-primary)',
+					},
+				],
+			};
+
+			const barDemo = {
+				id: 'bar-chart-1',
+				title: 'Category Performance',
+				type: 'bar',
+				xAxisField: 'Category',
+				yAxisField: 'Percentage',
+				yAxisUnit: '%',
+				data: [
+					{
+						Category: 'ACT 25',
+						Percentage: 18,
+						Color: 'var(--ie-primary)',
+					},
+					{
+						Category: 'Community',
+						Percentage: 12,
+						Color: 'var(--ie-primary)',
+					},
+					{
+						Category: 'Top 40',
+						Percentage: 7,
+						Color: 'var(--ie-primary)',
+					},
+					{
+						Category: 'Academic',
+						Percentage: 6,
+						Color: 'var(--ie-primary)',
+					},
+				],
+			};
+
+			const waterfallDemo = {
+				id: 'waterfall-chart-1',
+				title: 'Waterfall Analysis',
+				type: 'waterfall',
+				xAxisField: 'Step',
+				yAxisField: 'Change',
+				data: [
+					{ Step: 'Baseline', Change: 9, Color: 'var(--ie-primary)' },
+					{ Step: 'EPI', Change: -4, Color: 'var(--ie-primary)' },
+					{ Step: 'Share', Change: -6, Color: 'var(--ie-primary)' },
+					{
+						Step: 'Mayo Clinic',
+						Change: 3,
+						Color: 'var(--ie-primary)',
+					},
+					{ Step: 'Current', Change: 9, Color: 'var(--ie-primary)' },
+				],
+			};
+
+			// Map demo datasets to the fixed IDs used by UI routes
+			const ensure = (id, demo) => {
+				if (!chartConfigurations[id])
+					chartConfigurations[id] = { ...demo, id };
+			};
+
+			ensure('needToMeet', lineDemo);
+			ensure('revenueVsForecast', lineDemo);
+			ensure('leRevenueChangeBaseline', waterfallDemo);
+			ensure('postcardRecallRate', barDemo);
+			ensure('wellnessVisitGrowth', barDemo);
+			ensure('marketShareRegions', barDemo);
+			ensure('qoqMarketShareChangeMixed', barDemo);
+			ensure('vaxneuvanceShareRegions', barDemo);
+		})();
+
 		// Ensure USA map chart exists using full CSV (state rows preferred; fallback to state-like regions)
 		(function ensureMapFromCsv() {
 			if (chartConfigurations.revenue_by_region_map) return;

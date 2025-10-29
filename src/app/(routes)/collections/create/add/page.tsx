@@ -3,22 +3,13 @@
 import { ChevronLeft, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { ChartCard as CommonChartCard } from '@/components/common/ChartCard';
-import {
-	type ChartDataConfig,
-	loadChartData,
-} from '@/lib/chart-data-transformer';
 
 export default function AddToCollectionStep() {
 	const router = useRouter();
 	const [selected, setSelected] = useState<Set<number>>(new Set());
-	const [chartConfig, setChartConfig] = useState<ChartDataConfig | null>(
-		null
-	);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<string | null>(null);
 
 	const chartData = [
 		{
@@ -126,56 +117,6 @@ export default function AddToCollectionStep() {
 		},
 	];
 
-	useEffect(() => {
-		const loadData = async () => {
-			try {
-				const config = await loadChartData();
-				setChartConfig(config);
-			} catch (err) {
-				setError('Failed to load chart data');
-				// eslint-disable-next-line no-console
-				console.error('Error loading chart data:', err);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		loadData();
-	}, []);
-
-	if (loading) {
-		return (
-			<main className='ie-hide-fab min-h-screen'>
-				<div className='flex min-h-screen items-center justify-center'>
-					<div className='text-center'>
-						<div className='mx-auto h-12 w-12 animate-spin rounded-full border-b-2 border-blue-500'></div>
-						<p className='mt-4 text-slate-600'>
-							Loading chart data...
-						</p>
-					</div>
-				</div>
-			</main>
-		);
-	}
-
-	if (error || !chartConfig) {
-		return (
-			<main className='ie-hide-fab min-h-screen'>
-				<div className='flex min-h-screen items-center justify-center'>
-					<div className='text-center'>
-						<div className='mb-4 text-6xl text-red-500'>⚠️</div>
-						<h2 className='mb-2 text-2xl font-bold text-slate-900'>
-							Error Loading Data
-						</h2>
-						<p className='text-slate-600'>
-							{error || 'Chart data not available'}
-						</p>
-					</div>
-				</div>
-			</main>
-		);
-	}
-
 	// Get available charts for selection
 	const availableCharts = [
 		{ id: 'needToMeet', title: 'Need to meet', opt: chartData[0] },
@@ -282,16 +223,17 @@ export default function AddToCollectionStep() {
 										});
 									}
 								}}
-								className={`ie-card-hover cursor-pointer rounded-[16px] text-left transition-all duration-200 ease-out ${
+								className={`cursor-pointer text-left transition-transform duration-200 ease-out ${
 									selected.has(idx)
-										? 'scale-[1.02] shadow-lg ring-2 ring-blue-500 ring-offset-2'
-										: 'hover:scale-[1.01] hover:shadow-md hover:ring-1 hover:ring-slate-300'
+										? 'scale-[1.02]'
+										: 'hover:scale-[1.01]'
 								}`}
 							>
 								<CommonChartCard
 									variant='chart'
 									title={chart.title}
 									interactive={false}
+									selected={selected.has(idx)}
 									// @ts-expect-error TODO: remove this
 									chartData={chartData}
 								/>
@@ -316,9 +258,16 @@ export default function AddToCollectionStep() {
 					}
 					className={`rounded-[10px] px-4 py-2 text-sm font-medium ${selected.size === 0 ? 'bg-border cursor-not-allowed bg-blue-300 text-white' : 'bg-primary hover:bg-primary-light cursor-pointer text-white'}`}
 				>
-					{selected.size === 0
-						? 'Add Insight'
-						: `Add Insight${selected.size > 1 ? 's' : ''} ${selected.size}`}
+					{selected.size === 0 ? (
+						'Add Insight'
+					) : (
+						<>
+							{`Add Insight${selected.size > 1 ? 's' : ''}`}
+							<span className='ml-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-semibold text-blue-600'>
+								{selected.size}
+							</span>
+						</>
+					)}
 				</button>
 			</div>
 		</main>

@@ -18,6 +18,7 @@ type ChartVariantProps = BaseProps & {
 	source?: string;
 	recommended?: boolean;
 	interactive?: boolean;
+	selected?: boolean;
 };
 
 type CollectionVariantProps = BaseProps & {
@@ -37,6 +38,7 @@ export function ChartCard(props: ChartCardProps) {
 	const isChartVariant = props.variant === 'chart';
 	const interactive = isChartVariant ? (props.interactive ?? true) : true;
 	const recommended = isChartVariant ? (props.recommended ?? false) : false;
+	const selected = isChartVariant ? (props.selected ?? false) : false;
 	const source = isChartVariant
 		? props.source || 'Source: Vaccelerator (FCT_CUST_FINANCE) Sep 2025'
 		: undefined;
@@ -210,7 +212,9 @@ export function ChartCard(props: ChartCardProps) {
 				</div>
 			) : null}
 
-			<div className='absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-500 to-violet-500 transition-all duration-300 group-hover:w-full' />
+			<div
+				className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-violet-500 transition-all duration-300 ${selected ? 'w-full' : 'w-0 group-hover:w-full'}`}
+			/>
 		</div>
 	);
 }

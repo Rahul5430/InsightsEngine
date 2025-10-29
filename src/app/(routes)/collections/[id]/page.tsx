@@ -91,9 +91,9 @@ export default function CollectionPage() {
 	// Options no longer used; Chart.js renders directly from chartData
 
 	return (
-		<main className='min-h-screen'>
-			<div className='mx-auto max-w-6xl px-6 py-4'>
-				<div className='flex items-center justify-between'>
+		<main>
+			<div className='tablet:mx-4 mx-auto px-4 py-4 pb-8 sm:px-6 lg:mx-10'>
+				<div className='flex items-center justify-between py-4'>
 					<div className='flex items-center gap-3'>
 						<Link
 							href='/collections'
@@ -153,31 +153,37 @@ export default function CollectionPage() {
 
 				<div className='mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
 					{needToMeetData && (
-						<CommonChartCard
-							variant='chart'
-							title='Need to meet'
-							chartData={needToMeetData}
-							recommended={true}
-							source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
-						/>
+						<div className='rounded-[16px] text-left transition-transform duration-200 ease-out hover:scale-[1.01]'>
+							<CommonChartCard
+								variant='chart'
+								title='Need to meet'
+								chartData={needToMeetData}
+								recommended={true}
+								source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
+							/>
+						</div>
 					)}
 					{revenueVsForecastData && (
-						<CommonChartCard
-							variant='chart'
-							title='Revenue vs forecast'
-							chartData={revenueVsForecastData}
-							recommended={true}
-							source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
-						/>
+						<div className='rounded-[16px] text-left transition-transform duration-200 ease-out hover:scale-[1.01]'>
+							<CommonChartCard
+								variant='chart'
+								title='Revenue vs forecast'
+								chartData={revenueVsForecastData}
+								recommended={true}
+								source="LE2 Forecast (APS 3.0), IQVIA DDD (YTD Jul'25)"
+							/>
+						</div>
 					)}
 					{leRevenueChangeData && (
-						<CommonChartCard
-							variant='chart'
-							title='LE revenue change v/s baseline'
-							chartData={leRevenueChangeData}
-							recommended={true}
-							source='Epidemiology source (MAT 2025), Pfizer Internal data'
-						/>
+						<div className='rounded-[16px] text-left transition-transform duration-200 ease-out hover:scale-[1.01]'>
+							<CommonChartCard
+								variant='chart'
+								title='LE revenue change v/s baseline'
+								chartData={leRevenueChangeData}
+								recommended={true}
+								source='Epidemiology source (MAT 2025), Pfizer Internal data'
+							/>
+						</div>
 					)}
 
 					<div className='mx-auto flex w-full flex-col items-center justify-center rounded-[14px] border border-dashed border-slate-200 bg-slate-50/40 py-38 text-center'>
