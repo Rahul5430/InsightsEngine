@@ -159,7 +159,7 @@ export default function AddToCollectionStep() {
 
 	return (
 		<main className='ie-hide-fab'>
-			<div className='w-full px-16 py-8'>
+			<div className='w-full px-4 py-4 sm:px-6 md:px-8'>
 				<div className='flex items-center justify-between'>
 					<div className='flex items-center gap-3'>
 						<Link

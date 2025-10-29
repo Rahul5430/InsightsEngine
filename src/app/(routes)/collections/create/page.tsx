@@ -15,7 +15,7 @@ export default function CreateCollectionPage() {
 	return (
 		<main>
 			<div className='tablet:mx-4 mx-auto px-4 py-4 pb-8 sm:px-6 lg:mx-10'>
-				<div className='flex items-center justify-between'>
+				<div className='flex items-center justify-between sm:py-2 md:py-4'>
 					<div className='flex items-center gap-3'>
 						<Link
 							href='/collections'
