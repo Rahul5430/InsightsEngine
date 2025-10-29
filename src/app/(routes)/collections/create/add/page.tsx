@@ -3,12 +3,11 @@
 import { ChevronLeft, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { ChartCard as CommonChartCard } from '@/components/common/ChartCard';
 import {
 	type ChartDataConfig,
-	getChartDataById,
 	loadChartData,
 } from '@/lib/chart-data-transformer';
 
@@ -20,6 +19,112 @@ export default function AddToCollectionStep() {
 	);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
+
+	const chartData = [
+		{
+			id: 'line-chart-1',
+			title: 'Budget Target vs. Forecast',
+			type: 'line',
+			xAxisField: 'Month',
+			yAxisField: 'Value',
+			seriesField: 'SeriesName', // Used to split the data into multiple lines
+			data: [
+				{
+					Month: "Sep '25",
+					SeriesName: 'Budget Target',
+					Value: 260,
+					Color: 'var(--ie-chart-green)',
+				},
+				{
+					Month: "Oct '25",
+					SeriesName: 'Budget Target',
+					Value: 300,
+					Color: 'var(--ie-chart-green)',
+				},
+				{
+					Month: "Nov '25",
+					SeriesName: 'Budget Target',
+					Value: 340,
+					Color: 'var(--ie-chart-green)',
+				},
+				{
+					Month: "Dec '25",
+					SeriesName: 'Budget Target',
+					Value: 360,
+					Color: 'var(--ie-chart-green)',
+				},
+
+				{
+					Month: "Sep '25",
+					SeriesName: 'Forecast',
+					Value: 230,
+					Color: 'var(--ie-primary)',
+				},
+				{
+					Month: "Oct '25",
+					SeriesName: 'Forecast',
+					Value: 280,
+					Color: 'var(--ie-primary)',
+				},
+				{
+					Month: "Nov '25",
+					SeriesName: 'Forecast',
+					Value: 320,
+					Color: 'var(--ie-primary)',
+				},
+				{
+					Month: "Dec '25",
+					SeriesName: 'Forecast',
+					Value: 350,
+					Color: 'var(--ie-primary)',
+				},
+			],
+		},
+		{
+			id: 'bar-chart-1',
+			title: 'Category Performance',
+			type: 'bar',
+			xAxisField: 'Category',
+			yAxisField: 'Percentage',
+			yAxisUnit: '%', // from yAxis.axisLabel.formatter: '{value}%'
+			data: [
+				{
+					Category: 'ACT 25',
+					Percentage: 18,
+					Color: 'var(--ie-primary)',
+				},
+				{
+					Category: 'Community',
+					Percentage: 12,
+					Color: 'var(--ie-primary)',
+				},
+				{
+					Category: 'Top 40',
+					Percentage: 7,
+					Color: 'var(--ie-primary)',
+				},
+				{
+					Category: 'Academic',
+					Percentage: 6,
+					Color: 'var(--ie-primary)',
+				},
+			],
+		},
+		{
+			id: 'waterfall-chart-1',
+			title: 'Waterfall Analysis',
+			type: 'waterfall', // Assumes your system has a way to render a waterfall from this data type
+			xAxisField: 'Step',
+			yAxisField: 'Change',
+			data: [
+				{ Step: 'Baseline', Change: 9, Color: 'var(--ie-primary)' },
+				{ Step: 'EPI', Change: -4, Color: 'var(--ie-primary)' },
+				{ Step: 'Share', Change: -6, Color: 'var(--ie-primary)' },
+				{ Step: 'Mayo Clinic', Change: 3, Color: 'var(--ie-primary)' },
+				{ Step: 'Current', Change: 9, Color: 'var(--ie-primary)' },
+			],
+		},
+	];
 
 	useEffect(() => {
 		const loadData = async () => {
@@ -73,37 +178,47 @@ export default function AddToCollectionStep() {
 
 	// Get available charts for selection
 	const availableCharts = [
-		{ id: 'needToMeet', title: 'Need to meet' },
-		{ id: 'revenueVsForecast', title: 'Revenue vs forecast' },
+		{ id: 'needToMeet', title: 'Need to meet', opt: chartData[0] },
+		{
+			id: 'revenueVsForecast',
+			title: 'Revenue vs forecast',
+			opt: chartData[0],
+		},
 		{
 			id: 'leRevenueChangeBaseline',
 			title: 'LE revenue change v/s baseline',
+			opt: chartData[2],
 		},
 		{
 			id: 'postcardRecallRate',
 			title: 'Regional variation in ADC+IO adoption volume',
+			opt: chartData[1],
 		},
 		{
 			id: 'wellnessVisitGrowth',
 			title: 'ADC+IO utilization across key account segments',
+			opt: chartData[1],
 		},
 		{
 			id: 'marketShareRegions',
 			title: 'ADC+IO utilization across key account segments',
+			opt: chartData[1],
 		},
 		{
 			id: 'qoqMarketShareChangeMixed',
 			title: 'ADC+IO utilization across key account segments',
+			opt: chartData[1],
 		},
 		{
 			id: 'vaxneuvanceShareRegions',
 			title: 'ADC+IO utilization across key account segments',
+			opt: chartData[1],
 		},
 	];
 
 	return (
-		<main className='ie-hide-fab min-h-screen'>
-			<div className='w-full px-6 py-4'>
+		<main className='ie-hide-fab'>
+			<div className='w-full px-16 py-8'>
 				<div className='flex items-center justify-between'>
 					<div className='flex items-center gap-3'>
 						<Link
@@ -129,13 +244,11 @@ export default function AddToCollectionStep() {
 				</div>
 			</div>
 
-			<div className='w-full px-6 pb-24'>
-				<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
+			<div className='tablet:mx-4 mx-auto px-4 pb-8 sm:px-6 lg:mx-10'>
+				<div className='tablet:grid-cols-2 grid grid-cols-1 gap-4 min-[1400px]:!grid-cols-3 sm:gap-6'>
 					{availableCharts.map((chart, idx) => {
-						const chartData = getChartDataById(
-							chartConfig,
-							chart.id
-						);
+						const chartData = chart.opt;
+
 						if (!chartData) return null;
 
 						return (
@@ -169,7 +282,7 @@ export default function AddToCollectionStep() {
 										});
 									}
 								}}
-								className={`cursor-pointer rounded-[16px] text-left transition-all duration-200 ease-out ${
+								className={`ie-card-hover cursor-pointer rounded-[16px] text-left transition-all duration-200 ease-out ${
 									selected.has(idx)
 										? 'scale-[1.02] shadow-lg ring-2 ring-blue-500 ring-offset-2'
 										: 'hover:scale-[1.01] hover:shadow-md hover:ring-1 hover:ring-slate-300'

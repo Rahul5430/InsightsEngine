@@ -103,7 +103,10 @@ export function ChartCard(props: ChartCardProps) {
 							}}
 							className={`ie-button-hover ie-touch-target rounded-lg p-1.5 text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:p-2 ${!interactive ? 'cursor-not-allowed opacity-50' : ''}`}
 						>
-							<Expand size={14} className='md:h-4 md:w-4' />
+							<Expand
+								size={14}
+								className='mx-auto md:h-4 md:w-4'
+							/>
 						</button>
 						<button
 							type='button'
@@ -119,7 +122,7 @@ export function ChartCard(props: ChartCardProps) {
 						>
 							<Star
 								size={14}
-								className={`md:h-4 md:w-4 ${favourite ? 'text-amber-500' : ''}`}
+								className={`mx-auto md:h-4 md:w-4 ${favourite ? 'text-amber-500' : ''}`}
 								fill={favourite ? 'currentColor' : 'none'}
 							/>
 						</button>
@@ -137,7 +140,7 @@ export function ChartCard(props: ChartCardProps) {
 							>
 								<ListFilter
 									size={14}
-									className='md:h-4 md:w-4'
+									className='mx-auto md:h-4 md:w-4'
 								/>
 							</button>
 						) : null}
@@ -152,7 +155,7 @@ export function ChartCard(props: ChartCardProps) {
 									>
 										<Ellipsis
 											size={14}
-											className='md:h-4 md:w-4'
+											className='mx-auto md:h-4 md:w-4'
 										/>
 									</button>
 								}
