@@ -3,7 +3,7 @@
 import { ChevronLeft, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ChartCard as CommonChartCard } from '@/components/common/ChartCard';
 import {
@@ -292,6 +292,7 @@ export default function AddToCollectionStep() {
 									variant='chart'
 									title={chart.title}
 									interactive={false}
+									// @ts-expect-error TODO: remove this
 									chartData={chartData}
 								/>
 							</div>
